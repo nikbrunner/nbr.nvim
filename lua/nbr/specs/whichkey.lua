@@ -57,6 +57,7 @@ return {
                 { "<leader>,", icon = " " },
 
                 -- [A]pp
+                { "<leader>ag", icon = " " },
                 { "<leader>a", group = "[A]pp", icon = " " },
                 { "<leader>ao", group = "[O]ptions", icon = " " },
                 { "<leader>ai", group = "[I]nfo", icon = " " },

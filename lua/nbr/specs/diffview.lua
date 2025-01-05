@@ -6,6 +6,7 @@ return {
     },
     keys = {
         { "<leader>wvd", "<CMD>DiffviewOpen<CR>", desc = "[D]iff" },
-        { "<leader>dL", "<CMD>DiffviewFileHistory %<CR>", desc = "[L]og" },
+        { "<leader>wH", "<CMD>DiffviewFileHistory<CR>", desc = "[H]istory (Diffview)" },
+        { "<leader>dH", "<CMD>DiffviewFileHistory %<CR>", desc = "[H]istory (Diffview)" },
     },
 }
