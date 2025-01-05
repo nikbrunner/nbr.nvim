@@ -109,7 +109,7 @@ map("n", "]q", vim.cmd.cnext, { desc = "Next quickfix" })
 map("n", "n", "nzzzv")
 map("n", "N", "Nzzzv")
 
-map("n", "<leader>ais", vim.show_pos, { desc = "[S]ymbol" })
+map("n", "<leader>sI", vim.show_pos, { desc = "[I]nspect" })
 
 map("n", "<leader>ax", "<cmd>Lazy<CR>", { desc = "[X]tensions" })
 
@@ -120,7 +120,7 @@ map("n", "<leader>aL", function()
     vim.cmd("LspRestart")
 end, { desc = "[R]estart Language Servers" })
 
-map("n", "<leader>ail", "<cmd>LspInfo<CR>", { desc = "[L]anague Server Information" })
+map("n", "<leader>aIl", "<cmd>LspInfo<CR>", { desc = "[L]anague Server Information" })
 
 map("n", "<leader>w.", function()
     local git_root = require("snacks").git.get_root()

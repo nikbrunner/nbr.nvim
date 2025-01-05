@@ -60,7 +60,7 @@ return {
                 { "<leader>ag", icon = " " },
                 { "<leader>a", group = "[A]pp", icon = " " },
                 { "<leader>ao", group = "[O]ptions", icon = " " },
-                { "<leader>ai", group = "[I]nfo", icon = " " },
+                { "<leader>aI", group = "[I]nsights", icon = " " },
                 { "<leader>ah", group = "[H]elp", icon = " " },
 
                 -- [W]orkspace

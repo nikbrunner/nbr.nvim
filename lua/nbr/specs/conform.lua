@@ -67,7 +67,7 @@ M.spec = {
             desc = "Toggle Format on Save",
         },
         {
-            "<leader>aif",
+            "<leader>aIf",
             "<cmd>ConformInfo<CR>",
             desc = "[F]ormatter Info",
         },
