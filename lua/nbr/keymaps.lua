@@ -72,7 +72,7 @@ map("n", "x", '"_x', { desc = "Delete without yanking" })
 -- Join lines while keeping position
 map("n", "J", "mzJ`z", { desc = "Join Lines" })
 
-map("n", "go", "<cmd>e #<cr>", { desc = "Go to Other File" })
+map("n", "<leader>dl", "<cmd>e #<cr>", { desc = "[L]ast document" })
 
 map("n", "<C-c>", "ciw")
 
