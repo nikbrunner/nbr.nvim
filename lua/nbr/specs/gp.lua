@@ -196,27 +196,27 @@ M.spec = {
     },
     keys = {
         {
-            "<leader>in",
+            "<leader>ain",
             "<cmd>GpChatNew vsplit<cr>",
             desc = "New Chat",
         },
         {
-            "<leader>iN",
+            "<leader>aiN",
             "<cmd>GpBufferChatNew vsplit<cr>",
             desc = "New Chat with Buffer",
         },
         {
-            "<leader>ii",
+            "<leader>aii",
             "<cmd>GpChatToggle vsplit<cr>",
             desc = "Toggle Last Chat",
         },
         {
-            "<leader>it",
+            "<leader>ait",
             "<cmd>GpChatToggle vsplit<cr>",
             desc = "Toggle Last Chat",
         },
         {
-            "<leader>if",
+            "<leader>aif",
             "<cmd>GpChatFinder<cr>",
             desc = "Find Chat",
         },
@@ -227,24 +227,24 @@ M.spec = {
             mode = { "n", "x" },
         },
         {
-            "<leader>im",
+            "<leader>aim",
             "<cmd>GpCommitMessage<cr>",
             desc = "Generate Commit Message",
         },
         {
-            "<leader>ie",
+            "<leader>aie",
             ":<C-u>'<,'>GpExplain<cr>",
             desc = "Explain Code",
             mode = { "n", "x" },
         },
         {
-            "<leader>ir",
+            "<leader>air",
             ":<C-u>'<,'>GpCodeReview<cr>",
             desc = "Code Review",
             mode = "x",
         },
         {
-            "<leader>it",
+            "<leader>ait",
             ":<C-u>'<,'>GpWriteTests<cr>",
             desc = "Write Tests",
             mode = "x",

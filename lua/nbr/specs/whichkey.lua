@@ -60,6 +60,7 @@ return {
                 { "<leader>ag", icon = " " },
                 { "<leader>a", group = "[A]pp", icon = " " },
                 { "<leader>ao", group = "[O]ptions", icon = " " },
+                { "<leader>ai", group = "[I]ntelligence", icon = "󰧑 " },
                 { "<leader>aI", group = "[I]nsights", icon = " " },
                 { "<leader>ah", group = "[H]elp", icon = " " },
 
@@ -82,7 +83,6 @@ return {
 
                 -- v2
                 { "<leader>r", group = "[R]EST", icon = "󰿘 " },
-                { "<leader>i", group = "[I]ntelligence", icon = "󰧑 " },
                 { "<leader>n", group = "[N]otes", icon = " " },
             },
         },
