@@ -195,7 +195,7 @@ M.keys = function()
                     winopts = M.winopts.lg.vertical,
                 })
             end,
-            desc = "Browse [R]eferences",
+            desc = "[R]eferences (Fuzzy Find)",
         },
     }
 end
