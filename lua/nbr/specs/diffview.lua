@@ -1,6 +1,6 @@
 return {
     "sindrets/diffview.nvim",
-    event = "VeryLazy",
+    event = "VimEnter",
     opts = {
         enhanced_diff_hl = true, -- See |diffview-config-enhanced_diff_hl|
     },
