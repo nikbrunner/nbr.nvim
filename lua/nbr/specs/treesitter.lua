@@ -137,11 +137,11 @@ M.specs = {
         event = "BufReadPre",
         opts = {},
     },
-    {
-        "windwp/nvim-autopairs",
-        event = "InsertEnter",
-        opts = {},
-    },
+    -- {
+    --     "windwp/nvim-autopairs",
+    --     event = "InsertEnter",
+    --     opts = {},
+    -- },
 }
 
 return M.specs
