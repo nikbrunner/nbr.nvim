@@ -127,10 +127,11 @@ M.keys = function()
         { "<leader>aj",       function() fzfLua.jumps({ winopts = M.winopts.md.vertical }) end, desc = "[J]umps" },
         { "<leader>at",       function() fzfLua.colorschemes() end, desc = "[T]hemes" },
         { "<leader>ar",       function() fzfLua.oldfiles({ cwd_only = false, prompt = "Recent Files (Anywhere): ", winopts = M.winopts.sm.no_preview }) end, desc = "[R]ecent Documents (across Workspaces)" },
-        { "<leader>aht",       function() fzfLua.help_tags() end, desc = "[T]ags" },
-        { "<leader>ahm",       function() fzfLua.man_pages() end, desc = "[M]an Pages" },
-        { "<leader>ahh",       function() fzfLua.highlights() end, desc = "[H]ighlights" },
-        { "<leader>aT",        function() fzfLua.awesome_colorschemes() end, desc = "[T]hemes (Awesome)" },
+        { "<leader>as",       function() fzfLua.files({ cwd = vim.fn.stdpath('config'), winopts = M.winopts.md.flex }) end, desc = "[S]ettings" },
+        { "<leader>aht",      function() fzfLua.help_tags() end, desc = "[T]ags" },
+        { "<leader>ahm",      function() fzfLua.man_pages() end, desc = "[M]an Pages" },
+        { "<leader>ahh",      function() fzfLua.highlights() end, desc = "[H]ighlights" },
+        { "<leader>aT",       function() fzfLua.awesome_colorschemes() end, desc = "[T]hemes (Awesome)" },
 
         -- [W]orkspace
         { "<leader>wd",       function() fzfLua.files({ winopts = M.winopts.md.flex }) end, desc = "[D]ocument" },

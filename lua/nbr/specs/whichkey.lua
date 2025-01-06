@@ -59,7 +59,8 @@ return {
                 -- [A]pp
                 { "<leader>ag", icon = " " },
                 { "<leader>a", group = "[A]pp", icon = " " },
-                { "<leader>ao", group = "[O]ptions", icon = " " },
+                { "<leader>ao", group = "[O]ptions", icon = "󰨚 " },
+                { "<leader>as", group = "[S]ettings", icon = " " },
                 { "<leader>ai", group = "[I]ntelligence", icon = "󰧑 " },
                 { "<leader>aI", group = "[I]nsights", icon = " " },
                 { "<leader>ah", group = "[H]elp", icon = " " },
