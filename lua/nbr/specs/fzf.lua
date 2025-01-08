@@ -381,6 +381,23 @@ M.spec = {
         local config = require("fzf-lua.config")
         local actions = require("trouble.sources.fzf").actions
         config.defaults.actions.files["alt-t"] = actions.open
+
+        require("fzf-lua").register_ui_select(function()
+            return {
+                winopts = {
+                    row = 1,
+                    col = 0,
+                    width = 0.5,
+                    height = 0.5,
+                    backdrop = 100,
+                    preview = {
+                        hidden = "hidden",
+                        layout = "horizontal",
+                        vertical = "right:50%", -- up|down:size
+                    },
+                },
+            }
+        end)
     end,
 }
 
