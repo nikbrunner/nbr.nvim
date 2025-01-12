@@ -1,4 +1,4 @@
-local lib = require("vin.lib")
+local lib = require("nbr.lib")
 
 local set_hl = vim.api.nvim_set_hl
 

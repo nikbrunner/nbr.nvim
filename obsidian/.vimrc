@@ -1,5 +1,8 @@
 set clipboard=unnamed
 
+" Make `,` available as a leader key
+unmap ,
+
 " Editor
 nmap j gj
 nmap k gk
@@ -8,7 +11,7 @@ nmap k gk
 " Note: This does not remove the highlight when jumping to a link header.
 nmap <Esc> :nohl<CR>
 
-" App
+" Navigate
 exmap back obcommand app:go-back
 nmap <C-o> :back<CR>
 
@@ -25,7 +28,6 @@ exmap sp obcommand workspace:split-horizontal
 " Save
 exmap w obcommand editor:save-file
 exmap wa obcommand editor:save-file
-nmap <CR> :wa<CR>
 
 " Close and Quit
 exmap q obcommand workspace:close
@@ -53,36 +55,31 @@ nmap zm :foldmore<CR>
 exmap unfoldall obcommand editor:unfold-all
 nmap zR :unfoldall<CR>
 
-exmap foldless obcommand creases:increase-fold-level
-nmap zr :foldless<CR>
-
-" Files
-unmap <Space> " We need this, otherwise the following mappings will not work.
-
-exmap searchCommands obcommand obsidian-better-command-palette:open-better-commmand-palette
-nmap <Space>: :searchCommands<CR>
+" Double tab space to enter command mode
+nmap ,, :
 
 exmap findFiles obcommand obsidian-better-command-palette:open-better-commmand-palette-file-search
-nmap <Space><Space> :findFiles<CR>
+nmap ,wd :findFiles<CR>
 
 exmap fileExplorer obcommand quick-explorer:browse-current
-nmap <Space>e :fileExplorer<CR>
-
-" Go
-exmap followlink obcommand editor:follow-link
-nmap gd :followlink<CR>
-exmap followlinkinnewpane obcommand editor:open-link-in-new-leaf
-nmap gD :followlinkinnewpane<CR>
-
-exmap goToSymbol obcommand darlal-switcher-plus:switcher-plus:open-symbols
-nmap gs :goToSymbol<CR>
+nmap ,we :fileExplorer<CR>
 
 " Actions
 exmap renameHeading obcommand editor:rename-heading
-nmap <Space>cn :renameHeading<CR>
+nmap ,sn :renameHeading<CR>
 
 exmap moveFile obcommand file-explorer:move-file
-nmap <Space>cm :moveFile<CR>
+nmap ,dm :moveFile<CR>
+
+" Go
+exmap followlink obcommand editor:follow-link
+nmap ,sd :followlink<CR>
+
+exmap followlinkinnewpane obcommand editor:open-link-in-new-leaf
+nmap ,sD :followlinkinnewpane<CR>
+
+exmap goToSymbol obcommand darlal-switcher-plus:switcher-plus:open-symbols
+nmap ,ds :goToSymbol<CR>
 
 " Daily Notes
 exmap dd obcommand daily-notes
@@ -90,30 +87,7 @@ exmap dp obcommand daily-notes:goto-prev
 exmap dn obcommand daily-notes:goto-next
 exmap dc obcommand obsidian-jump-to-date-plugin:open-JumpToDate-calendar
 
-exmap surround_wiki surround [[ ]]
-exmap surround_double_quotes surround " "
-exmap surround_single_quotes surround ' '
-exmap surround_backticks surround ` `
-exmap surround_brackets surround ( )
-exmap surround_square_brackets surround [ ]
-exmap surround_curly_brackets surround { }
-
-" NOTE: must use 'map' and not 'nmap'
-map [[ :surround_wiki<CR>
-nunmap s
-vunmap s
-map s" :surround_double_quotes<CR>
-map s' :surround_single_quotes<CR>
-map s` :surround_backticks<CR>
-map sb :surround_brackets<CR>
-map s( :surround_brackets<CR>
-map s) :surround_brackets<CR>
-map s[ :surround_square_brackets<CR>
-map s[ :surround_square_brackets<CR>
-map s{ :surround_curly_brackets<CR>
-map s} :surround_curly_brackets<CR>
-
+" Jump
 exmap jumpToLink obcommand mrj-jump-to-link:activate-jump-to-link
 exmap jumpAnywhere obcommand mrj-jump-to-link:activate-jump-to-anywhere
-
 nmap s :jumpAnywhere<CR>

@@ -1,5 +1,5 @@
-local darken = require("vin.lib.colors").darken
-local lighten = require("vin.lib.colors").lighten
+local darken = require("nbr.lib.colors").darken
+local lighten = require("nbr.lib.colors").lighten
 local bit = require("bit")
 
 ---@param dec number

@@ -1,6 +1,0 @@
-require("vin.config")
-require("vin.options")
-require("vin.lib")
-require("vin.keymaps")
-require("vin.lazy")
-require("vin.autocmd")

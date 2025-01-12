@@ -2157,3 +2157,174 @@ The theme should now match your updated Neovim Engineering color scheme while ma
 
 💬:
 
+I have the following from nvim/lua/black-atom/themes/terra/winter-night.lua:
+
+```lua
+local ui = require("black-atom.themes.terra.ui_dark")
+local syntax = require("black-atom.themes.terra.syntax_dark")
+
+local M = {}
+
+---@type BlackAtom.Theme.Meta
+M.meta = {
+    key = "terra-fall-night",
+    label = "Terra Fall Night",
+    collection = {
+        key = "terra",
+        label = "Terra",
+    },
+    appearance = "dark",
+    icon = " 󰖔 ",
+    status = "release",
+}
+
+---@type BlackAtom.Theme.Primaries
+M.primaries = {
+    -- Lows
+    "#0e0f10",
+    "#17181a",
+    "#1d1e20",
+    "#212225",
+
+    -- Mids
+    "#3a3d47",
+    "#505563",
+    "#575f72",
+    "#6d7391",
+
+    -- Highs
+    "#97a2b6",
+    "#a0acc5",
+    "#bcc9db",
+    "#c9d7e7",
+}
+
+---@type BlackAtom.Theme.Palette
+M.palette = {
+    black = M.primaries[3],
+    gray = M.primaries[5],
+
+    dark_red = "#a65959",
+    red = "#b86a6a",
+
+    dark_green = "#507765",
+    green = "#5e9e8b",
+
+    dark_yellow = "#eba778",
+    yellow = "#d3b17a",
+
+    dark_blue = "#5c6a8a",
+    blue = "#909dbe",
+
+    dark_magenta = "#b793b7",
+    magenta = "#c8adc8",
+
+    dark_cyan = "#568383",
+    cyan = "#67a5a5",
+
+    light_gray = M.primaries[9],
+    white = M.primaries[11],
+}
+
+---@type BlackAtom.Theme.Colors
+M.colors = {
+    none = "NONE",
+    primaries = M.primaries,
+    palette = M.palette,
+    ui = ui(M.primaries, M.palette),
+    syntax = syntax(M.primaries, M.palette),
+}
+
+return M
+```
+
+Could you please create a wezterm colorscheme based on this theme definition?
+
+🤖:[ChatClaude-3-5-Sonnet]
+Here's a Wezterm colorscheme based on your Terra Winter Night theme definition:
+
+```toml
+[metadata]
+author = "Black Atom Industries"
+name = "Terra Fall Night"
+
+[colors]
+foreground = "#c9d7e7"
+background = "#17181a"
+cursor_bg = "#67a5a5"
+cursor_border = "#67a5a5"
+cursor_fg = "#17181a"
+selection_bg = "#3a3d47"
+selection_fg = "#c9d7e7"
+split = "#568383"
+compose_cursor = "#c8adc8"
+scrollbar_thumb = "#505563"
+
+ansi = [
+  "#1d1e20", # black
+  "#a65959", # dark_red
+  "#507765", # dark_green
+  "#eba778", # dark_yellow
+  "#5c6a8a", # dark_blue
+  "#b793b7", # dark_magenta
+  "#568383", # dark_cyan
+  "#97a2b6", # light_gray
+]
+
+brights = [
+  "#505563", # gray
+  "#b86a6a", # red
+  "#5e9e8b", # green
+  "#d3b17a", # yellow
+  "#909dbe", # blue
+  "#c8adc8", # magenta
+  "#67a5a5", # cyan
+  "#bcc9db", # white
+]
+
+[colors.tab_bar]
+inactive_tab_edge = "#0e0f10"
+background = "#17181a"
+
+[colors.tab_bar.active_tab]
+fg_color = "#0e0f10"
+bg_color = "#a0acc5"
+
+[colors.tab_bar.inactive_tab]
+fg_color = "#505563"
+bg_color = "#212225"
+
+[colors.tab_bar.inactive_tab_hover]
+fg_color = "#a0acc5"
+bg_color = "#212225"
+# intensity = "Bold"
+
+[colors.tab_bar.new_tab_hover]
+fg_color = "#a0acc5"
+bg_color = "#17181a"
+intensity = "Bold"
+
+[colors.tab_bar.new_tab]
+fg_color = "#a0acc5"
+bg_color = "#17181a"
+
+```
+
+I've structured the colorscheme following these principles:
+
+1. Used the highest primary color for foreground (#c9d7e7)
+2. Used the second primary color for background (#17181a)
+3. Used cyan colors for cursor
+4. Used appropriate primary colors for selection
+5. Used dark_cyan for split
+6. Used magenta for compose_cursor
+7. Used mid-range primary for scrollbar_thumb
+8. Mapped all the palette colors appropriately to ansi and bright colors
+9. Used primary colors for the tab bar configuration
+10. Maintained consistent contrast and readability throughout
+
+The theme should provide a dark, winter night aesthetic while maintaining good usability and readability.
+
+
+💬:
+
