@@ -2,6 +2,7 @@ local map = vim.keymap.set
 local user_command = vim.api.nvim_create_user_command
 
 vim.opt_local.wrap = true
+vim.opt_local.conceallevel = 0
 
 local function toggle_checkbox(opts)
     local checked_pattern = "%- %[x%]"
@@ -102,10 +103,33 @@ local function continue_list()
     return vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<CR>", true, false, true), "n", true)
 end
 
+-- Function to create a code block and position cursor for language input
+local function create_code_block()
+    -- Get current cursor position and mode
+    local row = vim.api.nvim_win_get_cursor(0)[1]
+    local mode = vim.api.nvim_get_mode().mode
+
+    -- Insert the code block
+    vim.api.nvim_buf_set_lines(0, row - 1, row, false, {
+        "```",
+        "```",
+    })
+
+    -- Move cursor to the end of the first line
+    vim.api.nvim_win_set_cursor(0, { row, 3 })
+
+    if mode == "n" then
+        vim.cmd("startinsert!") -- equivalent to 'a'
+    else
+        vim.cmd("startinsert") -- equivalent to 'i'
+    end
+end
+
 map({ "n", "o", "x" }, "j", "gj", {})
 map({ "n", "o", "x" }, "k", "gk", {})
 map({ "n", "o", "x" }, "0", "g0", {})
 map({ "n", "o", "x" }, "$", "g$", {})
 user_command("ToggleCheckbox", toggle_checkbox, { range = true })
-map({ "n", "i", "v" }, "<C-CR>", ":ToggleCheckbox<CR>", { noremap = true, silent = true })
+map({ "n", "v" }, "<C-t>", ":ToggleCheckbox<CR>", { noremap = true, silent = true, buffer = true })
+map({ "n", "i" }, "<C-b>", create_code_block, { noremap = true, silent = true, buffer = true })
 map({ "i" }, "<CR>", continue_list, { buffer = true, expr = false })
