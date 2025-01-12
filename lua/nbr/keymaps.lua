@@ -117,7 +117,7 @@ map("n", "<leader>aL", function()
     vim.cmd("LspRestart")
 end, { desc = "[R]estart Language Servers" })
 
-map("n", "<leader>aIl", "<cmd>LspInfo<CR>", { desc = "[L]anague Server Information" })
+map("n", "<leader>aIl", "<cmd>LspInfo<CR>", { desc = "[L]anague Server" })
 
 map("n", "<leader>w.", function()
     local git_root = require("snacks").git.get_root()

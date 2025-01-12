@@ -147,9 +147,9 @@ M.keys = function()
         { "<leader>at",       function() fzfLua.colorschemes() end, desc = "[T]hemes" },
         { "<leader>ar",       function() fzfLua.oldfiles({ cwd_only = false, prompt = "Recent Files (Anywhere): ", winopts = M.winopts.sm.no_preview }) end, desc = "[R]ecent Documents (across Workspaces)" },
         { "<leader>as",       function() fzfLua.files({ cwd = vim.fn.stdpath('config'), winopts = M.winopts.md.flex }) end, desc = "[S]ettings" },
-        { "<leader>a?t",      function() fzfLua.help_tags() end, desc = "[T]ags" },
-        { "<leader>a?m",      function() fzfLua.man_pages() end, desc = "[M]an Pages" },
-        { "<leader>a?h",      function() fzfLua.highlights() end, desc = "[H]ighlights" },
+        { "<leader>aIt",      function() fzfLua.help_tags() end, desc = "[T]ags" },
+        { "<leader>aIm",      function() fzfLua.man_pages() end, desc = "[M]an Pages" },
+        { "<leader>aIh",      function() fzfLua.highlights() end, desc = "[H]ighlights" },
         { "<leader>aT",       function() fzfLua.awesome_colorschemes() end, desc = "[T]hemes (Awesome)" },
 
         -- [W]orkspace
