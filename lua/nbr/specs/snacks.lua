@@ -11,6 +11,7 @@ return {
         notifier = { enabled = true },
         toggle = { enabled = true },
         gitbrowse = { enabled = true },
+        input = { enabled = true },
         zen = {
             toggles = {
                 dim = false,
