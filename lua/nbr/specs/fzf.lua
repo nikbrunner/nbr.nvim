@@ -10,6 +10,26 @@ M.winopts = {
             preview = { hidden = "hidden" },
         },
     },
+    modal = {
+        height = 0.9,
+        width = 0.95,
+        preview = {
+            layout = "vertical",
+            vertical = "up:75%", -- up|down:size
+        },
+    },
+    left_corner = {
+        row = 1,
+        col = 0,
+        height = 0.5,
+        width = 0.5,
+        title_pos = "left",
+        preview = {
+            hidden = "hidden",
+            layout = "horizontal",
+            vertical = "right:50%", -- up|down:size
+        },
+    },
     md = {
         flex = {
             height = 0.65,
@@ -24,7 +44,6 @@ M.winopts = {
             col = 0.5,
             height = 0.85,
             width = 0.65,
-            backdrop = 65,
             preview = {
                 layout = "vertical",
                 vertical = "up:65%", -- up|down:size
@@ -134,12 +153,12 @@ M.keys = function()
         { "<leader>aT",       function() fzfLua.awesome_colorschemes() end, desc = "[T]hemes (Awesome)" },
 
         -- [W]orkspace
-        { "<leader>wd",       function() fzfLua.files({ winopts = M.winopts.md.flex }) end, desc = "[D]ocument" },
+        { "<leader>wd",       function() fzfLua.files({ winopts = M.winopts.left_corner }) end, desc = "[D]ocument" },
         { "<leader>ww",       function() fzfLua.grep_cword() end, mode = { "n", "v" }, desc = "[W]ord" },
-        { "<leader>wr",       function() fzfLua.oldfiles({ cwd_only = true, prompt = "Recent Files (CWD): ", winopts = M.winopts.sm.no_preview }) end, desc = "[R]ecent Documents" },
+        { "<leader>wr",       function() fzfLua.oldfiles({ cwd_only = true, prompt = "Recent Files (CWD): ", winopts = M.winopts.left_corner }) end, desc = "[R]ecent Documents" },
         { "<leader>wt",       function() fzfLua.live_grep({ winopts = M.winopts.md.vertical }) end, desc = "[T]ext" },
-        { "<leader>wm",       function() fzfLua.git_status({ winopts = M.winopts.lg.vertical }) end, desc = "[M]odified Documents" },
-        { "<leader>ws",       function() fzfLua.lsp_live_workspace_symbols({ winopts = M.winopts.lg.vertical }) end, desc = "[S]ymbol" },
+        { "<leader>wm",       function() fzfLua.git_status({ winopts = M.winopts.modal }) end, desc = "[M]odified Documents" },
+        { "<leader>ws",       function() fzfLua.lsp_live_workspace_symbols({ winopts = M.winopts.left_corner }) end, desc = "[S]ymbol" },
         { "<leader>wvb",      function() fzfLua.git_branches() end, desc = "[B]ranches" },
         { "<leader>wvc",      function() fzfLua.git_commits() end, desc = "[C]ommits" },
         { "<leader>wvt",      function() fzfLua.git_tags() end, desc = "[T]ags" },
@@ -147,26 +166,26 @@ M.keys = function()
         -- [D]ocument
         { "<leader>da",       M.find_related_files, desc = "[A]ssociated documents", },
         { "<leader>dt",       function() fzfLua.lgrep_curbuf({ winopts = M.winopts.md.flex }) end, desc = "[T]ext" },
-        { "<leader>ds",       function() fzfLua.lsp_document_symbols({ winopts = M.winopts.lg.vertical }) end, desc = "[S]ymbols" },
+        { "<leader>ds",       function() fzfLua.lsp_document_symbols({ winopts = M.winopts.left_corner }) end, desc = "[S]ymbols" },
         { "<leader>dc",       function() fzfLua.changes() end, desc = "[C]hanges" },
         -- stylua: ignore end
 
         -- [S]ymbols
-        {
-            "<leader>sa",
-            function()
-                fzfLua.lsp_code_actions({
-                    winopts = {
-                        relative = "cursor",
-                        row = 1,
-                        col = 0,
-                        height = 10,
-                        width = 65,
-                    },
-                })
-            end,
-            desc = "[A]ctions",
-        },
+        -- {
+        --     "<leader>sa",
+        --     function()
+        --         fzfLua.lsp_code_actions({
+        --             winopts = {
+        --                 relative = "cursor",
+        --                 row = 1,
+        --                 col = 0,
+        --                 height = 10,
+        --                 width = 65,
+        --             },
+        --         })
+        --     end,
+        --     desc = "[A]ctions",
+        -- },
         {
             "<leader>sd",
             function()
@@ -219,10 +238,10 @@ M.spec = {
             width = 0.85,
             row = 0.35,
             col = 0.50,
-            border = "none",
+            border = "solid",
             backdrop = 100,
             preview = {
-                border = "border", -- border|noborder, applies only to
+                border = "solid", -- border|noborder, applies only to
                 wrap = "nowrap", -- wrap|nowrap
                 hidden = "nohidden", -- hidden|nohidden
                 vertical = "up:65%", -- up|down:size
@@ -247,14 +266,13 @@ M.spec = {
 
         keymap = {
             builtin = {
+                true,
                 ["<C-d>"] = "preview-page-down",
                 ["<C-u>"] = "preview-page-up",
             },
             fzf = {
                 ["ctrl-c"] = "abort",
                 ["ctrl-a"] = "toggle-all",
-                ["f3"] = "toggle-preview-wrap",
-                ["f4"] = "toggle-preview",
                 ["ctrl-d"] = "preview-page-down",
                 ["ctrl-u"] = "preview-page-up",
                 ["ctrl-q"] = "select-all+accept",
