@@ -11,7 +11,7 @@ mainly working with _React_, _TypeScript_ and _SCSS_.
 
 ## Keymap
 
-This editor config uses [`nbr.keymap`](https://github.com/nikbrunner/nbr.keymap).
+This editor uses [`AWDCS`](https://github.com/nikbrunner/awdcs) keymap principles.
 
 ## Install
 
