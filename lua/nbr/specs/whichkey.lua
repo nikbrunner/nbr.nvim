@@ -73,6 +73,7 @@ return {
                 -- [D]ocument
                 { "<leader>d", group = "[D]ocument", icon = "󱔘 " },
                 { "<leader>dv", group = "[V]ersion Control", icon = "󰋚 " },
+                { "<leader>dy", group = "[Y]ank", icon = "󰆏 " },
 
                 -- [H]unk
                 { "<leader>h", group = "[H]unk", icon = " " },

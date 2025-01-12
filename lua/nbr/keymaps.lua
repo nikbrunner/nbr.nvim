@@ -64,9 +64,6 @@ map("n", "yp", function()
     vim.fn.cursor(vim.fn.line("."), col)
 end, { desc = "Duplicate line" })
 
-map("n", "vA", "ggVG", { desc = "Select All" })
-map("n", "yA", "ggVGy", { desc = "Copy All" })
-
 map("n", "x", '"_x', { desc = "Delete without yanking" })
 
 -- Join lines while keeping position
@@ -132,9 +129,22 @@ map("n", "<leader>w.", function()
     end
 end, { desc = "[.] Set Root" })
 
-map({ "n", "v" }, "<leader>dy", function()
+map("n", "vA", "ggVG", { desc = "Select All" })
+
+map("n", "<leader>dya", function()
+    -- Save current cursor position
+    local current_pos = vim.fn.getpos(".")
+
+    -- Yank entire buffer
+    vim.cmd("norm ggVGy")
+
+    -- Restore cursor position
+    vim.fn.setpos(".", current_pos)
+end, { desc = "[A]ll" })
+
+map({ "n", "v" }, "<leader>dyp", function()
     lib.copy.list_paths()
-end, { desc = "[Y]ank property" })
+end, { desc = "[P]roperty" })
 
 vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("UserLspConfig", {}),
