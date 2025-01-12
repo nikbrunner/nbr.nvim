@@ -73,13 +73,13 @@ nmap ,dm :moveFile<CR>
 
 " Go
 exmap followlink obcommand editor:follow-link
-nmap gd :followlink<CR>
+nmap ,sd :followlink<CR>
 
 exmap followlinkinnewpane obcommand editor:open-link-in-new-leaf
-nmap gD :followlinkinnewpane<CR>
+nmap ,sD :followlinkinnewpane<CR>
 
 exmap goToSymbol obcommand darlal-switcher-plus:switcher-plus:open-symbols
-nmap gs :goToSymbol<CR>
+nmap ,ds :goToSymbol<CR>
 
 " Daily Notes
 exmap dd obcommand daily-notes
