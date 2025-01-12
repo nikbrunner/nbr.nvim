@@ -9,10 +9,6 @@ This is my personal Neovim configuration.
 I tailored this config to my personal needs as a Frontend Engineer
 mainly working with _React_, _TypeScript_ and _SCSS_.
 
-## Screenshots
-
-todo.
-
 ## Keymap
 
 This editor config uses [`nbr.keymap`](https://github.com/nikbrunner/nbr.keymap).
