@@ -153,7 +153,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
             vim.cmd("norm zz")
         end
 
-        map("n", "<leader>si", vim.diagnostic.open_float, { desc = "[I]nfo" })
+        map("n", "<leader>si", vim.lsp.buf.hover, { desc = "[I]nfo" })
+        map("n", "<leader>sp", vim.diagnostic.open_float, { desc = "[P]roblem" })
+        map("n", "<leader>sa", vim.lsp.buf.code_action, o({ desc = "[A]ction" }))
         map("n", "<leader>sn", vim.lsp.buf.rename, o({ desc = "Re[n]ame" }))
         map("n", "<leader>sD", split_defnition, o({ desc = "[D]efinition in Split" }))
         map("i", "<C-k>", vim.lsp.buf.signature_help, o({ desc = "Signature Help" }))
