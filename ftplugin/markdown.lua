@@ -1,3 +1,5 @@
+-- TODO: continue nested lists
+
 local map = vim.keymap.set
 local user_command = vim.api.nvim_create_user_command
 
@@ -142,5 +144,8 @@ map({ "n", "o", "x" }, "k", "gk", {})
 map({ "n", "o", "x" }, "0", "g0", {})
 map({ "n", "o", "x" }, "$", "g$", {})
 map({ "n", "v" }, "<C-t>", ":ToggleCheckbox<CR>", { noremap = true, silent = true, buffer = true })
+map("i", "<C-t>", function()
+    toggle_checkbox({ range = 0, line1 = vim.fn.line("."), line2 = vim.fn.line(".") })
+end, { noremap = true, silent = true, buffer = true })
 map({ "n", "i" }, "<C-b>", create_code_block, { noremap = true, silent = true, buffer = true })
 map({ "i" }, "<CR>", continue_list, { buffer = true, expr = false })
