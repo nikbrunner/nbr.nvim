@@ -125,11 +125,12 @@ local function create_code_block()
     end
 end
 
+user_command("ToggleCheckbox", toggle_checkbox, { range = true })
+
 map({ "n", "o", "x" }, "j", "gj", {})
 map({ "n", "o", "x" }, "k", "gk", {})
 map({ "n", "o", "x" }, "0", "g0", {})
 map({ "n", "o", "x" }, "$", "g$", {})
-user_command("ToggleCheckbox", toggle_checkbox, { range = true })
 map({ "n", "v" }, "<C-t>", ":ToggleCheckbox<CR>", { noremap = true, silent = true, buffer = true })
 map({ "n", "i" }, "<C-b>", create_code_block, { noremap = true, silent = true, buffer = true })
 map({ "i" }, "<CR>", continue_list, { buffer = true, expr = false })
