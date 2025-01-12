@@ -57,34 +57,37 @@ return {
                 { "<leader>,", icon = " " },
 
                 -- [A]pp
-                { "<leader>ag", icon = " " },
                 { "<leader>a", group = "[A]pp", icon = " " },
+                { "<leader>ah", icon = " " },
                 { "<leader>ao", group = "[O]ptions", icon = "󰨚 " },
                 { "<leader>as", group = "[S]ettings", icon = " " },
                 { "<leader>ai", group = "[I]ntelligence", icon = "󰧑 " },
                 { "<leader>aI", group = "[I]nsights", icon = " " },
-                { "<leader>ah", group = "[H]elp", icon = " " },
+                { "<leader>a?", group = "[?]elp", icon = " " },
 
                 -- [W]orkspace
                 { "<leader>w", group = "[W]orkspace", icon = "󰲃 " },
+                { "<leader>wh", icon = " " },
                 { "<leader>wv", group = "[V]ersion Control", icon = "󰋚 " },
                 { "<leader>wS", group = "[S]ession", icon = " " },
 
                 -- [D]ocument
                 { "<leader>d", group = "[D]ocument", icon = "󱔘 " },
+                { "<leader>dh", icon = " " },
                 { "<leader>dv", group = "[V]ersion Control", icon = "󰋚 " },
                 { "<leader>dy", group = "[Y]ank", icon = "󰆏 " },
 
                 -- [H]unk
-                { "<leader>h", group = "[H]unk", icon = " " },
+                { "<leader>c", group = "[C]ange", icon = " " },
 
                 -- [S]ymbol
                 { "<leader>s", group = "[S]ymbol", icon = " " },
+                { "<leader>sh", icon = " " },
                 { "<leader>sc", group = "[C]alls", icon = "󰏻 " },
                 { "<leader>sl", group = "[L]og", icon = " " },
 
-                -- v2
-                { "<leader>r", group = "[R]EST", icon = "󰿘 " },
+                -- Others
+                { "<leader>r", group = "[R]est Client", icon = "󰿘 " },
                 { "<leader>n", group = "[N]otes", icon = " " },
             },
         },

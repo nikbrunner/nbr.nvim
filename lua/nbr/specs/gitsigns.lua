@@ -6,21 +6,21 @@ M.spec = {
     event = { "BufReadPre", "BufNewFile" },
     keys = {
         {
-            "]g",
+            "]c",
             function()
                 require("gitsigns").nav_hunk("next")
             end,
             desc = "Next Hunk",
         },
         {
-            "[g",
+            "[c",
             function()
                 require("gitsigns").nav_hunk("prev")
             end,
             desc = "Prev Hunk",
         },
         {
-            "<leader>hs",
+            "<leader>cs",
             function()
                 require("gitsigns").stage_hunk()
             end,
@@ -28,7 +28,7 @@ M.spec = {
             mode = { "n", "v" },
         },
         {
-            "<leader>hr",
+            "<leader>cr",
             function()
                 require("gitsigns").reset_hunk()
             end,
@@ -36,7 +36,7 @@ M.spec = {
             mode = { "n", "v" },
         },
         {
-            "<leader>hu",
+            "<leader>cu",
             function()
                 require("gitsigns").undo_stage_hunk()
             end,
@@ -44,7 +44,7 @@ M.spec = {
             mode = { "n", "v" },
         },
         {
-            "<leader>hd",
+            "<leader>cd",
             function()
                 require("gitsigns").preview_hunk()
             end,

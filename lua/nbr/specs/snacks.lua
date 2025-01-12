@@ -166,6 +166,7 @@ return {
             { "<C-/>",               function() Snacks.terminal() end, desc = "Toggle Terminal" },
             { "]]",                  function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference" },
             { "[[",                  function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference" },
+            { "<leader>ah",          function() Snacks.lazygit() end, desc = "[H]istory" },
             { "<leader>wh",          function() Snacks.lazygit() end, desc = "[H]istory" },
             { "<leader>wH",          function() Snacks.lazygit.log() end, desc = "[H]istory" },
             { "<leader>dh",          function() Snacks.lazygit.log_file() end, desc = "[H]istory" },
