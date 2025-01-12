@@ -5,16 +5,26 @@ vim.opt_local.wrap = true
 vim.opt_local.conceallevel = 0
 
 local function toggle_checkbox(opts)
+    -- Patterns to match
     local checked_pattern = "%- %[x%]"
     local unchecked_pattern = "%- %[ %]"
+    local list_marker_pattern = "^%s*[-*]%s+"
+    local empty_line_pattern = "^%s*$"
+
+    -- Replacement strings
+    local checked_replacement = "- [ ]"
+    local unchecked_replacement = "- [x]"
+    local new_checkbox = "- [ ] "
 
     local function process_line(line)
         if line:match(checked_pattern) then
-            return line:gsub(checked_pattern, "- [ ]")
+            return line:gsub(checked_pattern, checked_replacement)
         elseif line:match(unchecked_pattern) then
-            return line:gsub(unchecked_pattern, "- [x]")
-        elseif line:match("^%s*$") then
-            return "- [ ] "
+            return line:gsub(unchecked_pattern, unchecked_replacement)
+        elseif line:match(list_marker_pattern) then
+            return line:gsub("^(%s*)[-*]%s+", "%1" .. checked_replacement .. " ")
+        elseif line:match(empty_line_pattern) then
+            return new_checkbox
         end
         return line
     end
