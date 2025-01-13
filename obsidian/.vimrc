@@ -90,4 +90,4 @@ exmap dc obcommand obsidian-jump-to-date-plugin:open-JumpToDate-calendar
 " Jump
 exmap jumpToLink obcommand mrj-jump-to-link:activate-jump-to-link
 exmap jumpAnywhere obcommand mrj-jump-to-link:activate-jump-to-anywhere
-nmap s :jumpAnywhere<CR>
+nmap <C-f> :jumpAnywhere<CR>

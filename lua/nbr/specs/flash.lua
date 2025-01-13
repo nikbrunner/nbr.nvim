@@ -40,7 +40,7 @@ return {
             desc = "Flash",
         },
         {
-            "s",
+            "<C-f>",
             mode = { "n", "x", "o" },
             function()
                 require("flash").jump()
@@ -48,7 +48,7 @@ return {
             desc = "Flash",
         },
         {
-            "S",
+            "<C-S-f>",
             mode = { "n", "x", "o" },
             function()
                 require("flash").treesitter()
