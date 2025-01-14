@@ -196,29 +196,30 @@ M.spec = {
     },
     keys = {
         {
+            "ga",
+            ":<C-u>'<,'>GpChatPaste<cr>",
+            desc = "Pase selection to chat",
+            mode = "x",
+        },
+        {
             "<leader>ain",
             "<cmd>GpChatNew vsplit<cr>",
-            desc = "New Chat",
+            desc = "[N]ew Chat",
         },
         {
             "<leader>aiN",
             "<cmd>GpBufferChatNew vsplit<cr>",
-            desc = "New Chat with Buffer",
-        },
-        {
-            "<leader>aii",
-            "<cmd>GpChatToggle vsplit<cr>",
-            desc = "Toggle Last Chat",
+            desc = "[N]ew Chat (with Buffer)",
         },
         {
             "<leader>ait",
             "<cmd>GpChatToggle vsplit<cr>",
-            desc = "Toggle Last Chat",
+            desc = "[T]oggle Last Chat",
         },
         {
             "<leader>aif",
             "<cmd>GpChatFinder<cr>",
-            desc = "Find Chat",
+            desc = "[F]ind Chat",
         },
         {
             "<C-g>",
@@ -227,32 +228,26 @@ M.spec = {
             mode = { "n", "x" },
         },
         {
-            "<leader>aim",
+            "<leader>aic",
             "<cmd>GpCommitMessage<cr>",
-            desc = "Generate Commit Message",
+            desc = "[C]ommit Message",
         },
         {
             "<leader>aie",
             ":<C-u>'<,'>GpExplain<cr>",
-            desc = "Explain Code",
+            desc = "[E]xplain Code",
             mode = { "n", "x" },
         },
         {
             "<leader>air",
             ":<C-u>'<,'>GpCodeReview<cr>",
-            desc = "Code Review",
+            desc = "[R]eview",
             mode = "x",
         },
         {
-            "<leader>ait",
+            "<leader>aiT",
             ":<C-u>'<,'>GpWriteTests<cr>",
-            desc = "Write Tests",
-            mode = "x",
-        },
-        {
-            "ga",
-            ":<C-u>'<,'>GpChatPaste<cr>",
-            desc = "Pase selection to chat",
+            desc = "[T]ests",
             mode = "x",
         },
     },
