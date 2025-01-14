@@ -77,7 +77,7 @@ return {
                 { "<leader>dy", group = "[Y]ank", icon = "󰆏 " },
 
                 -- [H]unk
-                { "<leader>c", group = "[C]ange", icon = " " },
+                { "<leader>c", group = "[C]hange", icon = " " },
 
                 -- [S]ymbol
                 { "s", group = "[S]ymbol", icon = " " },
