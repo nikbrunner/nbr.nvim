@@ -18,11 +18,6 @@ M.spec = {
     "supermaven-inc/supermaven-nvim",
     event = "InsertEnter",
     opts = {
-        keymaps = {
-            accept_suggestion = "<Right>",
-            clear_suggestion = "<Left>",
-            accept_word = "<M-Right>",
-        },
         log_level = "off", -- set to "off" to disable logging completely
     },
     keys = {
