@@ -141,7 +141,7 @@ M.keys = function()
         { "<leader><tab>",    function() fzfLua.tabs() end, desc = WhichKeyIgnoreLabel },
 
         -- [A]pp
-        { "<leader>aa",       function() fzfLua.commands({ winopts = M.winopts.md.vertical }) end, desc = "[A]ctions & Commands" },
+        { "<leader>aa",       function() fzfLua.commands({ winopts = M.winopts.md.vertical }) end, desc = "[A]ctions" },
         { "<leader>ak",       function() fzfLua.keymaps() end, desc = "[K]eybindings" },
         { "<leader>aj",       function() fzfLua.jumps({ winopts = M.winopts.md.vertical }) end, desc = "[J]umps" },
         { "<leader>at",       function() fzfLua.colorschemes() end, desc = "[T]hemes" },
