@@ -26,7 +26,7 @@ M.spec = {
         log_level = "off", -- set to "off" to disable logging completely
     },
     keys = {
-        { "<leader>aic", M.toggle_inline_completion, desc = "Autocompletion" },
+        { "<leader>aia", M.toggle_inline_completion, desc = "[A]uto-Completion" },
     },
     init = function()
         -- Disable inline completion by default
