@@ -17,7 +17,7 @@ return {
             },
         },
 
-        delay = 250,
+        delay = 0,
 
         ---@type (string|wk.Sorter)[]
         --- Mappings are sorted using configured sorters and natural sort of the keys
@@ -80,10 +80,9 @@ return {
                 { "<leader>c", group = "[C]ange", icon = " " },
 
                 -- [S]ymbol
-                { "<leader>s", group = "[S]ymbol", icon = " " },
-                { "<leader>sh", icon = " " },
-                { "<leader>sc", group = "[C]alls", icon = "󰏻 " },
-                { "<leader>sl", group = "[L]og", icon = " " },
+                { "s", group = "[S]ymbol", icon = " " },
+                { "sc", group = "[C]alls", icon = "󰏻 " },
+                { "sl", group = "[L]og", icon = " " },
 
                 -- Others
                 { "<leader>r", group = "[R]est Client", icon = "󰿘 " },

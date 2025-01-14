@@ -189,9 +189,9 @@ function M.find_and_open_component_file(config, component_name)
 end
 
 function M.setup()
-    vim.keymap.set("n", "<leader>sc", function()
-        M.find_and_open_files(M.config)
-    end, { desc = "Component" })
+    -- vim.keymap.set("n", "sc", function()
+    --     M.find_and_open_files(M.config)
+    -- end, { desc = "Component" })
 
     vim.keymap.set("n", "gC", function()
         M.find_and_open_component_file(M.config)

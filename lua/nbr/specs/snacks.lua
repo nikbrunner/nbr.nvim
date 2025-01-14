@@ -170,7 +170,7 @@ return {
             { "<leader>wh",          function() Snacks.lazygit() end, desc = "[H]istory" },
             { "<leader>wH",          function() Snacks.lazygit.log() end, desc = "[H]istory" },
             { "<leader>dh",          function() Snacks.lazygit.log_file() end, desc = "[H]istory" },
-            { "<leader>sh",          function() Snacks.git.blame_line() end, desc = "[H]istory" },
+            { "sh",                  function() Snacks.git.blame_line() end, desc = "[H]istory" },
             { "<leader>aR",          function() Snacks.gitbrowse() end, desc = "Open in [R]emote" },
             { "<leader>af",          function() Snacks.zen.zen() end, desc = "[F]ocus Mode" },
             { "<leader>az",          function() Snacks.zen.zoom() end, desc = "[Z]oom Mode" },

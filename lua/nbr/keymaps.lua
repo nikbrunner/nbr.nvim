@@ -9,6 +9,7 @@ local function map(mode, lhs, rhs, opts)
 end
 
 map("n", "Q", "<nop>")
+map("n", "s", "<Nop>")
 
 map("v", "J", ":m '>+1<CR>gv=gv")
 map("v", "K", ":m '<-2<CR>gv=gv")
@@ -106,7 +107,7 @@ map("n", "]q", vim.cmd.cnext, { desc = "Next quickfix" })
 map("n", "n", "nzzzv")
 map("n", "N", "Nzzzv")
 
-map("n", "<leader>sI", vim.show_pos, { desc = "[I]nspect" })
+map("n", "sI", vim.show_pos, { desc = "[I]nspect" })
 
 map("n", "<leader>ax", "<cmd>Lazy<CR>", { desc = "[X]tensions" })
 
@@ -163,11 +164,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
             vim.cmd("norm zz")
         end
 
-        map("n", "<leader>si", vim.lsp.buf.hover, { desc = "[I]nfo" })
-        map("n", "<leader>sp", vim.diagnostic.open_float, { desc = "[P]roblem" })
-        map("n", "<leader>sa", vim.lsp.buf.code_action, o({ desc = "[A]ction" }))
-        map("n", "<leader>sn", vim.lsp.buf.rename, o({ desc = "Re[n]ame" }))
-        map("n", "<leader>sD", split_defnition, o({ desc = "[D]efinition in Split" }))
+        map("n", "si", vim.lsp.buf.hover, { desc = "[I]nfo" })
+        map("n", "sp", vim.diagnostic.open_float, { desc = "[P]roblem" })
+        map("n", "sa", vim.lsp.buf.code_action, o({ desc = "[A]ction" }))
+        map("n", "sn", vim.lsp.buf.rename, o({ desc = "Re[n]ame" }))
+        map("n", "sD", split_defnition, o({ desc = "[D]efinition in Split" }))
         map("i", "<C-k>", vim.lsp.buf.signature_help, o({ desc = "Signature Help" }))
     end,
 })
