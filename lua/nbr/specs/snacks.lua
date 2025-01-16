@@ -55,6 +55,11 @@ return {
                         border = "solid",
                     },
                 },
+                smart = {
+                    layout = {
+                        preset = "vscode",
+                    },
+                },
                 lsp_symbols = {
                     finder = "lsp_symbols",
                     format = "lsp_symbol",
@@ -264,6 +269,7 @@ return {
             { "<leader>af",          function() Snacks.zen.zen() end, desc = "[F]ocus Mode" },
             { "<leader>as",          function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "[S]ettings" },
             { "<leader>at",          function() Snacks.picker.colorschemes() end, desc = "[T]hemes" },
+            { "<leader>ar",          function() Snacks.picker.recent() end, desc = "[R]ecent Documents (Anywhere)" },
             { "<leader>az",          function() Snacks.zen.zoom() end, desc = "[Z]oom Mode" },
             { "<leader>an",          function() Snacks.notifier.show_history() end, desc = "[N]otifications" },
             { "<leader>ak",          function() Snacks.picker.keymaps() end, desc = "[K]eymaps" },
@@ -275,10 +281,10 @@ return {
             { "<leader>aN",          get_news, desc = "[N]ews",  },
 
             -- Workspace
-            -- { "<leader>wr",          function() Snacks.picker.recent() end, desc = "[D]ocument" }, // TODO: scope to current cwd
             { "<leader>wg",          function() Snacks.lazygit() end, desc = "[G]it" },
             { "<leader>wl",          function() Snacks.lazygit.log() end, desc = "[G]it Log" },
-            { "<leader>wd",          function() Snacks.picker.files() end, desc = "[D]ocument" },
+            -- { "<leader>wd",          function() Snacks.picker.files() end, desc = "[D]ocument" },
+            { "<leader>wd",          function() Snacks.picker.smart() end, desc = "[D]ocument" },
             { "<leader>wt",          function() Snacks.picker.grep() end, desc = "[T]ext" },
             { "<leader>ww",          function() Snacks.picker.grep_word() end, desc = "[W]ord" },
             { "<leader>wm",          function() Snacks.picker.git_status() end, desc = "[M]odified Documents" },

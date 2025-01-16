@@ -145,7 +145,7 @@ M.keys = function()
         -- { "<leader>ak",       function() fzfLua.keymaps() end, desc = "[K]eybindings" },
         -- { "<leader>aj",       function() fzfLua.jumps({ winopts = M.winopts.md.vertical }) end, desc = "[J]umps" },
         -- { "<leader>at",       function() fzfLua.colorschemes() end, desc = "[T]hemes" },
-        { "<leader>ar",       function() fzfLua.oldfiles({ cwd_only = false, prompt = "Recent Files (Anywhere): ", winopts = M.winopts.sm.no_preview }) end, desc = "[R]ecent Documents (across Workspaces)" },
+        -- { "<leader>ar",       function() fzfLua.oldfiles({ cwd_only = false, prompt = "Recent Files (Anywhere): ", winopts = M.winopts.sm.no_preview }) end, desc = "[R]ecent Documents (across Workspaces)" },
         -- { "<leader>as",       function() fzfLua.files({ cwd = vim.fn.stdpath('config'), winopts = M.winopts.md.flex }) end, desc = "[S]ettings" },
         -- { "<leader>aIt",      function() fzfLua.help_tags() end, desc = "[T]ags" },
         -- { "<leader>aIm",      function() fzfLua.man_pages() end, desc = "[M]an Pages" },
@@ -154,7 +154,7 @@ M.keys = function()
         -- [W]orkspace
         -- { "<leader>wd",       function() fzfLua.files({ winopts = M.winopts.left_corner }) end, desc = "[D]ocument" },
         -- { "<leader>ww",       function() fzfLua.grep_cword() end, mode = { "n", "v" }, desc = "[W]ord" },
-        { "<leader>wr",       function() fzfLua.oldfiles({ cwd_only = true, prompt = "Recent Files (CWD): ", winopts = M.winopts.left_corner }) end, desc = "[R]ecent Documents" },
+        -- { "<leader>wr",       function() fzfLua.oldfiles({ cwd_only = true, prompt = "Recent Files (CWD): ", winopts = M.winopts.left_corner }) end, desc = "[R]ecent Documents" },
         -- { "<leader>wt",       function() fzfLua.live_grep({ winopts = M.winopts.md.vertical }) end, desc = "[T]ext" },
         -- { "<leader>wm",       function() fzfLua.git_status({ winopts = M.winopts.modal }) end, desc = "[M]odified Documents" },
         { "<leader>ws",       function() fzfLua.lsp_live_workspace_symbols({ winopts = M.winopts.left_corner }) end, desc = "[S]ymbol" },
