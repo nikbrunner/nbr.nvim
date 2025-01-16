@@ -109,7 +109,7 @@ map("n", "N", "Nzzzv")
 
 map("n", "sI", vim.show_pos, { desc = "[I]nspect" })
 
-map("n", "<leader>ax", "<cmd>Lazy<CR>", { desc = "[X]tensions" })
+map("n", "<leader>ap", "<cmd>Lazy<CR>", { desc = "[P]lugins" })
 
 map("n", "<leader>al", "<cmd>Mason<CR>", { desc = "[L]anguages" })
 
