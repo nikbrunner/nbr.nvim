@@ -145,7 +145,7 @@ end, { desc = "[A]ll" })
 
 map({ "n", "v" }, "<leader>dyp", function()
     lib.copy.list_paths()
-end, { desc = "[P]roperty" })
+end, { desc = "[P]ath" })
 
 vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("UserLspConfig", {}),

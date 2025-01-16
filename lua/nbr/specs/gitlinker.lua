@@ -6,9 +6,9 @@ return {
     keys = {
         {
             mode = { "n", "v" },
-            "<leader>dyg",
+            "<leader>dyr",
             "<CMD>GitLink<CR>",
-            desc = "[G]itHub Link",
+            desc = "[R]emote Link",
         },
     },
     opts = {},
