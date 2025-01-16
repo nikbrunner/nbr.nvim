@@ -54,8 +54,8 @@ M.spec = {
     keys = {
         { "gr", "<cmd>Trouble lsp_references<cr>", desc = "Symbol References" },
         { "sr", "<cmd>Trouble lsp_references<cr>", desc = "[R]eferences" },
-        { "<leader>dp", "<cmd>Trouble diagnostics toggle  filter.buf=0<cr>", desc = "[P]roblems" },
-        { "<leader>wp", "<cmd>Trouble diagnostics toggle<cr>", desc = "[P]roblems" },
+        -- { "<leader>dp", "<cmd>Trouble diagnostics toggle  filter.buf=0<cr>", desc = "[P]roblems" },
+        -- { "<leader>wp", "<cmd>Trouble diagnostics toggle<cr>", desc = "[P]roblems" },
         -- { "<leader>di", "<cmd>Trouble lsp toggle<cr>", desc = "Symbol Information" },
         { "sci", "<cmd>Trouble lsp_incoming_calls<cr>", desc = "[I]ncoming" },
         { "sco", "<cmd>Trouble lsp_outgoing_calls<cr>", desc = "[O]utgoing" },

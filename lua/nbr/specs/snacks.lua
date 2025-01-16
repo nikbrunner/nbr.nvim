@@ -12,6 +12,71 @@ return {
         toggle = { enabled = true },
         gitbrowse = { enabled = true },
         input = { enabled = true },
+        picker = {
+            ui_select = true, -- replace `vim.ui.select` with the snacks picker
+            sources = {
+                files = {
+                    layout = {
+                        preset = "vscode",
+                        border = "solid",
+                    },
+                },
+
+                lsp_symbols = {
+                    finder = "lsp_symbols",
+                    format = "lsp_symbol",
+                    hierarchy = true,
+                    filter = {
+                        default = true,
+                        markdown = true,
+                        help = true,
+                    },
+                    layout = {
+                        preset = "ivy",
+                    },
+                },
+
+                ---@type snacks.picker.recent.Config
+                recent = {
+                    layout = {
+                        preset = "vscode",
+                    },
+                },
+                diagnostics = {
+                    layout = {
+                        preset = "ivy",
+                    },
+                },
+                diagnostics_buffer = {
+                    layout = {
+                        preset = "ivy",
+                    },
+                },
+                git_status = {
+                    layout = {
+                        -- fullscreen = true,
+                        layout = {
+                            backdrop = false,
+                            -- row = 1,
+                            width = 0.9,
+                            min_width = 80,
+                            height = 0.8,
+                            border = "solid",
+                            box = "vertical",
+                            { win = "preview", height = 0.8, border = "rounded" },
+                            {
+                                box = "vertical",
+                                border = "rounded",
+                                title = "{source} {live}",
+                                title_pos = "center",
+                                { win = "input", height = 0.35, border = "bottom" },
+                                { win = "list", border = "none" },
+                            },
+                        },
+                    },
+                },
+            },
+        },
         zen = {
             toggles = {
                 dim = false,
@@ -166,12 +231,9 @@ return {
             { "<C-/>",               function() Snacks.terminal() end, desc = "Toggle Terminal" },
             { "]]",                  function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference" },
             { "[[",                  function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference" },
+
+            -- App
             { "<leader>ah",          function() Snacks.lazygit() end, desc = "[H]istory" },
-            { "<leader>wh",          function() Snacks.lazygit() end, desc = "[H]istory" },
-            { "<leader>wH",          function() Snacks.lazygit.log() end, desc = "[H]istory" },
-            { "<leader>dh",          function() Snacks.lazygit.log_file() end, desc = "[H]istory" },
-            { "sh",                  function() Snacks.git.blame_line() end, desc = "[H]istory" },
-            { "<leader>aR",          function() Snacks.gitbrowse() end, desc = "Open in [R]emote" },
             { "<leader>af",          function() Snacks.zen.zen() end, desc = "[F]ocus Mode" },
             { "<leader>az",          function() Snacks.zen.zoom() end, desc = "[Z]oom Mode" },
             { "<leader>an",          function() Snacks.notifier.show_history() end, desc = "[N]otifications" },
@@ -193,6 +255,25 @@ return {
                     })
                 end,
             },
+            { "<leader>aR",          function() Snacks.gitbrowse() end, desc = "Open in [R]emote" },
+
+            -- Workspace
+            { "<leader>wh",          function() Snacks.lazygit() end, desc = "[H]istory" },
+            { "<leader>wH",          function() Snacks.lazygit.log() end, desc = "[H]istory" },
+            { "<leader>wd",          function() Snacks.picker.files() end, desc = "[D]ocument" },
+            { "<leader>wm",          function() Snacks.picker.git_status() end, desc = "[M]odified Documents" },
+            { "<leader>wr",          function() Snacks.picker.recent() end, desc = "[D]ocument" },
+            { "<leader>wp",          function() Snacks.picker.diagnostics() end, desc = "[P]roblems" },
+            { "<leader>ws",          function() Snacks.picker.lsp_symbols() end, desc = "[S]ymbols" },
+
+            -- Document
+            { "<leader>dh",          function() Snacks.lazygit.log_file() end, desc = "[H]istory" },
+            { "<leader>dt",          function() Snacks.picker.lines() end, desc = "[T]ext" },
+            { "<leader>dp",          function() Snacks.picker.diagnostics_buffer() end, desc = "[P]roblems" },
+            { "<leader>ds",          function() Snacks.picker.lsp_symbols() end, desc = "[S]ymbols" },
+
+            -- Symbol
+            { "sh",                  function() Snacks.git.blame_line() end, desc = "[H]istory" },
         }
         -- stylua: ignore end
     end,
