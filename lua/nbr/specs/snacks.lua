@@ -35,6 +35,19 @@ return {
                     native = true, -- use native (terminal) or Neovim for previewing git diffs and commits
                 },
             },
+            win = {
+                input = {
+                    keys = {
+                        ["<c-t>"] = { "edit_tab", mode = { "i", "n" } },
+                    },
+                },
+                list = {
+                    keys = {
+                        ["<c-t>"] = "edit_tab",
+                    },
+                },
+            },
+
             sources = {
                 files = {
                     layout = {
@@ -237,6 +250,7 @@ return {
 
         return {
             -- stylua: ignore start
+            { "<leader>.",           function() Snacks.picker.resume() end, desc = "Resume Picker" },
             { "<leader>:",           function() Snacks.picker.command_history() end, desc = "Command History" },
             { "<leader>'",           function() Snacks.picker.registers() end, desc = "Registers" },
             { "<C-/>",               function() Snacks.terminal() end, desc = "Toggle Terminal" },
