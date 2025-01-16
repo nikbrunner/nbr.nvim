@@ -183,6 +183,8 @@ return {
             configure = true,
             win = {
                 border = "solid",
+                width = 0.95,
+                height = 0.9,
             },
         },
 
