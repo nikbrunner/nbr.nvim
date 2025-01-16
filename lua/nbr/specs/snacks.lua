@@ -1,3 +1,18 @@
+local get_news = function()
+    require("snacks").win({
+        file = vim.api.nvim_get_runtime_file("doc/news.txt", false)[1],
+        width = 0.6,
+        height = 0.6,
+        wo = {
+            spell = false,
+            wrap = false,
+            signcolumn = "yes",
+            statuscolumn = " ",
+            conceallevel = 3,
+        },
+    })
+end
+
 ---@type LazyPluginSpec
 return {
     "folke/snacks.nvim",
@@ -12,8 +27,14 @@ return {
         toggle = { enabled = true },
         gitbrowse = { enabled = true },
         input = { enabled = true },
+        -- https://github.com/folke/snacks.nvim/blob/main/lua/snacks/picker/config/defaults.lua
         picker = {
             ui_select = true, -- replace `vim.ui.select` with the snacks picker
+            previewers = {
+                git = {
+                    native = true, -- use native (terminal) or Neovim for previewing git diffs and commits
+                },
+            },
             sources = {
                 files = {
                     layout = {
@@ -21,7 +42,6 @@ return {
                         border = "solid",
                     },
                 },
-
                 lsp_symbols = {
                     finder = "lsp_symbols",
                     format = "lsp_symbol",
@@ -35,7 +55,6 @@ return {
                         preset = "ivy",
                     },
                 },
-
                 ---@type snacks.picker.recent.Config
                 recent = {
                     layout = {
@@ -53,30 +72,19 @@ return {
                     },
                 },
                 git_status = {
+                    preview = "git_status",
                     layout = {
-                        -- fullscreen = true,
-                        layout = {
-                            backdrop = false,
-                            -- row = 1,
-                            width = 0.9,
-                            min_width = 80,
-                            height = 0.8,
-                            border = "solid",
-                            box = "vertical",
-                            { win = "preview", height = 0.8, border = "rounded" },
-                            {
-                                box = "vertical",
-                                border = "rounded",
-                                title = "{source} {live}",
-                                title_pos = "center",
-                                { win = "input", height = 0.35, border = "bottom" },
-                                { win = "list", border = "none" },
-                            },
-                        },
+                        preset = "ivy",
+                    },
+                },
+                git_diff = {
+                    layout = {
+                        preset = "ivy",
                     },
                 },
             },
         },
+
         zen = {
             toggles = {
                 dim = false,
@@ -86,7 +94,6 @@ return {
                 -- inlay_hints = false,
             },
         },
-        scroll = { enabled = false },
 
         ---@type snacks.words.Config
         words = { debounce = 100 },
@@ -228,52 +235,51 @@ return {
 
         return {
             -- stylua: ignore start
+            { "<leader>:",           function() Snacks.picker.command_history() end, desc = "Command History" },
+            { "<leader>'",           function() Snacks.picker.registers() end, desc = "Registers" },
             { "<C-/>",               function() Snacks.terminal() end, desc = "Toggle Terminal" },
             { "]]",                  function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference" },
             { "[[",                  function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference" },
 
             -- App
-            { "<leader>ah",          function() Snacks.lazygit() end, desc = "[H]istory" },
+            { "<leader>aw",          function() Snacks.picker.zoxide() end, desc = "[W]orkspace" },
+            { "<leader>aa",          function() Snacks.picker.commands() end, desc = "[A]ctions" },
+            { "<leader>ag",          function() Snacks.lazygit() end, desc = "[G]it" },
             { "<leader>af",          function() Snacks.zen.zen() end, desc = "[F]ocus Mode" },
+            { "<leader>as",          function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "[S]ettings" },
+            { "<leader>at",          function() Snacks.picker.colorschemes() end, desc = "[T]hemes" },
             { "<leader>az",          function() Snacks.zen.zoom() end, desc = "[Z]oom Mode" },
             { "<leader>an",          function() Snacks.notifier.show_history() end, desc = "[N]otifications" },
-            {
-                "<leader>aN",
-                desc = "[N]ews",
-                function()
-                    Snacks.win({
-                        file = vim.api.nvim_get_runtime_file("doc/news.txt", false)[1],
-                        width = 0.6,
-                        height = 0.6,
-                        wo = {
-                            spell = false,
-                            wrap = false,
-                            signcolumn = "yes",
-                            statuscolumn = " ",
-                            conceallevel = 3,
-                        },
-                    })
-                end,
-            },
+            { "<leader>ak",          function() Snacks.picker.keymaps() end, desc = "[K]eymaps" },
+            { "<leader>aj",          function() Snacks.picker.jumps() end, desc = "[J]umps" },
+            { "<leader>ahp",         function() Snacks.picker.help() end, desc = "[P]ages" },
+            { "<leader>ahm",         function() Snacks.picker.man() end, desc = "[M]anuals" },
+            { "<leader>ahh",         function() Snacks.picker.highlights() end, desc = "[H]ightlights" },
             { "<leader>aR",          function() Snacks.gitbrowse() end, desc = "Open in [R]emote" },
+            { "<leader>aN",          get_news, desc = "[N]ews",  },
 
             -- Workspace
-            { "<leader>wh",          function() Snacks.lazygit() end, desc = "[H]istory" },
-            { "<leader>wH",          function() Snacks.lazygit.log() end, desc = "[H]istory" },
+            -- { "<leader>wr",          function() Snacks.picker.recent() end, desc = "[D]ocument" }, // TODO: scope to current cwd
+            { "<leader>wg",          function() Snacks.lazygit() end, desc = "[G]it" },
+            { "<leader>wl",          function() Snacks.lazygit.log() end, desc = "[G]it Log" },
             { "<leader>wd",          function() Snacks.picker.files() end, desc = "[D]ocument" },
+            { "<leader>wt",          function() Snacks.picker.grep() end, desc = "[T]ext" },
+            { "<leader>ww",          function() Snacks.picker.grep_word() end, desc = "[W]ord" },
             { "<leader>wm",          function() Snacks.picker.git_status() end, desc = "[M]odified Documents" },
-            { "<leader>wr",          function() Snacks.picker.recent() end, desc = "[D]ocument" },
+            { "<leader>wc",          function() Snacks.picker.git_diff() end, desc = "[C]hanges" },
             { "<leader>wp",          function() Snacks.picker.diagnostics() end, desc = "[P]roblems" },
-            { "<leader>ws",          function() Snacks.picker.lsp_symbols() end, desc = "[S]ymbols" },
 
             -- Document
-            { "<leader>dh",          function() Snacks.lazygit.log_file() end, desc = "[H]istory" },
+            { "<leader>dg",          function() Snacks.lazygit.log_file() end, desc = "[G]it" },
             { "<leader>dt",          function() Snacks.picker.lines() end, desc = "[T]ext" },
             { "<leader>dp",          function() Snacks.picker.diagnostics_buffer() end, desc = "[P]roblems" },
             { "<leader>ds",          function() Snacks.picker.lsp_symbols() end, desc = "[S]ymbols" },
 
             -- Symbol
-            { "sh",                  function() Snacks.git.blame_line() end, desc = "[H]istory" },
+            { "sd",                  function() Snacks.picker.lsp_definitions() end, desc = "[D]efintions" },
+            { "sr",                  function() Snacks.picker.lsp_references() end, desc = "[R]eferences" },
+            { "st",                  function() Snacks.picker.lsp_type_definitions() end, desc = "[T]ype Definitions" },
+            { "sg",                  function() Snacks.git.blame_line() end, desc = "[G]it" },
         }
         -- stylua: ignore end
     end,

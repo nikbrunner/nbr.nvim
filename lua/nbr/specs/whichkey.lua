@@ -58,7 +58,7 @@ return {
 
                 -- [A]pp
                 { "<leader>a", group = "[A]pp", icon = " " },
-                { "<leader>ah", icon = " " },
+                { "<leader>ag", icon = " " },
                 { "<leader>ao", group = "[O]ptions", icon = "󰨚 " },
                 { "<leader>as", group = "[S]ettings", icon = " " },
                 { "<leader>ai", group = "[I]ntelligence", icon = "󰧑 " },
@@ -66,13 +66,13 @@ return {
 
                 -- [W]orkspace
                 { "<leader>w", group = "[W]orkspace", icon = "󰲃 " },
-                { "<leader>wh", icon = " " },
+                { "<leader>wg", icon = " " },
                 { "<leader>wv", group = "[V]ersion Control", icon = "󰋚 " },
                 { "<leader>wS", group = "[S]ession", icon = " " },
 
                 -- [D]ocument
                 { "<leader>d", group = "[D]ocument", icon = "󱔘 " },
-                { "<leader>dh", icon = " " },
+                { "<leader>dg", icon = " " },
                 { "<leader>dv", group = "[V]ersion Control", icon = "󰋚 " },
                 { "<leader>dy", group = "[Y]ank", icon = "󰆏 " },
 
@@ -81,6 +81,7 @@ return {
 
                 -- [S]ymbol
                 { "s", group = "[S]ymbol", icon = " " },
+                { "sg", icon = " " },
                 { "sc", group = "[C]alls", icon = "󰏻 " },
                 { "sl", group = "[L]og", icon = " " },
 
