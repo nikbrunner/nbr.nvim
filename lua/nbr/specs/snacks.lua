@@ -268,7 +268,8 @@ return {
             { "[[",                  function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference" },
 
             -- App
-            { "<leader>aw",          function() Snacks.picker.zoxide() end, desc = "[W]orkspace" },
+            { "<leader>aw",          function() Snacks.picker.projects() end, desc = "[W]orkspace" },
+            { "<leader>aW",          function() Snacks.picker.zoxide() end, desc = "[W]orkspace (Zoxide)" },
             { "<leader>aa",          function() Snacks.picker.commands() end, desc = "[A]ctions" },
             { "<leader>ag",          function() Snacks.lazygit() end, desc = "[G]it" },
             { "<leader>af",          function() Snacks.zen.zen() end, desc = "[F]ocus Mode" },
