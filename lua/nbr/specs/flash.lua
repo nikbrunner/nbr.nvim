@@ -41,7 +41,6 @@ return {
         },
         {
             "<C-f>",
-            mode = { "n", "x", "o" },
             function()
                 require("flash").jump()
             end,
@@ -49,7 +48,6 @@ return {
         },
         {
             "<C-S-f>",
-            mode = { "n", "x", "o" },
             function()
                 require("flash").treesitter()
             end,
