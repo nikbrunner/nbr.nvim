@@ -81,6 +81,7 @@ M.spec = {
                     .. "- feat|fix|docs|style|refactor|test|chore|revert(<affected-file (without file-extension) or scope>): description"
                     .. "In the bullet points, use the following format:"
                     .. "- feat|fix|docs|style|refactor|test|chore|revert(<affected-file (without file-extension) or scope>): description"
+                    .. "If the previous commits follow a different scope terminology, please adapt to that terminology."
 
                 if commit_messages ~= "" and not commit_messages:match("fatal") then
                     base_template = base_template
