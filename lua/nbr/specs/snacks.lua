@@ -30,6 +30,11 @@ return {
         -- https://github.com/folke/snacks.nvim/blob/main/lua/snacks/picker/config/defaults.lua
         picker = {
             ui_select = true, -- replace `vim.ui.select` with the snacks picker
+            formatters = {
+                file = {
+                    filename_first = true, -- display filename before the file path
+                },
+            },
             previewers = {
                 git = {
                     native = true, -- use native (terminal) or Neovim for previewing git diffs and commits
