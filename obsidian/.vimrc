@@ -66,17 +66,17 @@ nmap ,we :fileExplorer<CR>
 
 " Actions
 exmap renameHeading obcommand editor:rename-heading
-nmap ,sn :renameHeading<CR>
+nmap sn :renameHeading<CR>
 
 exmap moveFile obcommand file-explorer:move-file
 nmap ,dm :moveFile<CR>
 
 " Go
 exmap followlink obcommand editor:follow-link
-nmap ,sd :followlink<CR>
+nmap sd :followlink<CR>
 
 exmap followlinkinnewpane obcommand editor:open-link-in-new-leaf
-nmap ,sD :followlinkinnewpane<CR>
+nmap sD :followlinkinnewpane<CR>
 
 exmap goToSymbol obcommand darlal-switcher-plus:switcher-plus:open-symbols
 nmap ,ds :goToSymbol<CR>
