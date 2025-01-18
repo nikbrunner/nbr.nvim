@@ -96,8 +96,8 @@ map("i", ".", ".<c-g>u")
 map("i", ";", ";<c-g>u")
 
 -- Center screen when using <C-u> and <C-d>
-map({ "n", "i", "c" }, "<C-u>", "<C-u>zz", { desc = "Scroll Up" })
-map({ "n", "i", "c" }, "<C-d>", "<C-d>zz", { desc = "Scroll Down" })
+map("n", "<C-u>", "<C-u>zz", { desc = "Scroll Up" })
+map("n", "<C-d>", "<C-d>zz", { desc = "Scroll Down" })
 
 -- prev/next
 map("n", "[q", vim.cmd.cprev, { desc = "Previous quickfix" })
