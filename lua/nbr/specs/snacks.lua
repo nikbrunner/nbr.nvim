@@ -291,6 +291,7 @@ return {
             { "<leader>wl",          function() Snacks.lazygit.log() end, desc = "[G]it Log" },
             -- { "<leader>wd",          function() Snacks.picker.files() end, desc = "[D]ocument" },
             { "<leader>wd",          function() Snacks.picker.smart() end, desc = "[D]ocument" },
+            { "<leader>wr",          function() Snacks.picker.smart() end, desc = "[R]ecent Documents" },
             { "<leader>wt",          function() Snacks.picker.grep() end, desc = "[T]ext" },
             { "<leader>ww",          function() Snacks.picker.grep_word() end, desc = "[W]ord" },
             { "<leader>wm",          function() Snacks.picker.git_status() end, desc = "[M]odified Documents" },
