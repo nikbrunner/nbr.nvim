@@ -7,7 +7,7 @@ return {
             mode = "tabs", -- set to "tabs" to only show tabpages instead
             diagnostics = "nvim_lsp",
             always_show_bufferline = false,
-            separator_style = "slant",
+            separator_style = "thick",
             show_buffer_close_icons = false,
             show_close_icon = false,
             offsets = {
