@@ -301,6 +301,7 @@ return {
             { "<leader>dt",          function() Snacks.picker.lines() end, desc = "[T]ext" },
             { "<leader>dp",          function() Snacks.picker.diagnostics_buffer() end, desc = "[P]roblems" },
             { "<leader>ds",          function() Snacks.picker.lsp_symbols() end, desc = "[S]ymbols" },
+            { "<leader>du",          function() Snacks.picker.undo() end, desc = "[U]ndo" },
 
             -- Symbol
             { "sd",                  function() Snacks.picker.lsp_definitions() end, desc = "[D]efintions" },
