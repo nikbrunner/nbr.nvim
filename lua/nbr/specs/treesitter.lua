@@ -132,16 +132,19 @@ M.specs = {
             context.setup(opts)
         end,
     },
+
     {
         "windwp/nvim-ts-autotag",
         event = "BufReadPre",
         opts = {},
     },
-    -- {
-    --     "windwp/nvim-autopairs",
-    --     event = "InsertEnter",
-    --     opts = {},
-    -- },
+
+    {
+        "wurli/contextindent.nvim",
+        opts = { pattern = "*" },
+        event = "BufRead",
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
+    },
 }
 
 return M.specs
