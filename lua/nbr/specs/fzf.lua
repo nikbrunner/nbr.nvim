@@ -157,8 +157,8 @@ M.keys = function()
         -- { "<leader>wr",       function() fzfLua.oldfiles({ cwd_only = true, prompt = "Recent Files (CWD): ", winopts = M.winopts.left_corner }) end, desc = "[R]ecent Documents" },
         -- { "<leader>wt",       function() fzfLua.live_grep({ winopts = M.winopts.md.vertical }) end, desc = "[T]ext" },
         -- { "<leader>wm",       function() fzfLua.git_status({ winopts = M.winopts.modal }) end, desc = "[M]odified Documents" },
-        { "<leader>ws",       function() fzfLua.lsp_live_workspace_symbols({ winopts = M.winopts.left_corner }) end, desc = "[S]ymbol" },
-        { "<leader>wvb",      function() fzfLua.git_branches() end, desc = "[B]ranches" },
+        -- { "<leader>ws",       function() fzfLua.lsp_live_workspace_symbols({ winopts = M.winopts.left_corner }) end, desc = "[S]ymbol" },
+        -- { "<leader>wvb",      function() fzfLua.git_branches() end, desc = "[B]ranches" },
         { "<leader>wvc",      function() fzfLua.git_commits() end, desc = "[C]ommits" },
         { "<leader>wvt",      function() fzfLua.git_tags() end, desc = "[T]ags" },
 
