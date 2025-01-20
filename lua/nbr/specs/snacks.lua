@@ -234,8 +234,6 @@ return {
     },
 
     init = function()
-        local Snacks = require("snacks")
-
         vim.api.nvim_create_autocmd("User", {
             pattern = "VeryLazy",
             callback = function()
@@ -256,8 +254,6 @@ return {
     end,
 
     keys = function()
-        local Snacks = require("snacks")
-
         return {
             -- stylua: ignore start
             { "<leader>.",           function() Snacks.picker.resume() end, desc = "Resume Picker" },
