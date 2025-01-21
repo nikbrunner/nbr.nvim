@@ -290,8 +290,7 @@ return {
             { "<leader>wr",          function() Snacks.picker.recent({ filter = { cwd = true }}) end, desc = "[R]ecent Documents" },
             { "<leader>wt",          function() Snacks.picker.grep() end, desc = "[T]ext" },
             { "<leader>ww",          function() Snacks.picker.grep_word() end, desc = "[W]ord" },
-            { "<leader>wm",          function() Snacks.picker.git_status() end, desc = "[M]odified Documents" },
-            { "<leader>wc",          function() Snacks.picker.git_diff() end, desc = "[C]hanges" },
+            { "<leader>wc",          function() Snacks.picker.git_status() end, desc = "[C]hanged Documents" },
             { "<leader>wp",          function() Snacks.picker.diagnostics() end, desc = "[P]roblems" },
             { "<leader>ws",          function() Snacks.picker.lsp_workspace_symbols() end, desc = "[S]ymbols" },
             { "<leader>wvb",         function() Snacks.picker.git_branches() end, desc = "[B]ranches" },
@@ -302,6 +301,9 @@ return {
             { "<leader>dp",          function() Snacks.picker.diagnostics_buffer() end, desc = "[P]roblems" },
             { "<leader>ds",          function() Snacks.picker.lsp_symbols() end, desc = "[S]ymbols" },
             { "<leader>du",          function() Snacks.picker.undo() end, desc = "[U]ndo" },
+
+            -- Document
+            { "<leader>ca",          function() Snacks.picker.git_diff() end, desc = "[A]ll" },
 
             -- Symbol
             { "sd",                  function() Snacks.picker.lsp_definitions() end, desc = "[D]efintions" },
