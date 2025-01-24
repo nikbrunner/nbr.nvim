@@ -13,6 +13,8 @@ local get_news = function()
     })
 end
 
+--- https://github.com/kaiphat/dotfiles/blob/master/nvim/lua/plugins/snacks.lua
+
 ---@type LazyPluginSpec
 return {
     "folke/snacks.nvim",
@@ -64,6 +66,9 @@ return {
                     layout = {
                         preset = "vscode",
                     },
+                },
+                lsp_references = {
+                    pattern = "!import !default", -- Exclude Imports and Default Exports
                 },
                 lsp_symbols = {
                     finder = "lsp_symbols",
