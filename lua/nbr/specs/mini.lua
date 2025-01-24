@@ -21,7 +21,7 @@ M.specs = {
 
     { "echasnovski/mini.ai", version = "*", event = "VeryLazy", opts = {} },
 
-    { "echasnovski/mini.pairs", version = "*", event = "VeryLazy", opts = {} },
+    { "echasnovski/mini.pairs", version = "*", event = "VeryLazy", opts = {}, enabled = false },
 
     {
         "echasnovski/mini.statusline",
