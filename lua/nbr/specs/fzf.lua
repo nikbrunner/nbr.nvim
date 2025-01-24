@@ -163,7 +163,7 @@ M.keys = function()
         { "<leader>wvt",      function() fzfLua.git_tags() end, desc = "[T]ags" },
 
         -- [D]ocument
-        { "<leader>da",       M.find_related_files, desc = "[A]ssociated documents", },
+        -- { "<leader>da",       M.find_related_files, desc = "[A]ssociated documents", },
         -- { "<leader>dt",       function() fzfLua.lgrep_curbuf({ winopts = M.winopts.md.flex }) end, desc = "[T]ext" },
         -- { "<leader>ds",       function() fzfLua.lsp_document_symbols({ winopts = M.winopts.left_corner }) end, desc = "[S]ymbols" },
         -- { "<leader>dc",       function() fzfLua.changes() end, desc = "[C]hanges" },

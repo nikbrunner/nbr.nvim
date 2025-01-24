@@ -1,4 +1,6 @@
-local get_news = function()
+local M = {}
+
+function M.get_news()
     require("snacks").win({
         file = vim.api.nvim_get_runtime_file("doc/news.txt", false)[1],
         width = 0.6,
@@ -13,6 +15,21 @@ local get_news = function()
     })
 end
 
+function M.find_associated_files()
+    local current_filename = vim.fn.expand("%:t:r")
+    local relative_filepath = vim.fn.fnamemodify(vim.fn.expand("%"), ":~:.") -- Get path relative to cwd
+
+    Snacks.picker.files({
+        pattern = current_filename,
+        exclude = {
+            ".git",
+            relative_filepath,
+        },
+    })
+end
+
+--- https://github.com/folke/snacks.nvim/blob/main/lua/snacks/picker/config/defaults.lua
+--- https://github.com/folke/snacks.nvim/blob/main/lua/snacks/picker/config/sources.lua
 --- https://github.com/kaiphat/dotfiles/blob/master/nvim/lua/plugins/snacks.lua
 
 ---@type LazyPluginSpec
@@ -32,9 +49,16 @@ return {
         -- https://github.com/folke/snacks.nvim/blob/main/lua/snacks/picker/config/defaults.lua
         picker = {
             ui_select = true, -- replace `vim.ui.select` with the snacks picker
+            matcher = {
+                -- the bonusses below, possibly require string concatenation and path normalization,
+                -- so this can have a performance impact for large lists and increase memory usage
+                cwd_bonus = true, -- give bonus for matching files in the cwd
+                frecency = true, -- frecency bonus
+            },
             formatters = {
                 file = {
                     filename_first = true, -- display filename before the file path
+                    truncate = 80,
                 },
             },
             previewers = {
@@ -288,7 +312,7 @@ return {
             { "<leader>ahm",         function() Snacks.picker.man() end, desc = "[M]anuals" },
             { "<leader>ahh",         function() Snacks.picker.highlights() end, desc = "[H]ightlights" },
             { "<leader>aR",          function() Snacks.gitbrowse() end, desc = "Open in [R]emote" },
-            { "<leader>aN",          get_news, desc = "[N]ews",  },
+            { "<leader>aN",          M.get_news, desc = "[N]ews",  },
 
             -- Workspace
             { "<leader>wg",          function() Snacks.lazygit() end, desc = "[G]it" },
@@ -310,6 +334,7 @@ return {
             { "<leader>dp",          function() Snacks.picker.diagnostics_buffer() end, desc = "[P]roblems" },
             { "<leader>ds",          function() Snacks.picker.lsp_symbols() end, desc = "[S]ymbols" },
             { "<leader>du",          function() Snacks.picker.undo() end, desc = "[U]ndo" },
+            { "<leader>da",          M.find_associated_files, desc = "[A]ssociated Documents" },
 
             -- Document
             { "<leader>ca",          function() Snacks.picker.git_diff() end, desc = "[A]ll" },
