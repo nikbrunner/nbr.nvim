@@ -56,6 +56,9 @@ return {
             },
 
             sources = {
+                buffers = {
+                    current = false,
+                },
                 files = {
                     layout = {
                         preset = "vscode",
