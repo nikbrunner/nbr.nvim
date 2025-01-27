@@ -1,3 +1,4 @@
+---@diagnostic disable: assign-type-mismatch
 local M = {}
 
 function EditLineFromLazygit(file_path, line)
@@ -85,9 +86,65 @@ return {
                     native = true, -- use native (terminal) or Neovim for previewing git diffs and commits
                 },
             },
-
             layouts = {
+                default = {
+                    layout = {
+                        box = "horizontal",
+                        width = 0.8,
+                        min_width = 120,
+                        height = 0.8,
+                        {
+                            box = "vertical",
+                            border = "solid",
+                            title = "{title} {live} {flags}",
+                            { win = "input", height = 1, border = "bottom" },
+                            { win = "list", border = "none" },
+                        },
+                        { win = "preview", title = "{preview}", border = "solid", width = 0.5 },
+                    },
+                },
+
+                ivy = {
+                    layout = {
+                        box = "vertical",
+                        backdrop = false,
+                        row = -1,
+                        width = 0,
+                        height = 0.4,
+                        border = "solid",
+                        title = " {title} {live} {flags}",
+                        title_pos = "left",
+                        { win = "input", height = 1, border = "bottom" },
+                        {
+                            box = "horizontal",
+                            { win = "list", border = "none" },
+                            { win = "preview", title = "{preview}", width = 0.6, border = "left" },
+                        },
+                    },
+                },
+                flow = {
+                    preview = "main",
+                    layout = {
+                        backdrop = false,
+
+                        -- col = 0,
+                        width = 0.35,
+                        min_width = 50,
+
+                        row = 0.65,
+                        height = 0.30,
+                        min_height = 10,
+
+                        box = "vertical",
+                        border = "solid",
+                        title = "{title} {live} {flags}",
+                        title_pos = "center",
+                        { win = "input", height = 1, border = "bottom" },
+                        { win = "list", border = "none" },
+                    },
+                },
                 focus = {
+                    preview = true,
                     layout = {
                         backdrop = false,
                         width = 0.5,
@@ -100,11 +157,10 @@ return {
                         title_pos = "center",
                         { win = "input", height = 1, border = "bottom" },
                         { win = "list", border = "none" },
-                        { win = "preview", title = "{preview}", height = 0.65, border = "top" },
+                        { win = "preview", title = "{preview}", height = 0.7, border = "top" },
                     },
                 },
             },
-
             win = {
                 input = {
                     keys = {
@@ -119,21 +175,23 @@ return {
                     },
                 },
             },
-
             sources = {
                 buffers = {
                     current = false,
                 },
                 files = {
                     layout = {
-                        preset = "vscode",
+                        preset = "flow",
                         border = "solid",
                     },
                 },
                 smart = {
-                    layout = {
-                        preset = "vscode",
-                    },
+                    layout = { preset = "flow" },
+                },
+                ---TODO: filter out empty file
+                ---@type snacks.picker.recent.Config
+                recent = {
+                    layout = { preset = "flow" },
                 },
                 lsp_references = {
                     pattern = "!import !default", -- Exclude Imports and Default Exports
@@ -147,36 +205,20 @@ return {
                         markdown = true,
                         help = true,
                     },
-                    layout = {
-                        preset = "ivy",
-                    },
-                },
-                ---@type snacks.picker.recent.Config
-                recent = {
-                    layout = {
-                        preset = "focus",
-                    },
+                    layout = { preset = "flow" },
                 },
                 diagnostics = {
-                    layout = {
-                        preset = "ivy",
-                    },
+                    layout = { preset = "ivy" },
                 },
                 diagnostics_buffer = {
-                    layout = {
-                        preset = "ivy",
-                    },
+                    layout = { preset = "ivy" },
                 },
                 git_status = {
                     preview = "git_status",
-                    layout = {
-                        preset = "ivy",
-                    },
+                    layout = { preset = "flow" },
                 },
                 git_diff = {
-                    layout = {
-                        preset = "ivy",
-                    },
+                    layout = { preset = "flow" },
                 },
             },
         },
@@ -349,6 +391,7 @@ return {
             { "<leader>ag",          function() Snacks.lazygit() end, desc = "[G]it" },
             { "<leader>af",          function() Snacks.zen.zen() end, desc = "[F]ocus Mode" },
             { "<leader>as",          function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "[S]ettings" },
+            { "<leader>aS",          function() Snacks.picker.files({ cwd = vim.fn.expand("$XDG_CONFIG_HOME") }) end, desc = "[S]ettings (.config)" },
             { "<leader>at",          function() Snacks.picker.colorschemes() end, desc = "[T]hemes" },
             { "<leader>ar",          function() Snacks.picker.recent() end, desc = "[R]ecent Documents (Anywhere)" },
             { "<leader>az",          function() Snacks.zen.zoom() end, desc = "[Z]oom Mode" },
@@ -376,6 +419,7 @@ return {
             { "<leader>ws",          function() Snacks.picker.lsp_workspace_symbols() end, desc = "[S]ymbols" },
             { "<leader>wvb",         function() Snacks.picker.git_branches() end, desc = "[B]ranches" },
 
+            -- TODO: <leader>dc [D]ocument [C]hanges -- git_diff but scope on current file
             -- Document
             { "<leader>dg",          function() Snacks.lazygit.log_file() end, desc = "[G]it" },
             { "<leader>dt",          function() Snacks.picker.lines() end, desc = "[T]ext" },
