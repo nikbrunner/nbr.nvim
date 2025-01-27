@@ -58,6 +58,16 @@ M.specs = {
                         local mode, mode_hl = m.section_mode({ trunc_width = 120 })
 
                         local git = m.section_git({ trunc_width = 75 })
+
+                        local relative_filepath = function()
+                            local current_cols = vim.fn.winwidth(0)
+                            if current_cols > 120 then
+                                return vim.fn.fnamemodify(vim.fn.expand("%"), ":~:.") -- Filename with relative path
+                            else
+                                return vim.fn.expand("%:t") -- Just the filename
+                            end
+                        end
+
                         local diagnostics = m.section_diagnostics({ trunc_width = 75 })
                         local colorscheme_name = vim.g.colors_name or "default"
                         local colorscheme = m.is_truncated(200) and "" or " " .. colorscheme_name
@@ -71,6 +81,10 @@ M.specs = {
                             {
                                 hl = "@variable.member",
                                 strings = { git },
+                            },
+                            {
+                                hl = "@comment",
+                                strings = { relative_filepath() },
                             },
 
                             "%<", -- Mark general truncate point
