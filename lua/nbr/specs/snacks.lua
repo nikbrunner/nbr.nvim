@@ -35,6 +35,27 @@ function M.get_news()
     })
 end
 
+function M.file_surfer()
+    Snacks.picker.zoxide({
+        confirm = function(picker, item)
+            local cwd = item._path
+
+            picker:close()
+            vim.fn.chdir(cwd)
+
+            if item then
+                vim.schedule(function()
+                    Snacks.picker.files({
+                        filter = {
+                            cwd = cwd,
+                        },
+                    })
+                end)
+            end
+        end,
+    })
+end
+
 function M.find_associated_files()
     local current_filename = vim.fn.expand("%:t:r")
     local relative_filepath = vim.fn.fnamemodify(vim.fn.expand("%"), ":~:.") -- Get path relative to cwd
@@ -391,6 +412,7 @@ return {
             { "<leader>ag",          function() Snacks.lazygit() end, desc = "[G]it" },
             { "<leader>af",          function() Snacks.zen.zen() end, desc = "[F]ocus Mode" },
             { "<leader>as",          function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "[S]ettings" },
+            { "<leader>ad",          M.file_surfer, desc = "[D]ocument" },
             { "<leader>aS",          function() Snacks.picker.files({ cwd = vim.fn.expand("$XDG_CONFIG_HOME") }) end, desc = "[S]ettings (.config)" },
             { "<leader>at",          function() Snacks.picker.colorschemes() end, desc = "[T]hemes" },
             { "<leader>ar",          function() Snacks.picker.recent() end, desc = "[R]ecent Documents (Anywhere)" },
