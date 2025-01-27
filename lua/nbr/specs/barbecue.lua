@@ -11,7 +11,7 @@ M.spec = {
         ---Whether to attach navic to language servers automatically.
         ---
         ---@type boolean
-        attach_navic = true,
+        attach_navic = false,
 
         ---filetypes not to enable winbar in
         ---@type string[]
