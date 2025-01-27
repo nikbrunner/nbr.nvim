@@ -109,6 +109,8 @@ return {
                 input = {
                     keys = {
                         ["<c-t>"] = { "edit_tab", mode = { "i", "n" } },
+                        ["<c-u>"] = { "preview_scroll_up", mode = { "i", "n" } },
+                        ["<c-d>"] = { "preview_scroll_down", mode = { "i", "n" } },
                     },
                 },
                 list = {
