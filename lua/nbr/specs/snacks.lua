@@ -85,6 +85,26 @@ return {
                     native = true, -- use native (terminal) or Neovim for previewing git diffs and commits
                 },
             },
+
+            layouts = {
+                focus = {
+                    layout = {
+                        backdrop = false,
+                        width = 0.5,
+                        min_width = 80,
+                        height = 0.8,
+                        min_height = 30,
+                        box = "vertical",
+                        border = "solid",
+                        title = "{title} {live} {flags}",
+                        title_pos = "center",
+                        { win = "input", height = 1, border = "bottom" },
+                        { win = "list", border = "none" },
+                        { win = "preview", title = "{preview}", height = 0.65, border = "top" },
+                    },
+                },
+            },
+
             win = {
                 input = {
                     keys = {
@@ -132,7 +152,7 @@ return {
                 ---@type snacks.picker.recent.Config
                 recent = {
                     layout = {
-                        preset = "vscode",
+                        preset = "focus",
                     },
                 },
                 diagnostics = {
@@ -344,11 +364,12 @@ return {
             { "<leader>wl",          function() Snacks.lazygit.log() end, desc = "[G]it Log" },
             -- { "<leader>wd",          function() Snacks.picker.files() end, desc = "[D]ocument" },
             { "<leader>wd",          function() Snacks.picker.smart() end, desc = "[D]ocument" },
-            -- { "<leader>wr",          function() Snacks.picker.recent({ filter = { cwd = true }}) end, desc = "[R]ecent Documents" },
-            { "<leader>wr",          function() Snacks.picker.smart({ filter = { cwd = true }}) end, desc = "[R]ecent Documents" },
+            { "<leader>wr",          function() Snacks.picker.recent({ filter = { cwd = true }}) end, desc = "[R]ecent Documents" },
+            -- { "<leader>wr",          function() Snacks.picker.smart({ filter = { cwd = true }}) end, desc = "[R]ecent Documents" },
             { "<leader>wt",          function() Snacks.picker.grep() end, desc = "[T]ext" },
             { "<leader>ww",          function() Snacks.picker.grep_word() end, desc = "[W]ord" },
-            { "<leader>wc",          function() Snacks.picker.git_status() end, desc = "[C]hanged Documents" },
+            { "<leader>wm",          function() Snacks.picker.git_status() end, desc = "[M]odified Documents" },
+            { "<leader>wc",          function() Snacks.picker.git_diff() end, desc = "[C]hanges" },
             { "<leader>wp",          function() Snacks.picker.diagnostics() end, desc = "[P]roblems" },
             { "<leader>ws",          function() Snacks.picker.lsp_workspace_symbols() end, desc = "[S]ymbols" },
             { "<leader>wvb",         function() Snacks.picker.git_branches() end, desc = "[B]ranches" },
@@ -362,7 +383,6 @@ return {
             { "<leader>da",          M.find_associated_files, desc = "[A]ssociated Documents" },
 
             -- Document
-            { "<leader>ca",          function() Snacks.picker.git_diff() end, desc = "[A]ll" },
 
             -- Symbol
             { "sd",                  function() Snacks.picker.lsp_definitions() end, desc = "[D]efintions" },
