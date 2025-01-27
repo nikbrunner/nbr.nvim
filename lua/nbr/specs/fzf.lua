@@ -138,76 +138,77 @@ M.keys = function()
     return {
         -- stylua: ignore start
         { "z=",               function() fzfLua.spell_suggest({ winopts = { height = 0.35, width = 0.65 } }) end, desc = "Spelling Suggestions" },
-        -- { "<leader><tab>",    function() fzfLua.tabs() end, desc = WhichKeyIgnoreLabel },
+        { "<leader><tab>",    function() fzfLua.tabs() end, desc = WhichKeyIgnoreLabel },
 
         -- [A]pp
-        -- { "<leader>aa",       function() fzfLua.commands({ winopts = M.winopts.md.vertical }) end, desc = "[A]ctions" },
-        -- { "<leader>ak",       function() fzfLua.keymaps() end, desc = "[K]eybindings" },
-        -- { "<leader>aj",       function() fzfLua.jumps({ winopts = M.winopts.md.vertical }) end, desc = "[J]umps" },
-        -- { "<leader>at",       function() fzfLua.colorschemes() end, desc = "[T]hemes" },
-        -- { "<leader>ar",       function() fzfLua.oldfiles({ cwd_only = false, prompt = "Recent Files (Anywhere): ", winopts = M.winopts.sm.no_preview }) end, desc = "[R]ecent Documents (across Workspaces)" },
-        -- { "<leader>as",       function() fzfLua.files({ cwd = vim.fn.stdpath('config'), winopts = M.winopts.md.flex }) end, desc = "[S]ettings" },
-        -- { "<leader>aIt",      function() fzfLua.help_tags() end, desc = "[T]ags" },
-        -- { "<leader>aIm",      function() fzfLua.man_pages() end, desc = "[M]an Pages" },
-        -- { "<leader>aIh",      function() fzfLua.highlights() end, desc = "[H]ighlights" },
+        { "<leader>aa",       function() fzfLua.commands({ winopts = M.winopts.md.vertical }) end, desc = "[A]ctions" },
+        { "<leader>ak",       function() fzfLua.keymaps() end, desc = "[K]eybindings" },
+        { "<leader>aj",       function() fzfLua.jumps({ winopts = M.winopts.md.vertical }) end, desc = "[J]umps" },
+        { "<leader>at",       function() fzfLua.colorschemes() end, desc = "[T]hemes" },
+        { "<leader>ar",       function() fzfLua.oldfiles({ cwd_only = false, prompt = "Recent Files (Anywhere): ", winopts = M.winopts.sm.no_preview }) end, desc = "[R]ecent Documents (across Workspaces)" },
+        { "<leader>as",       function() fzfLua.files({ cwd = vim.fn.stdpath('config'), winopts = M.winopts.md.flex }) end, desc = "[S]ettings" },
+        { "<leader>aIt",      function() fzfLua.help_tags() end, desc = "[T]ags" },
+        { "<leader>aIm",      function() fzfLua.man_pages() end, desc = "[M]an Pages" },
+        { "<leader>aIh",      function() fzfLua.highlights() end, desc = "[H]ighlights" },
 
         -- [W]orkspace
-        -- { "<leader>wd",       function() fzfLua.files({ winopts = M.winopts.left_corner }) end, desc = "[D]ocument" },
-        -- { "<leader>ww",       function() fzfLua.grep_cword() end, mode = { "n", "v" }, desc = "[W]ord" },
-        -- { "<leader>wr",       function() fzfLua.oldfiles({ cwd_only = true, prompt = "Recent Files (CWD): ", winopts = M.winopts.left_corner }) end, desc = "[R]ecent Documents" },
-        -- { "<leader>wt",       function() fzfLua.live_grep({ winopts = M.winopts.md.vertical }) end, desc = "[T]ext" },
-        -- { "<leader>wm",       function() fzfLua.git_status({ winopts = M.winopts.modal }) end, desc = "[M]odified Documents" },
-        -- { "<leader>ws",       function() fzfLua.lsp_live_workspace_symbols({ winopts = M.winopts.left_corner }) end, desc = "[S]ymbol" },
-        -- { "<leader>wvb",      function() fzfLua.git_branches() end, desc = "[B]ranches" },
+        { "<leader>wd",       function() fzfLua.files({ winopts = M.winopts.left_corner }) end, desc = "[D]ocument" },
+        { "<leader>ww",       function() fzfLua.grep_cword() end, mode = { "n", "v" }, desc = "[W]ord" },
+        { "<leader>wr",       function() fzfLua.oldfiles({ cwd_only = true, prompt = "Recent Files (CWD): ", winopts = M.winopts.left_corner }) end, desc = "[R]ecent Documents" },
+        { "<leader>wt",       function() fzfLua.live_grep({ winopts = M.winopts.md.vertical }) end, desc = "[T]ext" },
+        { "<leader>wm",       function() fzfLua.git_status({ winopts = M.winopts.modal }) end, desc = "[M]odified Documents" },
+        { "<leader>ws",       function() fzfLua.lsp_live_workspace_symbols({ winopts = M.winopts.left_corner }) end, desc = "[S]ymbol" },
+        { "<leader>wvb",      function() fzfLua.git_branches() end, desc = "[B]ranches" },
         { "<leader>wvc",      function() fzfLua.git_commits() end, desc = "[C]ommits" },
         { "<leader>wvt",      function() fzfLua.git_tags() end, desc = "[T]ags" },
 
         -- [D]ocument
-        -- { "<leader>da",       M.find_related_files, desc = "[A]ssociated documents", },
-        -- { "<leader>dt",       function() fzfLua.lgrep_curbuf({ winopts = M.winopts.md.flex }) end, desc = "[T]ext" },
-        -- { "<leader>ds",       function() fzfLua.lsp_document_symbols({ winopts = M.winopts.left_corner }) end, desc = "[S]ymbols" },
-        -- { "<leader>dc",       function() fzfLua.changes() end, desc = "[C]hanges" },
+        { "<leader>da",       M.find_related_files, desc = "[A]ssociated documents", },
+        { "<leader>dt",       function() fzfLua.lgrep_curbuf({ winopts = M.winopts.md.flex }) end, desc = "[T]ext" },
+        { "<leader>ds",       function() fzfLua.lsp_document_symbols({ winopts = M.winopts.left_corner }) end, desc = "[S]ymbols" },
+        { "<leader>dc",       function() fzfLua.changes() end, desc = "[C]hanges" },
         -- stylua: ignore end
 
         -- [S]ymbols
-        -- {
-        --     "sa",
-        --     function()
-        --         fzfLua.lsp_code_actions({
-        --             winopts = {
-        --                 relative = "cursor",
-        --                 row = 1,
-        --                 col = 0,
-        --                 height = 10,
-        --                 width = 65,
-        --             },
-        --         })
-        --     end,
-        --     desc = "[A]ctions",
-        -- },
-        -- {
-        --     "sd",
-        --     function()
-        --         fzfLua.lsp_definitions({
-        --             jump_to_single_result = true,
-        --         })
-        --     end,
-        --     desc = "[D]efinition",
-        -- },
-        -- {
-        --     "st",
-        --     function()
-        --         fzfLua.lsp_typedefs({
-        --             jump_to_single_result = true,
-        --         })
-        --     end,
-        --     desc = "[T]ype Definition",
-        -- },
+        {
+            "sa",
+            function()
+                fzfLua.lsp_code_actions({
+                    winopts = {
+                        relative = "cursor",
+                        row = 1,
+                        col = 0,
+                        height = 10,
+                        width = 65,
+                    },
+                })
+            end,
+            desc = "[A]ctions",
+        },
+        {
+            "sd",
+            function()
+                fzfLua.lsp_definitions({
+                    jump_to_single_result = true,
+                })
+            end,
+            desc = "[D]efinition",
+        },
+        {
+            "st",
+            function()
+                fzfLua.lsp_typedefs({
+                    jump_to_single_result = true,
+                })
+            end,
+            desc = "[T]ype Definition",
+        },
     }
 end
 
 M.spec = {
     "ibhagwan/fzf-lua",
+    enabled = false,
     keys = M.keys,
     opts = {
         global_resume = true,
