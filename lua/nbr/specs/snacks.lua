@@ -1,5 +1,24 @@
 local M = {}
 
+function EditLineFromLazygit(file_path, line)
+    local path = vim.fn.expand("%:p")
+    if path == file_path then
+        vim.cmd(tostring(line))
+    else
+        vim.cmd("e " .. file_path)
+        vim.cmd(tostring(line))
+    end
+end
+
+function EditFromLazygit(file_path)
+    local path = vim.fn.expand("%:p")
+    if path == file_path then
+        return
+    else
+        vim.cmd("e " .. file_path)
+    end
+end
+
 function M.get_news()
     require("snacks").win({
         file = vim.api.nvim_get_runtime_file("doc/news.txt", false)[1],
@@ -236,6 +255,12 @@ return {
 
         lazygit = {
             configure = true,
+            config = {
+                os = {
+                    edit = "nvim --server $NVIM --remote-send '<cmd>close<cr><cmd>lua EditFromLazygit({{filename}})<CR>'",
+                    editAtLine = "nvim --server $NVIM --remote-send '<cmd>close<CR><cmd>lua EditLineFromLazygit({{filename}},{{line}})<CR>'",
+                },
+            },
             win = {
                 border = "solid",
                 width = 0.95,
