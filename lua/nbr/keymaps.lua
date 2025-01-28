@@ -17,6 +17,8 @@ map("v", "K", ":m '<-2<CR>gv=gv")
 map("n", "H", vim.cmd.tabprevious, { desc = "Previous Tab" })
 map("n", "L", vim.cmd.tabnext, { desc = "Next Tab" })
 
+map("n", "<C-s>", vim.cmd.wa, { desc = "Save" })
+
 map({ "n", "x" }, "<leader><leader>", function()
     vim.api.nvim_feedkeys(":", "n", true)
 end, { desc = "Command Mode" })
