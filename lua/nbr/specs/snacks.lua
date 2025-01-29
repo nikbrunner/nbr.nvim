@@ -149,7 +149,7 @@ return {
                         backdrop = false,
 
                         -- col = 0,
-                        width = 0.35,
+                        width = 0.65,
                         min_width = 50,
 
                         row = 0.65,
@@ -168,7 +168,7 @@ return {
                     preview = true,
                     layout = {
                         backdrop = false,
-                        width = 0.5,
+                        width = 0.8,
                         min_width = 80,
                         height = 0.8,
                         min_height = 30,
