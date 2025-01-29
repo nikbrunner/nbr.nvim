@@ -66,4 +66,16 @@ return {
             require("github-theme").setup(opts)
         end,
     },
+
+    {
+        "rose-pine/neovim",
+        name = "rose-pine",
+        lazy = false,
+        priority = 1000,
+        opts = {
+            highlight_groups = {
+                EndOfBuffer = { fg = "surface" },
+            },
+        },
+    },
 }

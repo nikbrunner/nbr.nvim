@@ -2,7 +2,7 @@ local M = {}
 
 ---@class VinConfig
 M.config = {
-    colorscheme = "black-atom-mono-one-dark",
+    colorscheme = "rose-pine-moon",
     ---@type "dark" | "light"
     background = "dark",
     ---see for wezterm themes: https://wezfurlong.org/wezterm/colorschemes/index.html
@@ -39,6 +39,11 @@ M.config = {
         ["tokyonight-day"] = { wezterm = "Tokyo Night Day" },
         ["tokyonight-storm"] = { wezterm = "Tokyo Night Storm" },
         ["tokyonight-night"] = { wezterm = "Tokyo Night" },
+
+        ["rose-pine"] = { wezterm = "rose-pine" },
+        ["rose-pine-main"] = { wezterm = "rose-pine" },
+        ["rose-pine-moon"] = { wezterm = "rose-pine-moon" },
+        ["rose-pine-dawn"] = { wezterm = "rose-pine-dawn" },
 
         ["nord"] = { wezterm = "nord" },
     },
