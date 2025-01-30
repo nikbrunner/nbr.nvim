@@ -124,7 +124,6 @@ return {
                         { win = "preview", title = "{preview}", border = "solid", width = 0.5 },
                     },
                 },
-
                 ivy = {
                     layout = {
                         box = "vertical",
@@ -147,15 +146,12 @@ return {
                     preview = "main",
                     layout = {
                         backdrop = false,
-
                         -- col = 0,
                         width = 0.65,
                         min_width = 50,
-
                         row = 0.65,
                         height = 0.30,
                         min_height = 10,
-
                         box = "vertical",
                         border = "solid",
                         title = "{title} {live} {flags}",
@@ -164,21 +160,25 @@ return {
                         { win = "list", border = "none" },
                     },
                 },
-                focus = {
-                    preview = true,
+                sidebar_right = {
+                    preview = "main",
                     layout = {
                         backdrop = false,
-                        width = 0.8,
-                        min_width = 80,
-                        height = 0.8,
-                        min_height = 30,
+                        width = 40,
+                        min_width = 40,
+                        height = 0,
+                        position = "right",
+                        border = "none",
                         box = "vertical",
-                        border = "solid",
-                        title = "{title} {live} {flags}",
-                        title_pos = "center",
-                        { win = "input", height = 1, border = "bottom" },
+                        {
+                            win = "input",
+                            height = 1,
+                            border = "rounded",
+                            title = "{title} {live} {flags}",
+                            title_pos = "center",
+                        },
                         { win = "list", border = "none" },
-                        { win = "preview", title = "{preview}", height = 0.7, border = "top" },
+                        { win = "preview", title = "{preview}", height = 0.4, border = "top" },
                     },
                 },
             },
@@ -262,10 +262,10 @@ return {
                         markdown = true,
                         help = true,
                     },
-                    layout = { preset = "sidebar" },
+                    layout = { preset = "sidebar_right" },
                 },
                 lsp_workspace_symbols = {
-                    layout = { preset = "sidebar" },
+                    layout = { preset = "sidebar_right" },
                 },
                 diagnostics = {
                     layout = { preset = "flow" },
