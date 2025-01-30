@@ -82,10 +82,10 @@ M.specs = {
                                 hl = "@variable.member",
                                 strings = { git },
                             },
-                            {
-                                hl = "@comment",
-                                strings = { relative_filepath() },
-                            },
+                            -- {
+                            --     hl = "@comment",
+                            --     strings = { vim.bo.filetype },
+                            -- },
 
                             "%<", -- Mark general truncate point
 
@@ -99,6 +99,7 @@ M.specs = {
                                     lazy_plug_count(),
                                     lazy_updates(),
                                     lazy_startup(),
+                                    vim.bo.filetype,
                                     colorscheme,
                                 }),
                             },
