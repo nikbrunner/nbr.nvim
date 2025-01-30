@@ -222,6 +222,17 @@ return {
             },
 
             sources = {
+                explorer = {
+                    finder = "explorer",
+                    sort = { fields = { "sort" } },
+                    tree = true,
+                    follow_file = true,
+                    focus = "list",
+                    auto_close = false,
+                    layout = { preset = "sidebar", preview = false },
+                    formatters = { file = { filename_only = true } },
+                    matcher = { sort_empty = true },
+                },
                 buffers = {
                     current = false,
                 },
@@ -251,13 +262,16 @@ return {
                         markdown = true,
                         help = true,
                     },
-                    layout = { preset = "flow" },
+                    layout = { preset = "sidebar" },
+                },
+                lsp_workspace_symbols = {
+                    layout = { preset = "sidebar" },
                 },
                 diagnostics = {
-                    layout = { preset = "ivy" },
+                    layout = { preset = "flow" },
                 },
                 diagnostics_buffer = {
-                    layout = { preset = "ivy" },
+                    layout = { preset = "flow" },
                 },
                 git_status = {
                     preview = "git_status",
@@ -401,6 +415,18 @@ return {
     },
 
     init = function()
+        vim.api.nvim_create_autocmd("BufEnter", {
+            group = vim.api.nvim_create_augroup("snacks_explorer_start_directory", { clear = true }),
+            desc = "Start Snacks Explorer with directory",
+            once = true,
+            callback = function()
+                local dir = vim.fn.argv(0) --[[@as string]]
+                if dir ~= "" and vim.fn.isdirectory(dir) == 1 then
+                    Snacks.picker.explorer({ cwd = dir })
+                end
+            end,
+        })
+
         vim.api.nvim_create_autocmd("User", {
             pattern = "VeryLazy",
             callback = function()
@@ -452,6 +478,7 @@ return {
             { "<leader>aN",          M.get_news, desc = "[N]ews",  },
 
             -- Workspace
+            { "<leader>we",          function() Snacks.picker.explorer() end, desc = "[E]xplorer" },
             { "<leader>wg",          function() Snacks.lazygit() end, desc = "[G]it" },
             { "<leader>wl",          function() Snacks.lazygit.log() end, desc = "[G]it Log" },
             -- { "<leader>wd",          function() Snacks.picker.files() end, desc = "[D]ocument" },
