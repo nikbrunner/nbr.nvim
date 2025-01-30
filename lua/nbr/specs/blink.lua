@@ -6,6 +6,9 @@ return {
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
+        enabled = function()
+            return not vim.tbl_contains({ "snacks_picker_input" }, vim.bo.filetype)
+        end,
         sources = {
             default = { "lazydev", "lsp", "path", "snippets", "buffer" },
             providers = {
