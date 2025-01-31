@@ -147,7 +147,7 @@ return {
                     layout = {
                         backdrop = false,
                         position = "float",
-                        width = 0.5,
+                        width = 0.35,
                         min_width = 50,
                         height = 0.50,
                         min_height = 25,
@@ -241,6 +241,7 @@ return {
             sources = {
                 explorer = {
                     replace_netrw = true,
+                    git_status = true,
                     jump = {
                         close = true,
                     },
