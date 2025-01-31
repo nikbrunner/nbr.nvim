@@ -101,6 +101,7 @@ M.specs = {
                                     lazy_startup(),
                                     vim.bo.filetype,
                                     colorscheme,
+                                    vim.o.background,
                                 }),
                             },
                         })
