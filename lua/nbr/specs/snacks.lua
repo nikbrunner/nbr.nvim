@@ -223,15 +223,8 @@ return {
 
             sources = {
                 explorer = {
-                    finder = "explorer",
-                    sort = { fields = { "sort" } },
-                    tree = true,
-                    follow_file = true,
-                    focus = "list",
-                    auto_close = false,
+                    replace_netrw = true,
                     layout = { preset = "sidebar", preview = false },
-                    formatters = { file = { filename_only = true } },
-                    matcher = { sort_empty = true },
                 },
                 buffers = {
                     current = false,
