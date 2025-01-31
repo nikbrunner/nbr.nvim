@@ -142,6 +142,23 @@ return {
                         },
                     },
                 },
+                modal = {
+                    preview = "main",
+                    layout = {
+                        backdrop = false,
+                        position = "float",
+                        width = 0.5,
+                        min_width = 50,
+                        height = 0.50,
+                        min_height = 25,
+                        box = "vertical",
+                        border = "solid",
+                        title = "{title} {live} {flags}",
+                        title_pos = "center",
+                        { win = "input", height = 1, border = "bottom" },
+                        { win = "list", border = "none" },
+                    },
+                },
                 flow = {
                     preview = "main",
                     layout = {
@@ -367,6 +384,9 @@ return {
         terminal = {
             win = {
                 border = "solid",
+                wo = {
+                    winbar = "",
+                },
             },
         },
 

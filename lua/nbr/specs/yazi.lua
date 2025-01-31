@@ -7,17 +7,16 @@ return {
     "mikavilpas/yazi.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
     event = "VeryLazy",
-    enabled = false,
     keys = {
         {
-            "<leader>we",
+            "<leader>e",
             function()
                 require("yazi").yazi()
             end,
             desc = "[E]xplorer",
         },
         {
-            "<leader>wE",
+            "<leader>E",
             function()
                 require("yazi").yazi(nil, vim.fn.getcwd())
             end,
@@ -28,7 +27,7 @@ return {
     ---@type YaziConfig
     opts = {
         yazi_floating_window_winblend = 10,
-        floating_window_scaling_factor = 0.9,
+        floating_window_scaling_factor = 0.6,
         yazi_floating_window_border = "solid",
         ---@diagnostic disable-next-line: missing-fields
         hooks = {
