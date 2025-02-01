@@ -254,6 +254,7 @@ return {
                     current = false,
                 },
                 files = {
+                    hidden = true,
                     layout = {
                         preset = "flow",
                         border = "solid",
