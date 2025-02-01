@@ -246,7 +246,7 @@ return {
                         close = true,
                     },
                     layout = {
-                        preset = "center_column",
+                        preset = "sidebar",
                         preview = "main",
                     },
                 },
