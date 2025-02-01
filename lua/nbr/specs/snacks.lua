@@ -142,14 +142,14 @@ return {
                         },
                     },
                 },
-                modal = {
+                center_column = {
                     preview = "main",
                     layout = {
                         backdrop = false,
                         position = "float",
-                        width = 0.35,
-                        min_width = 50,
-                        height = 0.50,
+                        width = 65,
+                        min_width = 65,
+                        height = 0.80,
                         min_height = 25,
                         box = "vertical",
                         border = "solid",
@@ -245,7 +245,10 @@ return {
                     jump = {
                         close = true,
                     },
-                    layout = { preset = "modal", preview = false },
+                    layout = {
+                        preset = "center_column",
+                        preview = "main",
+                    },
                 },
                 buffers = {
                     current = false,
