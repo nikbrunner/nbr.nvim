@@ -249,6 +249,14 @@ return {
                         preset = "sidebar",
                         preview = "main",
                     },
+                    win = {
+                        list = {
+                            keys = {
+                                ["]c"] = "explorer_git_next",
+                                ["[c"] = "explorer_git_prev",
+                            },
+                        },
+                    },
                 },
                 buffers = {
                     current = false,
