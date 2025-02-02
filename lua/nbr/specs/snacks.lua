@@ -306,6 +306,18 @@ return {
                 git_diff = {
                     layout = { preset = "flow" },
                 },
+                ---@type snacks.picker.projects.Config: snacks.picker.Config
+                projects = {
+                    finder = "recent_projects",
+                    format = "file",
+                    dev = {
+                        "~/repos/nikbrunner/",
+                        "~/repos/dealercenter-digital/",
+                        "~/repos/black-atom-industries/",
+                        "~/repos/bradtraversy/",
+                        "~/repos/total-typescript/",
+                    },
+                },
             },
         },
 
