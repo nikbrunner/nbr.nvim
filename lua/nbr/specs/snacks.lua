@@ -142,11 +142,12 @@ return {
                         },
                     },
                 },
-                center_column = {
+                column = {
                     preview = "main",
                     layout = {
                         backdrop = false,
                         position = "float",
+                        col = 0.5,
                         width = 65,
                         min_width = 65,
                         height = 0.80,
@@ -173,7 +174,7 @@ return {
                         border = "solid",
                         title = "{title} {live} {flags}",
                         title_pos = "center",
-                        { win = "input", height = 1, border = "bottom" },
+                        { win = "input", height = 1, border = "solid" },
                         { win = "list", border = "none" },
                     },
                 },
@@ -246,7 +247,7 @@ return {
                         close = true,
                     },
                     layout = {
-                        preset = "sidebar",
+                        preset = "column",
                         preview = "main",
                     },
                     win = {
@@ -288,10 +289,10 @@ return {
                         markdown = true,
                         help = true,
                     },
-                    layout = { preset = "sidebar_right" },
+                    layout = { preset = "column" },
                 },
                 lsp_workspace_symbols = {
-                    layout = { preset = "sidebar_right" },
+                    layout = { preset = "flow" },
                 },
                 diagnostics = {
                     layout = { preset = "flow" },
