@@ -51,7 +51,8 @@ return {
                                         .. "Please stage your changes before running this command.",
                                     vim.log.levels.ERROR
                                 )
-                                return
+
+                                return nil
                             end
 
                             -- Get current branch
@@ -112,6 +113,11 @@ return {
             "<leader>aic",
             "<CMD>CodeCompanionChat Toggle<CR>",
             desc = "[C]hat",
+        },
+        {
+            "<leader>aiC",
+            "<CMD>CodeCompanion /commit<CR>",
+            desc = "[C]ommit",
         },
         {
             "<leader>aia",
