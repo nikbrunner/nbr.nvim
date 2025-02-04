@@ -4,6 +4,7 @@ local M = {}
 M.spec = {
     "robitx/gp.nvim",
     event = "VeryLazy",
+    enabled = false,
     opts = {
         ---@diagnostic disable-next-line: param-type-mismatch
         state_dir = vim.fn.stdpath("config"):gsub("/$", "") .. "/gp/persisted",
