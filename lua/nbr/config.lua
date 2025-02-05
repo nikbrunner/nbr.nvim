@@ -2,9 +2,9 @@ local M = {}
 
 ---@class VinConfig
 M.config = {
-    colorscheme = "github_dark_dimmed",
+    colorscheme = "rose-pine-moon",
     ---@type "dark" | "light"
-    background = "dark",
+    background = "light",
     ---see for wezterm themes: https://wezfurlong.org/wezterm/colorschemes/index.html
     colorscheme_config_map = {
         ["default"] = { wezterm = "nvim_default_dark" },
