@@ -317,6 +317,7 @@ return {
                         "~/repos/black-atom-industries/",
                         "~/repos/bradtraversy/",
                         "~/repos/total-typescript/",
+                        "~/.local/share/nvim/lazy/",
                     },
                 },
             },
