@@ -10,8 +10,7 @@ return {
         strategies = {
             -- Change the default chat adapter
             chat = {
-                -- adapter = "anthropic",
-                adapter = "openai",
+                adapter = "anthropic",
                 slash_commands = {
                     ["file"] = {
                         callback = "strategies.chat.slash_commands.file",
@@ -24,8 +23,7 @@ return {
                 },
             },
             inline = {
-                -- adapter = "anthropic",
-                adapter = "openai",
+                adapter = "anthropic",
             },
         },
         prompt_library = {
