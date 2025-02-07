@@ -246,8 +246,9 @@ return {
                     jump = {
                         close = true,
                     },
+                    hidden = true,
                     layout = {
-                        preset = "column",
+                        preset = "sidebar",
                         preview = "main",
                     },
                     win = {
