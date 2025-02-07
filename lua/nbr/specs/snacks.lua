@@ -303,10 +303,10 @@ return {
                 },
                 git_status = {
                     preview = "git_status",
-                    layout = { preset = "flow" },
+                    layout = { preset = "sidebar_right" },
                 },
                 git_diff = {
-                    layout = { preset = "flow" },
+                    layout = { preset = "sidebar_right" },
                 },
                 ---@type snacks.picker.projects.Config: snacks.picker.Config
                 projects = {
