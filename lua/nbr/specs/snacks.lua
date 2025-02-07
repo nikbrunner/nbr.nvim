@@ -240,6 +240,9 @@ return {
             },
 
             sources = {
+                select = {
+                    layout = { preset = "flow" },
+                },
                 explorer = {
                     replace_netrw = true,
                     git_status = true,
@@ -290,7 +293,7 @@ return {
                         markdown = true,
                         help = true,
                     },
-                    layout = { preset = "column" },
+                    layout = { preset = "sidebar_right" },
                 },
                 lsp_workspace_symbols = {
                     layout = { preset = "flow" },
@@ -303,10 +306,10 @@ return {
                 },
                 git_status = {
                     preview = "git_status",
-                    layout = { preset = "sidebar_right" },
+                    layout = { preset = "flow" },
                 },
                 git_diff = {
-                    layout = { preset = "sidebar_right" },
+                    layout = { preset = "flow" },
                 },
                 ---@type snacks.picker.projects.Config: snacks.picker.Config
                 projects = {
