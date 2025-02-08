@@ -208,8 +208,8 @@ end
 
 M.spec = {
     "ibhagwan/fzf-lua",
-    enabled = true,
-    -- keys = M.keys,
+    enabled = false,
+    keys = M.keys,
     opts = {
         global_resume = true,
         global_resume_query = true,
