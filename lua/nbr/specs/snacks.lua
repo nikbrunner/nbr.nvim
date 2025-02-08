@@ -87,6 +87,7 @@ return {
         toggle = { enabled = true },
         gitbrowse = { enabled = true },
         input = { enabled = true },
+        scroll = { enabled = true },
         -- https://github.com/folke/snacks.nvim/blob/main/lua/snacks/picker/config/defaults.lua
         picker = {
             ui_select = true, -- replace `vim.ui.select` with the snacks picker
