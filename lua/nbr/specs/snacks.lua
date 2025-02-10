@@ -253,7 +253,10 @@ return {
                     hidden = true,
                     layout = {
                         preset = "sidebar",
-                        preview = "main",
+                        preview = {
+                            main = true,
+                            enabled = false,
+                        },
                     },
                     win = {
                         list = {
