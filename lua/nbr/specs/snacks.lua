@@ -87,7 +87,7 @@ return {
         toggle = { enabled = true },
         gitbrowse = { enabled = true },
         input = { enabled = true },
-        scroll = { enabled = true },
+        scroll = { enabled = false },
         -- https://github.com/folke/snacks.nvim/blob/main/lua/snacks/picker/config/defaults.lua
         picker = {
             ui_select = true, -- replace `vim.ui.select` with the snacks picker
@@ -144,7 +144,10 @@ return {
                     },
                 },
                 column = {
-                    preview = "main",
+                    preview = {
+                        main = true,
+                        enabled = false,
+                    },
                     layout = {
                         backdrop = false,
                         position = "float",
@@ -252,7 +255,7 @@ return {
                     },
                     hidden = true,
                     layout = {
-                        preset = "sidebar",
+                        preset = "column",
                         preview = {
                             main = true,
                             enabled = false,
