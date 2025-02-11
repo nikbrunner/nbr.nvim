@@ -1,7 +1,6 @@
 ---@type LazyPluginSpec
 return {
     "Goose97/timber.nvim",
-    version = "*",
     event = "VeryLazy",
     opts = {
         log_templates = {
