@@ -151,7 +151,7 @@ return {
                     layout = {
                         backdrop = false,
                         position = "float",
-                        col = 0.5,
+                        col = (vim.o.columns - 40) / 2,
                         width = 40,
                         min_width = 40,
                         height = 0.80,
