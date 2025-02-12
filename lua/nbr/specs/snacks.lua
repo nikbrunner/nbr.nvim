@@ -151,9 +151,9 @@ return {
                     layout = {
                         backdrop = false,
                         position = "float",
-                        col = (vim.o.columns - 40) / 2,
-                        width = 40,
-                        min_width = 40,
+                        col = (vim.o.columns - 60) / 2,
+                        width = 60,
+                        min_width = 60,
                         height = 0.80,
                         min_height = 25,
                         box = "vertical",
@@ -301,7 +301,7 @@ return {
                         markdown = true,
                         help = true,
                     },
-                    layout = { preset = "sidebar_right" },
+                    layout = { preset = "flow" },
                 },
                 lsp_workspace_symbols = {
                     layout = { preset = "flow" },
