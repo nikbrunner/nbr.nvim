@@ -254,6 +254,7 @@ return {
                         close = true,
                     },
                     hidden = true,
+                    ignored = true,
                     layout = {
                         preset = "column",
                         preview = {
