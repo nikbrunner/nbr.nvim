@@ -77,6 +77,7 @@ end
 return {
     "folke/snacks.nvim",
     priority = 1000,
+    pin = true,
     lazy = false,
     ---@type snacks.Config
     opts = {
