@@ -150,9 +150,7 @@ return {
                         enabled = false,
                     },
                     layout = {
-                        backdrop = false,
                         position = "float",
-                        col = (vim.o.columns - 60) / 2,
                         width = 60,
                         min_width = 60,
                         height = 0.80,
@@ -269,6 +267,13 @@ return {
                                 ["]c"] = "explorer_git_next",
                                 ["[c"] = "explorer_git_prev",
                             },
+                        },
+                    },
+                    icons = {
+                        tree = {
+                            vertical = "  ",
+                            middle = "  ",
+                            last = "  ",
                         },
                     },
                 },
