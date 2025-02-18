@@ -108,8 +108,13 @@ return {
     },
     keys = {
         {
-            "<leader>aic",
+            "<leader>ait",
             "<CMD>CodeCompanionChat Toggle<CR>",
+            desc = "[C]hat",
+        },
+        {
+            "<leader>ain",
+            "<CMD>CodeCompanionChat<CR>",
             desc = "[C]hat",
         },
         {
@@ -128,6 +133,12 @@ return {
             ":<C-u>'<,'>CodeCompanion<CR>",
             desc = "Inline Rewrite",
             mode = { "n", "x" },
+        },
+        {
+            "ga",
+            ":<C-u>'<,'>CodeCompanionChat Add<CR>",
+            desc = "Pase selection to chat",
+            mode = "x",
         },
     },
 }
