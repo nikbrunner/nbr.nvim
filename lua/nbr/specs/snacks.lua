@@ -77,7 +77,7 @@ end
 return {
     "folke/snacks.nvim",
     priority = 1000,
-    pin = true,
+    pin = false,
     lazy = false,
     ---@type snacks.Config
     opts = {
@@ -145,10 +145,7 @@ return {
                     },
                 },
                 column = {
-                    preview = {
-                        main = true,
-                        enabled = false,
-                    },
+                    preview = "main",
                     layout = {
                         position = "float",
                         width = 60,
@@ -161,6 +158,7 @@ return {
                         title_pos = "center",
                         { win = "input", height = 1, border = "bottom" },
                         { win = "list", border = "none" },
+                        { win = "preview", title = "{preview}", width = 0.6, border = "left" },
                     },
                 },
                 flow = {
@@ -177,6 +175,7 @@ return {
                         border = "solid",
                         title = "{title} {live} {flags}",
                         title_pos = "center",
+                        { win = "preview", title = "{preview}", width = 0.6, border = "left" },
                         { win = "input", height = 1, border = "solid" },
                         { win = "list", border = "none" },
                     },
@@ -293,6 +292,9 @@ return {
                 ---TODO: filter out empty file
                 ---@type snacks.picker.recent.Config
                 recent = {
+                    layout = { preset = "flow" },
+                },
+                lines = {
                     layout = { preset = "flow" },
                 },
                 lsp_references = {
