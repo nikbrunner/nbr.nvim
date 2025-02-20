@@ -69,7 +69,7 @@ M.specs = {
                         end
 
                         local diagnostics = m.section_diagnostics({ trunc_width = 75 })
-                        local colorscheme_name = vim.g.colors_name or "default"
+                        local colorscheme_name = require("black-atom.api").get_meta().label or vim.g.colors_name or "default"
                         local colorscheme = m.is_truncated(200) and "" or " " .. colorscheme_name
 
                         return m.combine_groups({
@@ -101,7 +101,7 @@ M.specs = {
                                     lazy_startup(),
                                     vim.bo.filetype,
                                     colorscheme,
-                                    vim.o.background,
+                                    "[" .. vim.o.background .. "]",
                                 }),
                             },
                         })
