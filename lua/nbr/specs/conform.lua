@@ -23,7 +23,10 @@ M.spec = {
             html = { "prettier" },
             javascript = { "prettier" },
             javascriptreact = { "prettier" },
-            json = { "prettier" },
+            json = function()
+                local is_deno_project = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc")
+                return is_deno_project and { "deno_fmt" } or { "prettier" }
+            end,
             lua = { "stylua" },
             markdown = { "prettier" },
             svelte = { "prettier" },
