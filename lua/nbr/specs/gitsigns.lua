@@ -38,17 +38,17 @@ M.spec = {
         {
             "<leader>cu",
             function()
-                require("gitsigns").undo_stage_hunk()
+                require("gitsigns").stage_hunk()
             end,
             desc = "Undo Stage Hunk",
             mode = { "n", "v" },
         },
         {
-            "<leader>cd",
+            "<leader>cg",
             function()
                 require("gitsigns").preview_hunk()
             end,
-            desc = "Diff (Hunk)",
+            desc = "Git (Hunk)",
             mode = { "n", "v" },
         },
         {
