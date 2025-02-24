@@ -69,7 +69,14 @@ M.specs = {
                         end
 
                         local diagnostics = m.section_diagnostics({ trunc_width = 75 })
-                        local colorscheme_name = require("black-atom.api").get_meta().label or vim.g.colors_name or "default"
+
+                        local black_atom_label = nil
+                        local black_atom_meta = require("black-atom.api").get_meta()
+
+                        if black_atom_meta then
+                            black_atom_label = black_atom_meta.label
+                        end
+                        local colorscheme_name = black_atom_label or vim.g.colors_name or "default"
                         local colorscheme = m.is_truncated(200) and "" or " " .. colorscheme_name
 
                         return m.combine_groups({
