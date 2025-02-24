@@ -12,7 +12,7 @@ return {
         opts = {
             theme = require("nbr.config").colorscheme,
             styles = {
-                transparency = "none",
+                transparency = "partial",
                 cmp_kind_color_mode = "bg",
                 diagnostics = {
                     background = true,
