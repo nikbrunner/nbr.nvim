@@ -1,5 +1,3 @@
-local ui = require("nbr.lib.ui")
-
 -- NOTE: Image Preview does not work: https://yazi-rs.github.io/docs/image-preview/#neovim
 
 ---@type LazySpec
@@ -29,14 +27,5 @@ return {
         yazi_floating_window_winblend = 10,
         floating_window_scaling_factor = 0.6,
         yazi_floating_window_border = "solid",
-        ---@diagnostic disable-next-line: missing-fields
-        hooks = {
-            yazi_opened = function()
-                ui.create_backdrop()
-            end,
-            yazi_closed_successfully = function()
-                ui.close_backdrop()
-            end,
-        },
     },
 }
