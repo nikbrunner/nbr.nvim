@@ -4,6 +4,7 @@ local bit = require("bit")
 
 ---@param dec number
 local function dec_to_hex(dec)
+    dec = dec or 0
     local r = bit.rshift(bit.band(dec, 0xFF0000), 16)
     local g = bit.rshift(bit.band(dec, 0x00FF00), 8)
     local b = bit.band(dec, 0x0000FF)
