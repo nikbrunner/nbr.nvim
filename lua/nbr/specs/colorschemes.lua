@@ -78,4 +78,10 @@ return {
             },
         },
     },
+
+    {
+        "alexxGmZ/e-ink.nvim",
+        priority = 1000,
+        opts = {},
+    },
 }
