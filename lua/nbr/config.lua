@@ -3,6 +3,10 @@ local M = {}
 ---@class VinConfig
 M.config = {
     colorscheme = "black-atom-jpn-koyo-yoru",
+    colormode = {
+        light = "black-atom-jpn-koyo-hiru",
+        dark = "black-atom-jpn-koyo-yoru",
+    },
     ---@type "dark" | "light"
     background = "dark",
     ---see for wezterm themes: https://wezfurlong.org/wezterm/colorschemes/index.html

@@ -1,6 +1,20 @@
 ---@type LazyPluginSpec[]
 return {
     {
+        "f-person/auto-dark-mode.nvim",
+        lazy = false,
+        opts = {
+            set_dark_mode = function()
+                vim.cmd.colorscheme(require("nbr.config").colormode.dark)
+            end,
+            set_light_mode = function()
+                vim.cmd.colorscheme(require("nbr.config").colormode.light)
+            end,
+            update_interval = 150,
+        },
+    },
+
+    {
         "black-atom-industries/nvim",
         name = "black-atom",
         dir = require("nbr.config").pathes.repos .. "/black-atom-industries/nvim",
