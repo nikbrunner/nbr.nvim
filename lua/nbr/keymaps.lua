@@ -18,6 +18,7 @@ map("n", "H", vim.cmd.tabprevious, { desc = "Previous Tab" })
 map("n", "L", vim.cmd.tabnext, { desc = "Next Tab" })
 
 map("n", "<C-s>", vim.cmd.wa, { desc = "Save" })
+map("n", "<C-q>", ":q!<CR>", { desc = "Quit" })
 
 map({ "n", "x" }, "<leader><leader>", function()
     vim.api.nvim_feedkeys(":", "n", true)
