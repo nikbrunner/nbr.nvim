@@ -24,6 +24,13 @@ return {
             },
         },
         signature = { enabled = true },
+        cmdline = {
+            completion = {
+                menu = {
+                    auto_show = true,
+                },
+            },
+        },
         completion = {
             list = {
                 -- Controls how the completion items are selected
