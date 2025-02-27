@@ -69,9 +69,9 @@ M.specs = {
                         end
 
                         local diagnostics = m.section_diagnostics({ trunc_width = 75 })
-                        local viewport = "[VP: H" .. vim.o.lines .. "|W" .. vim.o.columns .. "]"
-                        local position = "[POS: " .. vim.fn.line(".") .. ":" .. vim.fn.col(".") .. "]"
-                        local filetype = "[FT: " .. vim.bo.filetype .. "]"
+                        local viewport = "󰊉 " .. vim.o.lines .. ":W" .. vim.o.columns
+                        local position = "󰩷 " .. vim.fn.line(".") .. ":" .. vim.fn.col(".")
+                        local filetype = " " .. vim.bo.filetype
 
                         local black_atom_label = nil
                         local black_atom_meta = require("black-atom.api").get_meta()
@@ -86,11 +86,11 @@ M.specs = {
                             { hl = mode_hl, strings = { mode } },
                             {
                                 hl = "@function",
-                                strings = { project_name() },
+                                strings = (m.is_truncated(200) and {} or { project_name() }),
                             },
                             {
                                 hl = "@variable.member",
-                                strings = { git },
+                                strings = (m.is_truncated(200) and {} or { git }),
                             },
 
                             "%<", -- Mark general truncate point
