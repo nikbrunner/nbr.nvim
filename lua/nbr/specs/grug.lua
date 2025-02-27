@@ -7,7 +7,7 @@ M.spec = {
     ---@type GrugFarOptions
     ---@diagnostic disable-next-line: missing-fields
     opts = {
-        windowCreationCommand = "topleft vsplit",
+        windowCreationCommand = "horizontal split",
         engines = {
             ripgrep = {
                 placeholders = {
