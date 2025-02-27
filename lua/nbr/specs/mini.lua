@@ -69,6 +69,9 @@ M.specs = {
                         end
 
                         local diagnostics = m.section_diagnostics({ trunc_width = 75 })
+                        local viewport = "[VP: H" .. vim.o.lines .. "|W" .. vim.o.columns .. "]"
+                        local position = "[POS: " .. vim.fn.line(".") .. ":" .. vim.fn.col(".") .. "]"
+                        local filetype = "[FT: " .. vim.bo.filetype .. "]"
 
                         local black_atom_label = nil
                         local black_atom_meta = require("black-atom.api").get_meta()
@@ -89,10 +92,6 @@ M.specs = {
                                 hl = "@variable.member",
                                 strings = { git },
                             },
-                            -- {
-                            --     hl = "@comment",
-                            --     strings = { vim.bo.filetype },
-                            -- },
 
                             "%<", -- Mark general truncate point
 
@@ -101,12 +100,15 @@ M.specs = {
                             "%=", -- End left alignment
 
                             {
+                                hl = "@function",
+                                strings = { position, viewport, filetype },
+                            },
+                            {
                                 hl = "Comment",
                                 strings = (m.is_truncated(165) and {} or {
                                     lazy_plug_count(),
                                     lazy_updates(),
                                     lazy_startup(),
-                                    vim.bo.filetype,
                                     colorscheme,
                                     "[" .. vim.o.background .. "]",
                                 }),
