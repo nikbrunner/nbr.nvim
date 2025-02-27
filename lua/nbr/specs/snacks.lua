@@ -112,8 +112,8 @@ return {
             layouts = {
                 default = {
                     layout = {
-                        box = "horizontal",
-                        width = 0.8,
+                        box = "vertical",
+                        width = 0.9,
                         min_width = 120,
                         height = 0.8,
                         {
@@ -123,7 +123,7 @@ return {
                             { win = "input", height = 1, border = "bottom" },
                             { win = "list", border = "none" },
                         },
-                        { win = "preview", title = "{preview}", border = "solid", width = 0.5 },
+                        { win = "preview", title = "{preview}", border = "solid" },
                     },
                 },
                 ivy = {
@@ -299,6 +299,7 @@ return {
                 },
                 lsp_references = {
                     pattern = "!import !default", -- Exclude Imports and Default Exports
+                    layout = { preset = "flow" },
                 },
                 lsp_symbols = {
                     finder = "lsp_symbols",
