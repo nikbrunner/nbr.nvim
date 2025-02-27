@@ -7,6 +7,22 @@ return {
     },
     event = "VeryLazy",
     opts = {
+        display = {
+            chat = {
+                debug_window = {
+                    ---@return number|fun(): number
+                    width = vim.o.columns - 5,
+                    ---@return number|fun(): number
+                    height = vim.o.lines - 5,
+                },
+                window = {
+                    layout = "horizontal", -- float|vertical|horizontal|buffer
+                    position = nil, -- left|right|top|bottom (nil will default depending on vim.opt.plitright|vim.opt.splitbelow)
+                    border = "solid",
+                    height = 0.35,
+                },
+            },
+        },
         strategies = {
             -- Change the default chat adapter
             chat = {
@@ -36,6 +52,11 @@ return {
                     is_slash_cmd = true,
                     short_name = "commit",
                     auto_submit = true,
+                    adapter = {
+                        name = "anthropic",
+                        -- model = "claude-3-7-sonnet-20250219",
+                        model = "claude-3-5-haiku-20241022",
+                    },
                 },
                 prompts = {
                     {
