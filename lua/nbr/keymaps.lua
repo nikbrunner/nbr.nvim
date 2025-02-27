@@ -162,7 +162,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         end
 
         local split_defnition = function()
-            vim.cmd.vsplit()
+            vim.cmd.split()
             vim.lsp.buf.definition()
             vim.cmd("norm zz")
         end
