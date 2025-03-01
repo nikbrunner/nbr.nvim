@@ -9,6 +9,7 @@ M.spec = {
             "]c",
             function()
                 require("gitsigns").nav_hunk("next")
+                vim.cmd("norm zz")
             end,
             desc = "Next Hunk",
         },
@@ -16,6 +17,7 @@ M.spec = {
             "[c",
             function()
                 require("gitsigns").nav_hunk("prev")
+                vim.cmd("norm zz")
             end,
             desc = "Prev Hunk",
         },
