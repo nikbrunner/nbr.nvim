@@ -169,7 +169,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
         map("n", "si", vim.lsp.buf.hover, { desc = "[I]nfo" })
         map("n", "sp", vim.diagnostic.open_float, { desc = "[P]roblem" })
-        map("n", "sa", vim.lsp.buf.code_action, o({ desc = "[A]ction" }))
+        -- map("n", "sa", vim.lsp.buf.code_action, o({ desc = "[A]ction" }))
         map("n", "sn", vim.lsp.buf.rename, o({ desc = "Re[n]ame" }))
         map("n", "sD", split_defnition, o({ desc = "[D]efinition in Split" }))
         map("i", "<C-k>", vim.lsp.buf.signature_help, o({ desc = "Signature Help" }))

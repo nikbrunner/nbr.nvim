@@ -1,14 +1,16 @@
+local js_like_patterns = {
+    { pattern = "add braces", key = "a", order = 1 },
+    { pattern = "add import", key = "i", order = 1 },
+}
 ---@type LazyPluginSpec
 return {
     "Chaitanyabsprip/fastaction.nvim",
     event = "BufRead",
-    enabled = false,
     ---@module "fastaction"
     ---@type FastActionConfig
     opts = {
         dismiss_keys = { "j", "k", "<c-c>", "q" },
         keys = "qwertyuiopasdfghlzxcvbnm",
-        enabled = false,
         popup = {
             relative = "cursor",
             border = "solid",
@@ -22,30 +24,22 @@ return {
             title = "Select one of:",
         },
         priority = {
-            javascript = {
-                { pattern = "add braces", key = "a", order = 1 },
-            },
-            javascriptreact = {
-                { pattern = "add braces", key = "a", order = 1 },
-            },
-            typescript = {
-                { pattern = "add braces", key = "a", order = 1 },
-            },
-            typescriptreact = {
-                { pattern = "add braces", key = "a", order = 1 },
-            },
+            javascript = js_like_patterns,
+            typescript = js_like_patterns,
+            javascriptreact = js_like_patterns,
+            typescriptreact = js_like_patterns,
         },
     },
     keys = {
         {
-            "<leader>sa",
+            "sa",
             function()
                 require("fastaction").code_action()
             end,
             desc = "[A]ction",
         },
         {
-            "<leader>sa",
+            "sa",
             mode = "v",
             function()
                 require("fastaction").range_code_action()
