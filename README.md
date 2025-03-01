@@ -67,6 +67,10 @@ To have a backup, a SSOT and standalone capabilities, I have a little script, wh
 sh ./obsidian/sync.sh
 ```
 
+## TODO
+
+[TODO.md](./TODO.md)
+
 ## Links
 
 ### General
