@@ -3,6 +3,9 @@ set clipboard=unnamed
 " Make `,` available as a leader key
 unmap ,
 
+" Double tab leader to enter command mode
+nmap ,, :
+
 " Editor
 nmap j gj
 nmap k gk
@@ -20,6 +23,16 @@ nmap <C-i> :forward<CR>
 
 exmap reload obcommand app:reload
 exmap changelog obcommand app:show-release-notes
+
+" Daily Notes
+exmap dd obcommand daily-notes
+exmap dp obcommand daily-notes:goto-prev
+exmap dn obcommand daily-notes:goto-next
+exmap dc obcommand obsidian-jump-to-date-plugin:open-JumpToDate-calendar
+
+" Jump
+exmap jumpAnywhere obcommand mrj-jump-to-link:activate-jump-to-anywhere
+nmap <C-f> :jumpAnywhere<CR>
 
 " Split
 exmap vs obcommand workspace:split-vertical
@@ -55,39 +68,31 @@ nmap zm :foldmore<CR>
 exmap unfoldall obcommand editor:unfold-all
 nmap zR :unfoldall<CR>
 
-" Double tab space to enter command mode
-nmap ,, :
-
+" Workspace
 exmap findFiles obcommand obsidian-better-command-palette:open-better-commmand-palette-file-search
 nmap ,wd :findFiles<CR>
 
 exmap fileExplorer obcommand quick-explorer:browse-current
 nmap ,we :fileExplorer<CR>
 
-" Actions
-exmap renameHeading obcommand editor:rename-heading
-nmap ,sn :renameHeading<CR>
+" Documents
 
 exmap moveFile obcommand file-explorer:move-file
-nmap ,dm :moveFile<CR>
-
-" Go
-exmap followlink obcommand editor:follow-link
-nmap ,sd :followlink<CR>
-
-exmap followlinkinnewpane obcommand editor:open-link-in-new-leaf
-nmap ,sD :followlinkinnewpane<CR>
+nmap ,dam :moveFile<CR>
 
 exmap goToSymbol obcommand darlal-switcher-plus:switcher-plus:open-symbols
 nmap ,ds :goToSymbol<CR>
 
-" Daily Notes
-exmap dd obcommand daily-notes
-exmap dp obcommand daily-notes:goto-prev
-exmap dn obcommand daily-notes:goto-next
-exmap dc obcommand obsidian-jump-to-date-plugin:open-JumpToDate-calendar
+" Symbols
+nunmap s
+vunmap s
 
-" Jump
-exmap jumpToLink obcommand mrj-jump-to-link:activate-jump-to-link
-exmap jumpAnywhere obcommand mrj-jump-to-link:activate-jump-to-anywhere
-nmap <C-f> :jumpAnywhere<CR>
+exmap renameHeading obcommand editor:rename-heading
+nmap sn :renameHeading<CR>
+
+exmap followlink obcommand editor:follow-link
+nmap sd :followlink<CR>
+
+exmap followlinkinnewpane obcommand editor:open-link-in-new-leaf
+nmap sD :followlinkinnewpane<CR>
+
