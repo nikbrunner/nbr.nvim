@@ -20,6 +20,10 @@ map("n", "L", vim.cmd.tabnext, { desc = "Next Tab" })
 map("n", "<C-s>", vim.cmd.wa, { desc = "Save" })
 map("n", "<C-q>", ":q!<CR>", { desc = "Quit" })
 
+map("n", "<leader>z", function()
+    vim.cmd("silent !zed " .. vim.fn.expand("%:p"))
+end, { desc = "Open File in [Z]ed" })
+
 map({ "n", "x" }, "<leader><leader>", function()
     vim.api.nvim_feedkeys(":", "n", true)
 end, { desc = "Command Mode" })
@@ -166,6 +170,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
             vim.lsp.buf.definition()
             vim.cmd("norm zz")
         end
+
+        map("n", "[d", function()
+            vim.diagnostic.goto_prev()
+            vim.cmd("norm zz")
+        end, o({ desc = "[D]iagnostic Previous" }))
+        map("n", "]d", function()
+            vim.diagnostic.goto_next()
+            vim.cmd("norm zz")
+        end, o({ desc = "[D]iagnostic Next" }))
 
         map("n", "si", vim.lsp.buf.hover, { desc = "[I]nfo" })
         map("n", "sp", vim.diagnostic.open_float, { desc = "[P]roblem" })
