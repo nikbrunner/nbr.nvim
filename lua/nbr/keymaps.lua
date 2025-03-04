@@ -21,7 +21,11 @@ map("n", "<C-s>", vim.cmd.wa, { desc = "Save" })
 map("n", "<C-q>", ":q!<CR>", { desc = "Quit" })
 
 map("n", "<leader>z", function()
-    vim.cmd("silent !zed " .. vim.fn.expand("%:p"))
+    local current_file = vim.fn.expand("%:p")
+    local current_line = vim.fn.line(".")
+    local current_column = vim.fn.col(".")
+
+    vim.cmd("silent !zed " .. current_file .. ":" .. current_line .. ":" .. current_column)
 end, { desc = "Open File in [Z]ed" })
 
 map({ "n", "x" }, "<leader><leader>", function()
