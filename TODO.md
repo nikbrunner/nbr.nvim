@@ -1,2 +1,0 @@
-- [ ] Lint: Fix Eslint
-- [ ] Config: Resolve legacy `colorscheme` and split into `light/dark`
