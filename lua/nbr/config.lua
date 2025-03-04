@@ -13,6 +13,11 @@ M.config = {
     colorscheme_config_map = {
         ["default"] = { wezterm = "nvim_default_dark" },
 
+        ["black-atom-stations-engineering"] = { wezterm = "Black Atom - Engineering Station" },
+        ["black-atom-stations-operations"] = { wezterm = "Black Atom - Operations Station" },
+        ["black-atom-stations-medical"] = { wezterm = "Black Atom - Medical Station" },
+        ["black-atom-stations-research"] = { wezterm = "Black Atom - Research Station" },
+
         ["terra-spring-night"] = { wezterm = "Black Atom - Terra Spring Night" },
         ["terra-spring-day"] = { wezterm = "Black Atom - Terra Spring Day" },
         ["terra-summer-night"] = { wezterm = "Black Atom - Terra Summer Night" },
@@ -20,14 +25,10 @@ M.config = {
         ["terra-fall-night"] = { wezterm = "Black Atom - Terra Fall Night" },
         ["terra-winter-night"] = { wezterm = "Black Atom - Terra Winter Night" },
 
-        ["black-atom-engineering"] = { wezterm = "Black Atom - Engineering" },
-        ["black-atom-operations"] = { wezterm = "Black Atom - Operations" },
-        ["black-atom-medical"] = { wezterm = "Black Atom - Medical" },
-        ["black-atom-research"] = { wezterm = "Black Atom - Research" },
         ["black-atom-jpn-koyo-yoru"] = { wezterm = "Black Atom - JPN - Koyo Yoru" },
         ["black-atom-jpn-koyo-hiru"] = { wezterm = "Black Atom - JPN - Koyo Hiru" },
         ["black-atom-jpn-tsuki-yoru"] = { wezterm = "Black Atom - JPN - Tsuki Yoru" },
-        ["black-atom-mono-one-dark"] = { wezterm = "Black Atom - MONO - 1 [DARK]" },
+
         ["black-atom-crbn-supr"] = { wezterm = "Black Atom - CRBN [SUPR]" },
         ["black-atom-crbn-null"] = { wezterm = "Black Atom - CRBN [NULL]" },
 
