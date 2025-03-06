@@ -6,12 +6,13 @@ local function auto_group(name)
     return vim.api.nvim_create_augroup("nbr.nvim_" .. name, { clear = true })
 end
 
-auto("VimEnter", {
-    group = auto_group("vim_enter"),
-    callback = function()
-        require("nbr.lib.ui").handle_colors(config, config.colorscheme, config.background)
-    end,
-})
+-- NOTE: Initialization is currently handled via the Auto Light/Dark Mode in `colorschemes.lua`
+-- auto("VimEnter", {
+--     group = auto_group("vim_enter"),
+--     callback = function()
+--         require("nbr.lib.ui").handle_colors(config, config.colorscheme, config.background)
+--     end,
+-- })
 
 auto("ColorScheme", {
     group = auto_group("colorscheme_sync"),

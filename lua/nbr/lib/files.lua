@@ -43,9 +43,9 @@ end
 
 ---@param config VinConfig
 ---@param colorscheme string
----@param background string
+---@param background "light" | "dark"
 function M.sync_vin_colorscheme(config, colorscheme, background)
-    M.update_line_in_file(config.pathes.config.nbr, "colorscheme", '"' .. colorscheme .. '"')
+    M.update_line_in_file(config.pathes.config.nbr, "colorscheme_" .. background, '"' .. colorscheme .. '"')
     M.update_line_in_file(config.pathes.config.nbr, "background", '"' .. background .. '"')
 end
 

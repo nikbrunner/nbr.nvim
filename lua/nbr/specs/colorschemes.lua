@@ -5,10 +5,10 @@ return {
         lazy = false,
         opts = {
             set_dark_mode = function()
-                vim.cmd.colorscheme(require("nbr.config").colormode.dark)
+                vim.cmd.colorscheme(require("nbr.config").colorscheme_dark)
             end,
             set_light_mode = function()
-                vim.cmd.colorscheme(require("nbr.config").colormode.light)
+                vim.cmd.colorscheme(require("nbr.config").colorscheme_light)
             end,
             update_interval = 150,
         },
