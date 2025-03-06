@@ -24,16 +24,13 @@ M.spec = {
             javascript = { "prettier" },
             javascriptreact = { "prettier" },
             json = function()
-                local is_deno_project = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc")
-                return is_deno_project and { "deno_fmt" } or { "prettier" }
+                return require("nbr.config").is_deno_project and { "deno_fmt" } or { "prettier" }
             end,
             lua = { "stylua" },
             markdown = { "prettier" },
             svelte = { "prettier" },
-            -- typescript = { "prettier" },
             typescript = function()
-                local is_deno_project = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc")
-                return is_deno_project and { "deno_fmt" } or { "prettier" }
+                return require("nbr.config").is_deno_project and { "deno_fmt" } or { "prettier" }
             end,
             typescriptreact = { "prettier" },
             yaml = { "prettier" },

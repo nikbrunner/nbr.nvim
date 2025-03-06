@@ -91,6 +91,9 @@ M.specs = {
                         setup_server("denols", {
                             root_dir = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc"),
                             single_file_support = false,
+                            on_attach = function()
+                                config.is_deno_project = true
+                            end,
                         })
                     end,
 
