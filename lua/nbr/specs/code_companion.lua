@@ -23,6 +23,19 @@ return {
                 },
             },
         },
+        adapters = {
+            anthropic_sonnet_3_5 = function()
+                return require("codecompanion.adapters").extend("anthropic", {
+                    name = "anthropic_sonnet_3_5", -- Give this adapter a different name to differentiate it from the default adapter
+                    schema = {
+                        model = {
+                            -- NOTE: 3.7 does not seem to work with inline assistent
+                            default = "claude-3-5-sonnet-20241022",
+                        },
+                    },
+                })
+            end,
+        },
         strategies = {
             -- Change the default chat adapter
             chat = {
@@ -39,7 +52,7 @@ return {
                 },
             },
             inline = {
-                adapter = "anthropic",
+                adapter = "anthropic_sonnet_3_5",
             },
         },
         prompt_library = {
