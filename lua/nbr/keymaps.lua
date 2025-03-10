@@ -170,7 +170,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
         end
 
         local split_defnition = function()
-            vim.cmd.split()
+            if vim.o.lines > 100 then
+                vim.cmd.split()
+            else
+                vim.cmd.vsplit()
+            end
             vim.lsp.buf.definition()
             vim.cmd("norm zz")
         end
