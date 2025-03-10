@@ -8,6 +8,13 @@ M.spec = {
     cmd = { "ConformInfo" },
     init = function()
         vim.g.vin_autoformat_enabled = true
+
+        -- Assign `http` files as `http` files (currently they are interpreted as `conf`)
+        vim.filetype.add({
+            extension = {
+                http = "http",
+            },
+        })
     end,
     ---@type conform.setupOpts
     opts = {
@@ -37,6 +44,7 @@ M.spec = {
             toml = { "taplo" },
             go = { "gofmt" },
             sh = { "shfmt" },
+            http = { "kulala-fmt" },
             -- c = { "clang-format" },
         },
     },
