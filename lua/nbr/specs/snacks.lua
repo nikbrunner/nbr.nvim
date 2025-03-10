@@ -226,6 +226,11 @@ return {
             },
 
             win = {
+                preview = {
+                    wo = {
+                        number = false,
+                    },
+                },
                 input = {
                     keys = {
                         ["<c-t>"] = { "edit_tab", mode = { "i", "n" } },
