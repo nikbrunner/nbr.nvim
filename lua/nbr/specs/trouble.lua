@@ -10,14 +10,14 @@ M.spec = {
         auto_close = true,
         follow = false, -- Follow the current item
         ---@type trouble.Window.opts
-        -- win = {
-        --     type = "float",
-        --     position = { 0.85, 0.5 },
-        --     size = { width = 0.95, height = 0.35 },
-        --     padding = { top = 1, left = 4 },
-        --     border = "solid",
-        --     title = "",
-        -- },
+        win = {
+            -- type = "float",
+            -- position = { 0.85, 0.5 },
+            size = { height = 0.35 },
+            padding = { top = 1, left = 4 },
+            border = "solid",
+            title = "",
+        },
         ---@type table<string, trouble.Mode>
         modes = {
             diagnostics = {},
