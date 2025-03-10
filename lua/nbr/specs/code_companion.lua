@@ -24,13 +24,15 @@ return {
             },
         },
         adapters = {
-            anthropic_sonnet_3_5 = function()
+            anthropic_no_reason = function()
                 return require("codecompanion.adapters").extend("anthropic", {
-                    name = "anthropic_sonnet_3_5", -- Give this adapter a different name to differentiate it from the default adapter
+                    name = "anthropic_no_reason", -- Give this adapter a different name to differentiate it from the default adapter
                     schema = {
                         model = {
-                            -- NOTE: 3.7 does not seem to work with inline assistent
-                            default = "claude-3-5-sonnet-20241022",
+                            -- NOTE: reasoning does not seem to work with inline assistant
+                            choices = {
+                                ["claude-3-7-sonnet-20250219"] = { opts = { can_reason = false } },
+                            },
                         },
                     },
                 })
@@ -52,7 +54,7 @@ return {
                 },
             },
             inline = {
-                adapter = "anthropic_sonnet_3_5",
+                adapter = "anthropic_no_reason",
             },
         },
         prompt_library = {
