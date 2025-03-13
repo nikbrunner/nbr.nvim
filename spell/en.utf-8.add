@@ -27,6 +27,7 @@ json
 prev
 BICO
 bico
+deps
 folke
 terra
 Redux
@@ -42,6 +43,7 @@ Neovim
 VSCode
 GasGas
 keymap
+eslint
 tabline
 neoclip
 taglist
@@ -61,6 +63,7 @@ DevServer
 linebreak
 lspconfig
 VinConfig
+compoents
 toggleterm
 Treesitter
 treesitter
@@ -70,6 +73,7 @@ Sourcemaps
 assortment
 assortment
 tokyonight
+camelCased
 Colorscheme
 Veloconnect
 TerraConfig
@@ -95,5 +99,6 @@ TransitionGroup
 CampudusTransition
 ProductFilterValues
 ReactTransitionGroup
+BrowserLocationState
 insufficientFilterValues
 setDefaultActiveFiltersForBrand
