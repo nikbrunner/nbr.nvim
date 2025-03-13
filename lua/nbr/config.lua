@@ -3,9 +3,9 @@ local M = {}
 ---@class VinConfig
 M.config = {
     ---@type "dark" | "light"
-    background = "dark",
-    colorscheme_light = "default",
-    colorscheme_dark = "black-atom-stations-engineering",
+    background = "light",
+    colorscheme_light = "black-atom-stations-research",
+    colorscheme_dark = "default",
     ---see for wezterm themes: https://wezfurlong.org/wezterm/colorschemes/index.html
     colorscheme_config_map = {
         ["default"] = { wezterm = "nvim_default_dark" },
