@@ -1,13 +1,14 @@
 local M = {}
 
--- TODO:  try out grapple instead
 ---@type LazyPluginSpec
 M.spec = {
-    "otavioschwanck/arrow.nvim",
+    "nikbrunner/arrow.nvim",
     event = "VimEnter",
+    dir = require("nbr.config").pathes.repos .. "/nikbrunner/arrow.nvim",
+    pin = true,
     opts = {
-        leader_key = ";",
-        buffer_leader_key = "gm",
+        leader_key = "M",
+        buffer_leader_key = "m",
         show_icons = false,
         always_show_path = true,
         separate_by_branch = true,
