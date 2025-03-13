@@ -1,6 +1,9 @@
-local js_like_patterns = {
+local patterns = {
     { pattern = "add braces", key = "a", order = 1 },
     { pattern = "add import", key = "i", order = 1 },
+    { pattern = "global dictionary", key = "g", order = 2 },
+    { pattern = "file dictionary", key = "f", order = 3 },
+    { pattern = "ignore", key = "i", order = 1 },
 }
 ---@type LazyPluginSpec
 return {
@@ -24,10 +27,11 @@ return {
             title = "Select one of:",
         },
         priority = {
-            javascript = js_like_patterns,
-            typescript = js_like_patterns,
-            javascriptreact = js_like_patterns,
-            typescriptreact = js_like_patterns,
+            javascript = patterns,
+            typescript = patterns,
+            javascriptreact = patterns,
+            typescriptreact = patterns,
+            lua = patterns,
         },
     },
     keys = {
