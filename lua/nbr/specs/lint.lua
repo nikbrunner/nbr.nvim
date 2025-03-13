@@ -7,18 +7,19 @@ M.spec = {
     config = function()
         local lint = require("lint")
 
-        -- I was trying to set this up via `opts` but I have found no way to do it.
+        vim.env.ESLINT_D_PPID = vim.fn.getpid()
+        local eslint = "eslint_d"
+
         lint.linters_by_ft = {
-            typescriptreact = { "eslint" },
-            typescript = { "eslint" },
-            javascript = { "eslint" },
-            javascriptreact = { "eslint" },
+            typescriptreact = { eslint },
+            typescript = { eslint },
+            javascript = { eslint },
+            javascriptreact = { eslint },
         }
 
-        vim.api.nvim_create_autocmd({ "BufRead", "BufWritePost", "InsertLeave" }, {
-            group = vim.api.nvim_create_augroup("vin_lint", { clear = true }),
+        vim.api.nvim_create_autocmd({ "BufWritePost" }, {
             callback = function()
-                pcall(require, "lint.try_lint")
+                lint.try_lint()
             end,
         })
     end,
