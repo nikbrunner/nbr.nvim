@@ -24,7 +24,6 @@ return {
         ---@module "black-atom"
         ---@type BlackAtom.Config
         opts = {
-            theme = require("nbr.config").colorscheme,
             styles = {
                 transparency = "none",
                 cmp_kind_color_mode = "bg",
