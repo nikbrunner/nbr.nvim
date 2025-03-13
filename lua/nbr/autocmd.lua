@@ -9,7 +9,7 @@ end
 auto("VimEnter", {
     group = auto_group("vim_enter"),
     callback = function()
-        require("nbr.lib.ui").handle_colors(config, config["colorscheme_" .. config.background], config.background)
+        -- require("nbr.lib.ui").handle_colors(config, config["colorscheme_" .. config.background], config.background)
     end,
 })
 
