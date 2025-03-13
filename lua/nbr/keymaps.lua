@@ -158,35 +158,49 @@ map({ "n", "v" }, "<leader>dyp", function()
     lib.copy.list_paths()
 end, { desc = "[P]ath" })
 
+local function split_defnition()
+    if vim.o.lines > 100 then
+        vim.cmd.split()
+    else
+        vim.cmd.vsplit()
+    end
+    vim.lsp.buf.definition()
+    vim.cmd("norm zz")
+end
+
 vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("UserLspConfig", {}),
     callback = function(ev)
         -- Enable completion triggered by <c-x><c-o>
         vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
-        local o = function(opts)
+        local function o(opts)
             opts = opts or {}
             return vim.tbl_extend("force", opts, { buffer = ev.buf })
         end
 
-        local split_defnition = function()
-            if vim.o.lines > 100 then
-                vim.cmd.split()
-            else
-                vim.cmd.vsplit()
-            end
-            vim.lsp.buf.definition()
-            vim.cmd("norm zz")
+        -- Helper function to create diagnostic navigation mappings
+        local function create_diagnostic_mappings(key, severity_type, severity_value)
+            local severity_param = severity_value and { severity = severity_value } or nil
+
+            -- Previous mapping
+            map("n", "[" .. key, function()
+                vim.diagnostic.goto_prev(severity_param)
+                vim.cmd("norm zz")
+            end, o({ desc = "[" .. severity_type .. "] Previous" }))
+
+            -- Next mapping
+            map("n", "]" .. key, function()
+                vim.diagnostic.goto_next(severity_param)
+                vim.cmd("norm zz")
+            end, o({ desc = "[" .. severity_type .. "] Next" }))
         end
 
-        map("n", "[d", function()
-            vim.diagnostic.goto_prev()
-            vim.cmd("norm zz")
-        end, o({ desc = "[D]iagnostic Previous" }))
-        map("n", "]d", function()
-            vim.diagnostic.goto_next()
-            vim.cmd("norm zz")
-        end, o({ desc = "[D]iagnostic Next" }))
+        -- Create mappings for all diagnostic types
+        create_diagnostic_mappings("d", "[D]iagnostic", nil)
+        create_diagnostic_mappings("e", "[E]rror", vim.diagnostic.severity.ERROR)
+        create_diagnostic_mappings("w", "[W]arning", vim.diagnostic.severity.WARN)
+        create_diagnostic_mappings("h", "[H]int", vim.diagnostic.severity.HINT)
 
         map("n", "si", vim.lsp.buf.hover, { desc = "[I]nfo" })
         map("n", "sp", vim.diagnostic.open_float, { desc = "[P]roblem" })
