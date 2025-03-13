@@ -23,3 +23,11 @@
 - Plugin specs: `lua/nbr/specs/*.lua`
 - Core config: `lua/nbr/{config,options,keymaps,lazy}.lua`
 - Utilities: `lua/nbr/lib/*.lua`
+
+## Pending Tasks
+- Refine the CodeCompanion chat saving functionality:
+  - Fix diagnostics in code_companion.lua
+  - Test save/load functionality with different adapters
+  - Consider adding timestamps to saved chats
+  - Check file preview rendering in the Snacks picker
+  - Store conversations in a structured format (not just raw buffer lines)
