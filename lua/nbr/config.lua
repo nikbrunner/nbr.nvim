@@ -79,6 +79,7 @@ M.config = {
             "jsonls",
             "lua_ls",
             "yamlls",
+            "harper_ls",
             "rust_analyzer",
             "vtsls",
         },

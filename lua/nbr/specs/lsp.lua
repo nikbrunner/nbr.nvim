@@ -97,6 +97,20 @@ M.specs = {
                         })
                     end,
 
+                    harper_ls = function()
+                        setup_server("harper_ls", {
+                            settings = {
+                                ["harper-ls"] = {
+                                    userDictPath = vim.fn.stdpath("config") .. "/spell/en.utf-8.add",
+                                    linters = {
+                                        SentenceCapitalization = false,
+                                        Spaces = false,
+                                    },
+                                },
+                            },
+                        })
+                    end,
+
                     -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#lua_ls
                     ["lua_ls"] = function()
                         setup_server("lua_ls", {
