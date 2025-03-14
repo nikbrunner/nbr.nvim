@@ -7,7 +7,7 @@ M.spec = {
     keys = {
         {
             "<leader>am",
-            "<CMD>Bmessagesvs<CR>",
+            "<CMD>Bmessagessp<CR>",
             desc = "[M]essages",
         },
     },
