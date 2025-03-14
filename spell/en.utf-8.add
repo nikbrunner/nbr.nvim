@@ -96,6 +96,7 @@ isLabeledValue
 DetailsContent
 LazyPluginSpec
 TransitionGroup
+CodeCompanionLoad
 CampudusTransition
 ProductFilterValues
 ReactTransitionGroup
