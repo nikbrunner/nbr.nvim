@@ -25,7 +25,11 @@ return {
         },
         signature = { enabled = true },
         cmdline = {
+            keymap = {
+                preset = "default",
+            },
             completion = {
+
                 menu = {
                     auto_show = true,
                 },
