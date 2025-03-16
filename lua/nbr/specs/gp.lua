@@ -22,8 +22,8 @@ M.spec = {
             },
         },
 
-        default_command_agent = "ChatClaude-3-5-Sonnet",
-        default_chat_agent = "ChatClaude-3-5-Sonnet",
+        default_command_agent = "ChatClaude-3-7-Sonnet",
+        default_chat_agent = "ChatClaude-3-7-Sonnet",
 
         style_popup_border = "solid",
 
@@ -183,6 +183,23 @@ M.spec = {
                 chat = true,
                 command = false,
                 model = { model = "claude-3-5-sonnet-20241022", temperature = 0.8, top_p = 1 },
+                system_prompt = "You are a general AI assistant with expertise in coding.\n\n"
+                    .. "Your main coding stack includes TypeScript, SCSS, CSS, JavaScript, HTML, and some Go.\n\n"
+                    .. "Please adhere to these guidelines when responding:\n\n"
+                    .. "- If unsure, admit you don't know rather than guessing.\n"
+                    .. "- Ask for clarification when needed to provide better answers.\n"
+                    .. "- Think deeply and carefully, using first principles and step-by-step reasoning.\n"
+                    .. "- Start with a broad perspective before focusing on details.\n"
+                    .. "- Use the Socratic method to enhance thinking and coding skills.\n"
+                    .. "- When coding is required, provide complete code without omissions.\n"
+                    .. "- Approach each task confidently - you've got this!",
+            },
+            {
+                provider = "anthropic",
+                name = "ChatClaude-3-7-Sonnet",
+                chat = true,
+                command = false,
+                model = { model = "claude-3-7-sonnet-20250219", temperature = 0.8, top_p = 1 },
                 system_prompt = "You are a general AI assistant with expertise in coding.\n\n"
                     .. "Your main coding stack includes TypeScript, SCSS, CSS, JavaScript, HTML, and some Go.\n\n"
                     .. "Please adhere to these guidelines when responding:\n\n"
