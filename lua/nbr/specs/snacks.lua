@@ -69,6 +69,20 @@ function M.find_associated_files()
     })
 end
 
+function M.explorer()
+    local explorer_pickers = Snacks.picker.get({ source = "explorer" })
+    for _, v in pairs(explorer_pickers) do
+        if v:is_focused() then
+            v:close()
+        else
+            v:focus()
+        end
+    end
+    if #explorer_pickers == 0 then
+        Snacks.picker.explorer()
+    end
+end
+
 --- https://github.com/folke/snacks.nvim/blob/main/lua/snacks/picker/config/defaults.lua
 --- https://github.com/folke/snacks.nvim/blob/main/lua/snacks/picker/config/sources.lua
 --- https://github.com/kaiphat/dotfiles/blob/master/nvim/lua/plugins/snacks.lua
@@ -254,12 +268,12 @@ return {
                     replace_netrw = true,
                     git_status = true,
                     jump = {
-                        close = true,
+                        close = false,
                     },
                     hidden = true,
                     ignored = true,
                     layout = {
-                        preset = "column",
+                        preset = "sidebar",
                         preview = {
                             main = true,
                             enabled = false,
@@ -484,17 +498,17 @@ return {
     },
 
     init = function()
-        -- vim.api.nvim_create_autocmd("BufEnter", {
-        --     group = vim.api.nvim_create_augroup("snacks_explorer_start_directory", { clear = true }),
-        --     desc = "Start Snacks Explorer with directory",
-        --     once = true,
-        --     callback = function()
-        --         local dir = vim.fn.argv(0) --[[@as string]]
-        --         if dir ~= "" and vim.fn.isdirectory(dir) == 1 then
-        --             Snacks.picker.explorer({ cwd = dir })
-        --         end
-        --     end,
-        -- })
+        vim.api.nvim_create_autocmd("BufEnter", {
+            group = vim.api.nvim_create_augroup("snacks_explorer_start_directory", { clear = true }),
+            desc = "Start Snacks Explorer with directory",
+            once = true,
+            callback = function()
+                local dir = vim.fn.argv(0) --[[@as string]]
+                if dir ~= "" and vim.fn.isdirectory(dir) == 1 then
+                    Snacks.picker.explorer({ cwd = dir })
+                end
+            end,
+        })
 
         vim.api.nvim_create_autocmd("User", {
             pattern = "VeryLazy",
@@ -547,7 +561,8 @@ return {
             { "<leader>aN",          M.get_news, desc = "[N]ews",  },
 
             -- Workspace
-            { "<leader>we",          function() Snacks.picker.explorer() end, desc = "[E]xplorer" },
+            -- { "<leader>we",          function() Snacks.picker.explorer() end, desc = "[E]xplorer" },
+            { "<leader>we",          M.explorer, desc = "[E]xplorer" },
             { "<leader>wg",          function() Snacks.lazygit() end, desc = "[G]it" },
             { "<leader>wl",          function() Snacks.lazygit.log() end, desc = "[G]it Log" },
             -- { "<leader>wd",          function() Snacks.picker.files() end, desc = "[D]ocument" },
