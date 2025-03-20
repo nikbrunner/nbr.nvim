@@ -70,6 +70,7 @@ M.config = {
     ensure_installed = {
         -- :h mason-lspconfig-server-map
         servers = {
+            "ts_ls",
             "astro",
             "bashls",
             "cssls",
@@ -79,7 +80,7 @@ M.config = {
             "lua_ls",
             "yamlls",
             "rust_analyzer",
-            "vtsls",
+            -- "vtsls",
         },
         -- :h mason-tool-installer
         tools = {

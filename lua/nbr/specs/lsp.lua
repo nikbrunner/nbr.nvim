@@ -55,6 +55,43 @@ M.specs = {
                         setup_server(server_name)
                     end,
 
+                    ts_ls = function()
+                        setup_server("ts_ls", {
+                            root_dir = require("lspconfig.util").root_pattern("package.json"),
+                            single_file_support = false,
+                            init_options = {
+                                ---@see https://github.com/typescript-language-server/typescript-language-server#initializationoptions
+                                preferences = {
+                                    importModuleSpecifierPreference = "relative",
+                                },
+                            },
+                            settings = {
+                                typescript = {
+                                    inlayHints = {
+                                        includeInlayParameterNameHints = "literal",
+                                        includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                                        includeInlayFunctionParameterTypeHints = true,
+                                        includeInlayVariableTypeHints = true,
+                                        includeInlayPropertyDeclarationTypeHints = true,
+                                        includeInlayFunctionLikeReturnTypeHints = true,
+                                        includeInlayEnumMemberValueHints = true,
+                                    },
+                                },
+                                javascript = {
+                                    inlayHints = {
+                                        includeInlayParameterNameHints = "all",
+                                        includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                                        includeInlayFunctionParameterTypeHints = true,
+                                        includeInlayVariableTypeHints = true,
+                                        includeInlayPropertyDeclarationTypeHints = true,
+                                        includeInlayFunctionLikeReturnTypeHints = true,
+                                        includeInlayEnumMemberValueHints = true,
+                                    },
+                                },
+                            },
+                        })
+                    end,
+
                     -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#vtsls
                     vtsls = function()
                         setup_server("vtsls", {
