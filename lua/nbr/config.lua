@@ -4,8 +4,8 @@ local M = {}
 M.config = {
     ---@type "dark" | "light"
     background = "dark",
-    colorscheme_light = "black-atom-jpn-koyo-hiru",
-    colorscheme_dark = "black-atom-jpn-koyo-yoru",
+    colorscheme_light = "black-atom-crbn-supr",
+    colorscheme_dark = "black-atom-crbn-null",
     ---see for wezterm themes: https://wezfurlong.org/wezterm/colorschemes/index.html
     colorscheme_config_map = {
         ["default"] = { wezterm = "nvim_default_dark" },
