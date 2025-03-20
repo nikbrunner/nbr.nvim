@@ -1,3 +1,5 @@
+local State = require("nbr.state")
+
 local M = {}
 
 ---@type LazyPluginSpec
@@ -31,13 +33,13 @@ M.spec = {
             javascript = { "prettier" },
             javascriptreact = { "prettier" },
             json = function()
-                return require("nbr.config").is_deno_project and { "deno_fmt" } or { "prettier" }
+                return State:get("is_deno_project") and { "deno_fmt" } or { "prettier" }
             end,
             lua = { "stylua" },
             markdown = { "prettier" },
             svelte = { "prettier" },
             typescript = function()
-                return require("nbr.config").is_deno_project and { "deno_fmt" } or { "prettier" }
+                return State:get("is_deno_project") and { "deno_fmt" } or { "prettier" }
             end,
             typescriptreact = { "prettier" },
             yaml = { "prettier" },

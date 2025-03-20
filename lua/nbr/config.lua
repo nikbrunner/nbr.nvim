@@ -51,7 +51,6 @@ M.config = {
 
         ["nord"] = { wezterm = "nord" },
     },
-    is_deno_project = false,
     open_previous_files_on_startup = false,
     open_neotree_on_startup = false,
     pathes = {

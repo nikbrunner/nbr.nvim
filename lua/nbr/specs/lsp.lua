@@ -1,4 +1,5 @@
-local config = require("nbr.config")
+local State = require("nbr.state")
+local Config = require("nbr.config")
 
 local M = {}
 
@@ -47,7 +48,7 @@ M.specs = {
             end
 
             return {
-                ensure_installed = config.ensure_installed.servers,
+                ensure_installed = Config.ensure_installed.servers,
 
                 handlers = {
                     function(server_name)
@@ -92,7 +93,7 @@ M.specs = {
                             root_dir = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc"),
                             single_file_support = false,
                             on_attach = function()
-                                config.is_deno_project = true
+                                State:set("is_deno_project", true)
                             end,
                         })
                     end,
@@ -176,7 +177,7 @@ M.specs = {
         -- https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim/issues/39
         event = "VeryLazy",
         opts = {
-            ensure_installed = config.ensure_installed.tools,
+            ensure_installed = Config.ensure_installed.tools,
         },
         config = function(_, opts)
             vim.api.nvim_create_autocmd({ "VimEnter" }, {
