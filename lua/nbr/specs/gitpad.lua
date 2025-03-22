@@ -14,7 +14,7 @@ M.spec = {
         return {
             title = "Vinpad",
             border = "rounded",
-            dir = dir .. "/Gitpad",
+            dir = dir .. "/GitPad",
             on_attach = function(bufnr)
                 vim.api.nvim_buf_set_keymap(bufnr, "n", "q", "<Cmd>wq<CR>", { noremap = true, silent = true })
             end,
@@ -37,14 +37,6 @@ M.spec = {
                 require("gitpad").toggle_gitpad_branch()
             end,
             desc = "Branch",
-        },
-        {
-            "<leader>nd",
-            function()
-                local date_filename = "daily-" .. os.date("%Y-%m-%d.md")
-                require("gitpad").toggle_gitpad({ filename = date_filename })
-            end,
-            desc = "Daily",
         },
         {
             "<leader>nf",
