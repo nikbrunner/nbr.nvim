@@ -7,7 +7,7 @@ function M.handle_colors(config, colorscheme, background)
     vim.opt.background = background
     vim.cmd.colorscheme(colorscheme)
 
-    require("nbr.lib.files").sync_vin_colorscheme(config, colorscheme, background)
+    -- require("nbr.lib.files").sync_vin_colorscheme(config, colorscheme, background)
     require("nbr.lib.files").sync_wezterm_colorscheme(config, colorscheme)
 end
 

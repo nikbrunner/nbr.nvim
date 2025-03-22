@@ -6,22 +6,22 @@ local function auto_group(name)
     return vim.api.nvim_create_augroup("nbr.nvim_" .. name, { clear = true })
 end
 
-auto("VimEnter", {
-    group = auto_group("vim_enter"),
-    callback = function()
-        -- require("nbr.lib.ui").handle_colors(config, config["colorscheme_" .. config.background], config.background)
-    end,
-})
-
-auto("ColorScheme", {
-    group = auto_group("colorscheme_sync"),
-    callback = function(args)
-        local colorscheme = args.match
-        ---@diagnostic disable-next-line: undefined-field
-        local background = vim.opt.background:get()
-        require("nbr.lib.ui").handle_colors(config, colorscheme, background)
-    end,
-})
+-- auto("VimEnter", {
+--     group = auto_group("vim_enter"),
+--     callback = function()
+--         -- require("nbr.lib.ui").handle_colors(config, config["colorscheme_" .. config.background], config.background)
+--     end,
+-- })
+--
+-- auto("ColorScheme", {
+--     group = auto_group("colorscheme_sync"),
+--     callback = function(args)
+--         local colorscheme = args.match
+--         ---@diagnostic disable-next-line: undefined-field
+--         local background = vim.opt.background:get()
+--         require("nbr.lib.ui").handle_colors(config, colorscheme, background)
+--     end,
+-- })
 
 -- Close these filetypes with <Esc> & q in normal mode
 auto("FileType", {
