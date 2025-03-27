@@ -119,6 +119,7 @@ local function special_up()
         vim.cmd('execute "normal! ' .. travel .. '\\<C-y>"')
     else
         vim.cmd('execute "normal! ' .. travel .. '\\k"')
+        vim.cmd("normal! zz")
     end
 end
 
@@ -131,6 +132,7 @@ local function special_down()
         vim.cmd('execute "normal! ' .. travel .. '\\<C-e>"')
     elseif cursorline < last_visible then
         vim.cmd('execute "normal! ' .. travel .. '\\j"')
+        vim.cmd("normal! zz")
     end
 end
 
@@ -138,11 +140,6 @@ map({ "n", "x" }, "<C-u>", special_up)
 
 map({ "n", "x" }, "<C-d>", special_down)
 
--- prev/next
-map("n", "[q", vim.cmd.cprev, { desc = "Previous quickfix" })
-map("n", "]q", vim.cmd.cnext, { desc = "Next quickfix" })
-
--- Center screen when going to next/previous search result
 map("n", "n", "nzzzv")
 map("n", "N", "Nzzzv")
 
@@ -213,13 +210,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
             -- Previous mapping
             map("n", "[" .. key, function()
-                vim.diagnostic.goto_prev(severity_param)
+                -- vim.diagnostic.goto_prev(severity_param)
+                vim.diagnostic.jump({ count = 1, float = false, severity = severity_param })
                 vim.cmd("norm zz")
             end, o({ desc = "[" .. severity_type .. "] Previous" }))
 
             -- Next mapping
             map("n", "]" .. key, function()
-                vim.diagnostic.goto_next(severity_param)
+                -- vim.diagnostic.goto_next(severity_param)
+                vim.diagnostic.jump({ count = -1, float = false, severity = severity_param })
                 vim.cmd("norm zz")
             end, o({ desc = "[" .. severity_type .. "] Next" }))
         end
