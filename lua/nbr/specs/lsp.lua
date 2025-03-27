@@ -194,8 +194,8 @@ M.specs = {
 
             vim.diagnostic.config({
                 underline = false,
-                virtual_text = {
-                    prefix = " " .. require("nbr.icons").misc.circle_lg,
+                virtual_lines = {
+                    current_line = true,
                 },
                 signs = true,
                 update_in_insert = false,
