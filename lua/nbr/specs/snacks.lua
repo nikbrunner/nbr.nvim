@@ -268,12 +268,12 @@ return {
                     replace_netrw = true,
                     git_status = true,
                     jump = {
-                        close = false,
+                        close = true,
                     },
                     hidden = true,
                     ignored = true,
                     layout = {
-                        preset = "sidebar",
+                        preset = "column",
                         preview = {
                             main = true,
                             enabled = false,
@@ -498,17 +498,17 @@ return {
     },
 
     init = function()
-        vim.api.nvim_create_autocmd("BufEnter", {
-            group = vim.api.nvim_create_augroup("snacks_explorer_start_directory", { clear = true }),
-            desc = "Start Snacks Explorer with directory",
-            once = true,
-            callback = function()
-                local dir = vim.fn.argv(0) --[[@as string]]
-                if dir ~= "" and vim.fn.isdirectory(dir) == 1 then
-                    Snacks.picker.explorer({ cwd = dir })
-                end
-            end,
-        })
+        -- vim.api.nvim_create_autocmd("BufEnter", {
+        --     group = vim.api.nvim_create_augroup("snacks_explorer_start_directory", { clear = true }),
+        --     desc = "Start Snacks Explorer with directory",
+        --     once = true,
+        --     callback = function()
+        --         local dir = vim.fn.argv(0) --[[@as string]]
+        --         if dir ~= "" and vim.fn.isdirectory(dir) == 1 then
+        --             Snacks.picker.explorer({ cwd = dir })
+        --         end
+        --     end,
+        -- })
 
         vim.api.nvim_create_autocmd("User", {
             pattern = "VeryLazy",
@@ -561,8 +561,8 @@ return {
             { "<leader>aN",          M.get_news, desc = "[N]ews",  },
 
             -- Workspace
-            -- { "<leader>we",          function() Snacks.picker.explorer() end, desc = "[E]xplorer" },
-            { "<leader>we",          M.explorer, desc = "[E]xplorer" },
+            { "<leader>we",          function() Snacks.picker.explorer() end, desc = "[E]xplorer" },
+            -- { "<leader>we",          M.explorer, desc = "[E]xplorer" },
             { "<leader>wg",          function() Snacks.lazygit() end, desc = "[G]it" },
             { "<leader>wl",          function() Snacks.lazygit.log() end, desc = "[G]it Log" },
             -- { "<leader>wd",          function() Snacks.picker.files() end, desc = "[D]ocument" },
