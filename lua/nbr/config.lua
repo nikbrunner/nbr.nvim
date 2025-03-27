@@ -6,6 +6,13 @@ M.config = {
     background = "dark",
     colorscheme_light = "black-atom-jpn-koyo-hiru",
     colorscheme_dark = "black-atom-jpn-koyo-yoru",
+
+    -- colorscheme_dark = "github_dark_default",
+    -- colorscheme_dark = "github_dark_dimmed",
+    --
+    -- colorscheme_light = "black-atom-stations-research",
+    -- colorscheme_dark = "black-atom-stations-engineering",
+
     ---see for wezterm themes: https://wezfurlong.org/wezterm/colorschemes/index.html
     colorscheme_config_map = {
         ["default"] = { wezterm = "nvim_default_dark" },
