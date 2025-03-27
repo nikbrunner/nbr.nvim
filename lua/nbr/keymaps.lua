@@ -107,8 +107,36 @@ map("i", ".", ".<c-g>u")
 map("i", ";", ";<c-g>u")
 
 -- Center screen when using <C-u> and <C-d>
-map("n", "<C-u>", "<C-u>zz", { desc = "Scroll Up" })
-map("n", "<C-d>", "<C-d>zz", { desc = "Scroll Down" })
+-- map("n", "<C-u>", "<C-u>zz", { desc = "Scroll Up" })
+-- map("n", "<C-d>", "<C-d>zz", { desc = "Scroll Down" })
+
+local function special_up()
+    local cursorline = vim.fn.line(".")
+    local first_visible = vim.fn.line("w0")
+    local travel = math.floor(vim.api.nvim_win_get_height(0) / 2)
+
+    if (cursorline - travel) < first_visible then
+        vim.cmd('execute "normal! ' .. travel .. '\\<C-y>"')
+    else
+        vim.cmd('execute "normal! ' .. travel .. '\\k"')
+    end
+end
+
+local function special_down()
+    local cursorline = vim.fn.line(".")
+    local last_visible = vim.fn.line("w$")
+    local travel = math.floor(vim.api.nvim_win_get_height(0) / 2)
+
+    if (cursorline + travel) > last_visible and last_visible < vim.fn.line("$") then
+        vim.cmd('execute "normal! ' .. travel .. '\\<C-e>"')
+    elseif cursorline < last_visible then
+        vim.cmd('execute "normal! ' .. travel .. '\\j"')
+    end
+end
+
+map({ "n", "x" }, "<C-u>", special_up)
+
+map({ "n", "x" }, "<C-d>", special_down)
 
 -- prev/next
 map("n", "[q", vim.cmd.cprev, { desc = "Previous quickfix" })
