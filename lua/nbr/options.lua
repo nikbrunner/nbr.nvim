@@ -23,10 +23,13 @@ vim.opt.smartindent = true
 
 vim.o.winborder = "solid"
 
-vim.opt.foldlevel = 99
-vim.opt.foldmethod = "indent"
-vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
--- vim.opt.foldtext = ""
+vim.o.foldenable = true
+vim.o.foldlevel = 99
+vim.o.foldmethod = "expr"
+vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.o.foldtext = ""
+vim.opt.foldcolumn = "0"
+vim.opt.fillchars:append({ fold = " " })
 
 vim.opt.wildmode = "longest:full,full"
 
