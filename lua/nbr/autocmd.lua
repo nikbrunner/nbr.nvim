@@ -10,19 +10,19 @@ auto("VimEnter", {
     group = auto_group("vim_enter"),
     callback = function()
         vim.cmd.colorscheme(config["colorscheme_" .. config.background])
-        -- require("nbr.lib.ui").handle_colors(config, config["colorscheme_" .. config.background], config.background)
+        require("nbr.lib.ui").handle_colors(config, config["colorscheme_" .. config.background], config.background)
     end,
 })
 --
--- auto("ColorScheme", {
---     group = auto_group("colorscheme_sync"),
---     callback = function(args)
---         local colorscheme = args.match
---         ---@diagnostic disable-next-line: undefined-field
---         local background = vim.opt.background:get()
---         require("nbr.lib.ui").handle_colors(config, colorscheme, background)
---     end,
--- })
+auto("ColorScheme", {
+    group = auto_group("colorscheme_sync"),
+    callback = function(args)
+        local colorscheme = args.match
+        ---@diagnostic disable-next-line: undefined-field
+        local background = vim.opt.background:get()
+        require("nbr.lib.ui").handle_colors(config, colorscheme, background)
+    end,
+})
 
 -- Close these filetypes with <Esc> & q in normal mode
 auto("FileType", {

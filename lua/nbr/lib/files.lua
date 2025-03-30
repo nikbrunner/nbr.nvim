@@ -37,7 +37,7 @@ function M.sync_wezterm_colorscheme(config, colorscheme)
     end
 
     if colorscheme_config and colorscheme_config.wezterm then
-        M.update_line_in_file(wezterm_ui_file, "color_scheme", '"' .. colorscheme_config.wezterm .. '"')
+        M.update_line_in_file(wezterm_ui_file, "vin_config_colorscheme", '"' .. colorscheme_config.wezterm .. '"')
     end
 end
 
