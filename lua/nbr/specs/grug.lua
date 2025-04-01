@@ -7,7 +7,7 @@ M.spec = {
     ---@type GrugFarOptions
     ---@diagnostic disable-next-line: missing-fields
     opts = {
-        windowCreationCommand = "horizontal split",
+        windowCreationCommand = "topleft vsplit",
         engines = {
             ripgrep = {
                 placeholders = {
@@ -19,6 +19,11 @@ M.spec = {
                 },
             },
         },
+
+        openTargetWindow = {
+            preferredLocation = "right",
+        },
+
         keymaps = {
             replace = { n = "<localleader>r" },
             qflist = { n = "<localleader>q" },
