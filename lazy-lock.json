@@ -9,7 +9,6 @@
   "codecompanion.nvim": { "branch": "main", "commit": "51fe5a782dbbd5cad8189420cb8d38fd7c245684" },
   "conform.nvim": { "branch": "master", "commit": "f9ef25a7ef00267b7d13bfc00b0dea22d78702d5" },
   "contextindent.nvim": { "branch": "main", "commit": "5a7a35700fd60deaf61c682f134e1ec31df181cd" },
-  "e-ink.nvim": { "branch": "main", "commit": "1d9e56f2271e31701df115a40c77b1cd47d99fad" },
   "fastaction.nvim": { "branch": "main", "commit": "c43684448470e732387beccaff12e6667a534800" },
   "flash.nvim": { "branch": "main", "commit": "3c942666f115e2811e959eabbdd361a025db8b63" },
   "github-nvim-theme": { "branch": "main", "commit": "c106c9472154d6b2c74b74565616b877ae8ed31d" },
