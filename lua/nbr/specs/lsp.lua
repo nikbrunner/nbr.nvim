@@ -33,7 +33,6 @@ M.specs = {
             "williamboman/mason.nvim",
             "neovim/nvim-lspconfig",
             "folke/lazydev.nvim",
-            "yioneko/nvim-vtsls",
             "saghen/blink.cmp",
         },
         opts = function()
