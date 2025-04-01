@@ -193,6 +193,7 @@ M.specs = {
 
             vim.diagnostic.config({
                 underline = false,
+                virtual_text = false,
                 virtual_lines = {
                     current_line = true,
                 },
