@@ -1,16 +1,23 @@
+local Config = require("nbr.config")
+local Files = require("nbr.lib.files")
+
 ---@type LazyPluginSpec[]
 return {
     {
         "f-person/auto-dark-mode.nvim",
         lazy = false,
+        priority = 10000,
         opts = {
             set_dark_mode = function()
-                vim.cmd.colorscheme(require("nbr.config").colorscheme_dark)
+                vim.cmd.colorscheme(Config.colorscheme_dark)
+                Files.update_line_in_file(Config.pathes.config.nbr, "background", '"dark"')
             end,
             set_light_mode = function()
-                vim.cmd.colorscheme(require("nbr.config").colorscheme_light)
+                vim.cmd.colorscheme(Config.colorscheme_light)
+                Files.update_line_in_file(Config.pathes.config.nbr, "background", '"light"')
             end,
-            update_interval = 150,
+            update_interval = 25,
+            fallback = Config.background,
         },
     },
 

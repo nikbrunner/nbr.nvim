@@ -1,3 +1,5 @@
+local Files = require("nbr.lib.files")
+
 local M = {}
 
 ---@param config VinConfig
@@ -7,8 +9,10 @@ function M.handle_colors(config, colorscheme, background)
     vim.opt.background = background
     vim.cmd.colorscheme(colorscheme)
 
-    -- require("nbr.lib.files").sync_vin_colorscheme(config, colorscheme, background)
-    require("nbr.lib.files").sync_wezterm_colorscheme(config, colorscheme)
+    vim.defer_fn(function()
+        Files.sync_vin_colorscheme(config, colorscheme, background)
+        Files.sync_wezterm_colorscheme(config, colorscheme)
+    end, 25)
 end
 
 M._maximized_window = nil

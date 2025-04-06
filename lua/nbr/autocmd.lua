@@ -1,4 +1,5 @@
-local config = require("nbr.config")
+local Config = require("nbr.config")
+local UI = require("nbr.lib.ui")
 
 local auto = vim.api.nvim_create_autocmd
 
@@ -9,8 +10,11 @@ end
 auto("VimEnter", {
     group = auto_group("vim_enter"),
     callback = function()
-        vim.cmd.colorscheme(config["colorscheme_" .. config.background])
-        require("nbr.lib.ui").handle_colors(config, config["colorscheme_" .. config.background], config.background)
+        local colorscheme = Config["colorscheme_" .. Config.background]
+        -- local colorscheme = config.colorscheme_default
+
+        vim.cmd.colorscheme(Config.colorscheme_default)
+        UI.handle_colors(Config, colorscheme, Config.background)
     end,
 })
 --
@@ -20,7 +24,7 @@ auto("ColorScheme", {
         local colorscheme = args.match
         ---@diagnostic disable-next-line: undefined-field
         local background = vim.opt.background:get()
-        require("nbr.lib.ui").handle_colors(config, colorscheme, background)
+        UI.handle_colors(Config, colorscheme, background)
     end,
 })
 

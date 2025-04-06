@@ -4,14 +4,10 @@ local M = {}
 M.config = {
     ---@type "dark" | "light"
     background = "dark",
-    colorscheme_light = "black-atom-jpn-koyo-hiru",
-    colorscheme_dark = "black-atom-jpn-koyo-yoru",
+    colorscheme_default = "black-atom-jpn-murasaki-yoru",
 
-    -- colorscheme_dark = "github_dark_default",
-    -- colorscheme_dark = "github_dark_dimmed",
-    --
-    -- colorscheme_light = "black-atom-stations-research",
-    -- colorscheme_dark = "black-atom-stations-engineering",
+    colorscheme_light = "black-atom-jpn-koyo-hiru",
+    colorscheme_dark = "black-atom-jpn-murasaki-yoru",
 
     ---see for wezterm themes: https://wezfurlong.org/wezterm/colorschemes/index.html
     colorscheme_config_map = {
@@ -34,6 +30,7 @@ M.config = {
         ["black-atom-jpn-koyo-yoru"] = { wezterm = "Black Atom — JPN ∷ Koyo Yoru" },
         ["black-atom-jpn-koyo-hiru"] = { wezterm = "Black Atom — JPN ∷ Koyo Hiru" },
         ["black-atom-jpn-tsuki-yoru"] = { wezterm = "Black Atom — JPN ∷ Tsuki Yoru" },
+        ["black-atom-jpn-murasaki-yoru"] = { wezterm = "Black Atom — JPN ∷ Murasaki Yoru" },
 
         ["black-atom-crbn-supr"] = { wezterm = "Black Atom — CRB ∷ NULL" },
         ["black-atom-crbn-null"] = { wezterm = "Black Atom — CRB ∷ SUPR" },
