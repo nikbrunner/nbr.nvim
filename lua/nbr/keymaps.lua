@@ -276,7 +276,23 @@ vim.api.nvim_create_autocmd("LspAttach", {
         map("n", "si", vim.lsp.buf.hover, o({ desc = "[I]nfo" }))
 
         -- LSP Diagnostics
-        map("n", "sp", vim.diagnostic.open_float, o({ desc = "[P]roblem (Diagnostics)" }))
+        -- map("n", "sp", vim.diagnostic.open_float, o({ desc = "[P]roblem (Diagnostics)" }))
+        vim.keymap.set("n", "sp", function()
+            vim.diagnostic.config({ virtual_lines = { current_line = true }, virtual_text = false })
+
+            vim.api.nvim_create_autocmd("CursorMoved", {
+                group = vim.api.nvim_create_augroup("line-diagnostics", { clear = true }),
+                callback = function()
+                    vim.diagnostic.config({
+                        virtual_lines = false,
+                        virtual_text = {
+                            current_line = true,
+                        },
+                    })
+                    return true
+                end,
+            })
+        end)
 
         -- Helper function to create diagnostic navigation mappings
         local function create_diagnostic_mappings(key, severity_type, severity_value)
