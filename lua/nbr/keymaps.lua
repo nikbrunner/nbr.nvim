@@ -1,5 +1,6 @@
----@diagnostic disable: undefined-field
-local lib = require("nbr.lib")
+local Lib = require("nbr.lib")
+
+local M = {}
 
 -- =============================================================================
 -- Helper Functions
@@ -10,7 +11,7 @@ local lib = require("nbr.lib")
 ---@param lhs string Left-hand side of the mapping
 ---@param rhs string|function Right-hand side of the mapping
 ---@param opts table Optional parameters for vim.keymap.set (e.g., {desc = "Description"})
-local function map(mode, lhs, rhs, opts)
+function M.map(mode, lhs, rhs, opts)
     opts = opts or {}
     opts.noremap = opts.noremap == nil and true or opts.noremap
     opts.silent = opts.silent == nil and true or opts.silent
@@ -18,7 +19,7 @@ local function map(mode, lhs, rhs, opts)
 end
 
 --- Helper function for smarter scrolling with <C-u>
-local function special_up()
+function M.custom_up()
     local cursorline = vim.fn.line(".")
     local first_visible = vim.fn.line("w0")
     local travel = math.floor(vim.api.nvim_win_get_height(0) / 2)
@@ -32,7 +33,7 @@ local function special_up()
 end
 
 --- Helper function for smarter scrolling with <C-d>
-local function special_down()
+function M.custom_down()
     local cursorline = vim.fn.line(".")
     local last_visible = vim.fn.line("w$")
     local travel = math.floor(vim.api.nvim_win_get_height(0) / 2)
@@ -46,7 +47,7 @@ local function special_down()
 end
 
 --- Helper function to open definition in a split (vertical if space allows)
-local function split_defnition()
+function M.goto_split_definition()
     if vim.o.lines > 100 then
         vim.cmd.split()
     else
@@ -56,64 +57,104 @@ local function split_defnition()
     vim.cmd("norm zz")
 end
 
+function M.set_diagnostic_virtual_text()
+    vim.diagnostic.config({
+        virtual_lines = false,
+        virtual_text = { current_line = true },
+    })
+end
+
+function M.set_diagnostic_virtual_lines()
+    vim.diagnostic.config({
+        virtual_lines = { current_line = true },
+        virtual_text = false,
+    })
+end
+
+function M.custom_jump(jumpCount, severity)
+    local auto_group_name = "custom_jump"
+
+    pcall(vim.api.nvim_del_augroup_by_name, auto_group_name) -- prevent autocmd for repeated jumps
+
+    vim.diagnostic.jump({
+        count = jumpCount,
+        severity = severity,
+        float = false,
+    })
+
+    M.set_diagnostic_virtual_lines()
+    vim.cmd("norm zz")
+
+    vim.defer_fn(function() -- deferred to not trigger by jump itself
+        vim.api.nvim_create_autocmd("CursorMoved", {
+            desc = "User(once): Reset diagnostics virtual lines",
+            once = true,
+            group = vim.api.nvim_create_augroup(auto_group_name, {}),
+            callback = function()
+                M.set_diagnostic_virtual_text()
+            end,
+        })
+    end, 1)
+end
+
 -- =============================================================================
 -- Core Editor Behavior & Navigation
 -- =============================================================================
 
 -- Disable Ex mode mapping
-map("n", "Q", "<nop>", { desc = "Disable Ex Mode" })
+M.map("n", "Q", "<nop>", { desc = "Disable Ex Mode" })
 -- Disable suspend mapping
-map("n", "s", "<Nop>", { desc = "Disable Suspend" })
+M.map("n", "s", "<nop>", { desc = "Disable Suspend" })
 
 -- Escape clears search highlight, saves, hides notifier
-map("n", "<Esc>", function()
+M.map("n", "<Esc>", function()
     vim.cmd.nohlsearch()
     vim.cmd.wa()
     require("snacks.notifier").hide()
 end, { desc = "Escape and clear hlsearch" })
 
 -- Shift+Escape clears notifier and floating windows
-map("n", "<S-Esc>", function()
+M.map("n", "<S-Esc>", function()
     require("snacks.notifier").hide()
-    lib.ui.close_all_floating_windows()
+    Lib.ui.close_all_floating_windows()
 end, { desc = "Clear Notifier and Trouble" })
 
 -- Center screen when moving through jump list
-map("n", "<C-o>", "<C-o>zz", { desc = "Move back in jump list" })
-map("n", "<C-i>", "<C-i>zz", { desc = "Move forward in jump list" })
+M.map("n", "<C-o>", "<C-o>zz", { desc = "Move back in jump list" })
+M.map("n", "<C-i>", "<C-i>zz", { desc = "Move forward in jump list" })
 
 -- Center screen when searching
-map("n", "N", "Nzzzv", { desc = "Previous Search Results" })
-map("n", "n", "nzzzv", { desc = "Next Search Results" })
+M.map("n", "N", "Nzzzv", { desc = "Previous Search Results" })
+M.map("n", "n", "nzzzv", { desc = "Next Search Results" })
 
 -- Smarter scrolling keeping cursor centered, while other looking up and down conditionally
-map({ "n", "x" }, "<C-u>", special_up, { desc = "Scroll Up (Centered)" })
-map({ "n", "x" }, "<C-d>", special_down, { desc = "Scroll Down (Centered)" })
+M.map({ "n", "x" }, "<C-u>", M.custom_up, { desc = "Scroll Up (Centered)" })
+M.map({ "n", "x" }, "<C-d>", M.custom_down, { desc = "Scroll Down (Centered)" })
 
 -- Better up/down movement that respects wrapped lines
-map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-map({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-map({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+M.map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+M.map({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+M.map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+M.map({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 
 -- Keep cursor position when joining lines
-map("n", "J", "mzJ`z", { desc = "Join Lines" })
+M.map("n", "J", "mzJ`z", { desc = "Join Lines" })
 
 -- Move selected lines up/down in visual mode
-map("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move Selected Lines Up" })
-map("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move Selected Lines Down" })
+M.map("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move Selected Lines Up" })
+M.map("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move Selected Lines Down" })
 
 -- Indenting in visual mode keeps selection
-map("v", "<", "<gv", { desc = "Indent Selected Lines" })
-map("v", ">", ">gv", { desc = "Outdent Selected Lines" })
+M.map("v", "<", "<gv", { desc = "Indent Selected Lines" })
+M.map("v", ">", ">gv", { desc = "Outdent Selected Lines" })
 
 -- Make undo points for common punctuation in insert mode
-map("i", ",", ",<c-g>u", { desc = "Undo Comma" })
-map("i", ".", ".<c-g>u", { desc = "Undo Dot" })
-map("i", ";", ";<c-g>u", { desc = "Undo Semicolon" })
+M.map("i", ",", ",<c-g>u", { desc = "Undo Comma" })
+M.map("i", ".", ".<c-g>u", { desc = "Undo Dot" })
+M.map("i", ";", ";<c-g>u", { desc = "Undo Semicolon" })
 
 -- Quick access to command mode
-map({ "n", "x" }, "<leader><leader>", function()
+M.map({ "n", "x" }, "<leader><leader>", function()
     vim.api.nvim_feedkeys(":", "n", true)
 end, { desc = "Command Mode" })
 
@@ -122,10 +163,10 @@ end, { desc = "Command Mode" })
 -- =============================================================================
 
 -- Delete without yanking ("black hole register")
-map("n", "x", '"_x', { desc = "Delete without yanking" })
+M.map("n", "x", '"_x', { desc = "Delete without yanking" })
 
 -- Duplicate line
-map("n", "yp", function()
+M.map("n", "yp", function()
     local col = vim.fn.col(".")
     vim.cmd("norm yy")
     vim.cmd("norm p")
@@ -133,7 +174,7 @@ map("n", "yp", function()
 end, { desc = "Duplicate line" })
 
 -- Duplicate line and comment out the original
-map("n", "yc", function()
+M.map("n", "yc", function()
     local col = vim.fn.col(".")
     vim.cmd("norm yy")
     vim.cmd("norm gcc")
@@ -142,15 +183,14 @@ map("n", "yc", function()
 end, { desc = "Dupe line (Comment out old one)" })
 
 -- Select All
-map("n", "vA", "ggVG", { desc = "Select All" })
+M.map("n", "vA", "ggVG", { desc = "Select All" })
 
 -- Change inside word (convenience)
--- map("n", "<C-c>", "ciw", { desc = "Change Inside Word" })
-map("n", "<space>", "ciw", { desc = "Change Inside Word" })
-map("x", "<space>", "c", { desc = "Change Selection" })
+M.map("n", "<space>", "ciw", { desc = "Change Inside Word" })
+M.map("x", "<space>", "c", { desc = "Change Selection" })
 
 -- Yank entire buffer content
-map("n", "<leader>dya", function()
+M.map("n", "<leader>dya", function()
     -- Save current cursor position
     local current_pos = vim.fn.getpos(".")
     -- Yank entire buffer
@@ -160,8 +200,8 @@ map("n", "<leader>dya", function()
 end, { desc = "[A]ll" })
 
 -- Yank current file path(s) (uses lib function)
-map({ "n", "v" }, "<leader>dyp", function()
-    lib.copy.list_paths()
+M.map({ "n", "v" }, "<leader>dyp", function()
+    Lib.copy.list_paths()
 end, { desc = "[P]ath" })
 
 -- =============================================================================
@@ -169,12 +209,12 @@ end, { desc = "[P]ath" })
 -- =============================================================================
 
 -- Navigate tabs
-map("n", "H", vim.cmd.tabprevious, { desc = "Previous Tab" })
-map("n", "L", vim.cmd.tabnext, { desc = "Next Tab" })
+M.map("n", "H", vim.cmd.tabprevious, { desc = "Previous Tab" })
+M.map("n", "L", vim.cmd.tabnext, { desc = "Next Tab" })
 
 -- Go to tab number (creates new tab if needed)
 for i = 1, 9 do
-    map("n", "<leader>" .. i, function()
+    M.map("n", "<leader>" .. i, function()
         local existing_tab_count = vim.fn.tabpagenr("$")
 
         if existing_tab_count < i then
@@ -187,34 +227,34 @@ for i = 1, 9 do
 end
 
 -- Resize splits using Shift + Arrow keys
-map({ "n", "v", "x" }, "<S-Down>", "<cmd>resize -2<cr>", { desc = "Resize Split Down" })
-map({ "n", "v", "x" }, "<S-Up>", "<cmd>resize +2<cr>", { desc = "Resize Split Up" })
-map({ "n", "v", "x" }, "<S-Left>", "<cmd>vertical resize +5<cr>", { desc = "Resize Split Right" }) -- Note: Left arrow increases width to the right
-map({ "n", "v", "x" }, "<S-Right>", "<cmd>vertical resize -5<cr>", { desc = "Resize Split Left" }) -- Note: Right arrow decreases width from the right
+M.map({ "n", "v", "x" }, "<S-Down>", "<cmd>resize -2<cr>", { desc = "Resize Split Down" })
+M.map({ "n", "v", "x" }, "<S-Up>", "<cmd>resize +2<cr>", { desc = "Resize Split Up" })
+M.map({ "n", "v", "x" }, "<S-Left>", "<cmd>vertical resize +5<cr>", { desc = "Resize Split Right" }) -- Note: Left arrow increases width to the right
+M.map({ "n", "v", "x" }, "<S-Right>", "<cmd>vertical resize -5<cr>", { desc = "Resize Split Left" }) -- Note: Right arrow decreases width from the right
 
 -- =============================================================================
 -- File & Session Management
 -- =============================================================================
 
 -- Save and Quit
-map("n", "<C-s>", vim.cmd.wa, { desc = "Save" })
-map("n", "<C-q>", ":q!<CR>", { desc = "Quit" }) -- Force quit
+M.map("n", "<C-s>", vim.cmd.wa, { desc = "Save" })
+M.map("n", "<C-q>", ":q!<CR>", { desc = "Quit" }) -- Force quit
 
 -- Open last edited file
-map("n", "<leader>dl", "<cmd>e #<cr>", { desc = "[L]ast document" })
+M.map("n", "<leader>dl", "<cmd>e #<cr>", { desc = "[L]ast document" })
 
 -- =============================================================================
 -- Terminal Mode
 -- =============================================================================
 
-map("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit Terminal" })
+M.map("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit Terminal" })
 
 -- =============================================================================
 -- Plugin & Tool Integrations
 -- =============================================================================
 
 -- Open current file in Zed editor at the current cursor position
-map("n", "<leader>z", function()
+M.map("n", "<leader>z", function()
     local current_file = vim.fn.expand("%:p")
     local current_line = vim.fn.line(".")
     local current_column = vim.fn.col(".")
@@ -223,13 +263,13 @@ map("n", "<leader>z", function()
 end, { desc = "Open File in [Z]ed" })
 
 -- Plugin management (Lazy)
-map("n", "<leader>ap", "<cmd>Lazy<CR>", { desc = "[P]lugins" })
+M.map("n", "<leader>ap", "<cmd>Lazy<CR>", { desc = "[P]lugins" })
 
 -- Language server / tool management (Mason)
-map("n", "<leader>al", "<cmd>Mason<CR>", { desc = "[L]anguages" })
+M.map("n", "<leader>al", "<cmd>Mason<CR>", { desc = "[L]anguages" })
 
 -- Change directory to Git root
-map("n", "<leader>w.", function()
+M.map("n", "<leader>w.", function()
     local git_root = require("snacks").git.get_root() -- Assumes 'snacks' plugin/module
     if git_root then
         vim.cmd("cd " .. git_root)
@@ -244,15 +284,15 @@ end, { desc = "[.] Set Root" })
 -- =============================================================================
 
 -- Show cursor position and related info
-map("n", "sI", vim.show_pos, { desc = "[I]nspect Position" })
+M.map("n", "sI", vim.show_pos, { desc = "[I]nspect Position" })
 
 -- LSP Management
-map("n", "<leader>aL", function()
+M.map("n", "<leader>aL", function()
     vim.notify("Restarting LSP Servers", vim.log.levels.INFO, { title = "LSP" })
     vim.cmd("LspRestart")
 end, { desc = "[R]estart Language Servers" })
 
-map("n", "<leader>aIl", "<cmd>LspInfo<CR>", { desc = "[I]nfo Language Server" })
+M.map("n", "<leader>aIl", "<cmd>LspInfo<CR>", { desc = "[I]nfo Language Server" })
 
 -- LSP mappings are defined below within the LspAttach autocmd for buffer-local setup
 
@@ -273,43 +313,36 @@ vim.api.nvim_create_autocmd("LspAttach", {
         end
 
         -- LSP Hover Info
-        map("n", "si", vim.lsp.buf.hover, o({ desc = "[I]nfo" }))
+        M.map("n", "si", vim.lsp.buf.hover, o({ desc = "[I]nfo" }))
 
         -- LSP Diagnostics
-        -- map("n", "sp", vim.diagnostic.open_float, o({ desc = "[P]roblem (Diagnostics)" }))
+        -- M.map("n", "sp", vim.diagnostic.open_float, o({ desc = "[P]roblem (Diagnostics)" }))
         vim.keymap.set("n", "sp", function()
-            vim.diagnostic.config({ virtual_lines = { current_line = true }, virtual_text = false })
+            M.set_diagnostic_virtual_lines()
 
             vim.api.nvim_create_autocmd("CursorMoved", {
-                group = vim.api.nvim_create_augroup("line-diagnostics", { clear = true }),
+                group = vim.api.nvim_create_augroup("symbol-problems", {}),
+                desc = "User(once): Reset diagnostics virtual lines",
+                once = true,
                 callback = function()
-                    vim.diagnostic.config({
-                        virtual_lines = false,
-                        virtual_text = {
-                            current_line = true,
-                        },
-                    })
+                    M.set_diagnostic_virtual_text()
                     return true
                 end,
             })
-        end)
+        end, o({ desc = "[P]roblem (Diagnostics)" }))
 
         -- Helper function to create diagnostic navigation mappings
         local function create_diagnostic_mappings(key, severity_type, severity_value)
             local severity_param = severity_value and { severity = severity_value } or nil
 
             -- Previous diagnostic
-            map("n", "[" .. key, function()
-                -- Use vim.diagnostic.jump for consistent behavior (includes centering)
-                vim.diagnostic.jump({ count = -1, float = false, severity = severity_param }) -- -1 for previous
-                vim.cmd("norm zz")
+            M.map("n", "[" .. key, function()
+                M.custom_jump(-1, severity_param)
             end, o({ desc = "[" .. severity_type .. "] Previous" }))
 
             -- Next diagnostic
-            map("n", "]" .. key, function()
-                -- Use vim.diagnostic.jump for consistent behavior (includes centering)
-                vim.diagnostic.jump({ count = 1, float = false, severity = severity_param }) -- 1 for next
-                vim.cmd("norm zz")
+            M.map("n", "]" .. key, function()
+                M.custom_jump(1, severity_param)
             end, o({ desc = "[" .. severity_type .. "] Next" }))
         end
 
@@ -320,13 +353,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
         create_diagnostic_mappings("h", "[H]int", vim.diagnostic.severity.HINT)
 
         -- LSP Actions & Refactoring
-        -- map("n", "sa", vim.lsp.buf.code_action, o({ desc = "[A]ction" })) -- Original was commented out
-        map("n", "sn", vim.lsp.buf.rename, o({ desc = "Re[n]ame" }))
+        -- M.map("n", "sa", vim.lsp.buf.code_action, o({ desc = "[A]ction" })) -- Original was commented out
+        M.map("n", "sn", vim.lsp.buf.rename, o({ desc = "Re[n]ame" }))
 
         -- LSP Go To Definition (in split)
-        map("n", "sD", split_defnition, o({ desc = "[D]efinition in Split" })) -- Uses helper defined above
+        M.map("n", "sD", M.goto_split_definition, o({ desc = "[D]efinition in Split" })) -- Uses helper defined above
 
         -- LSP Signature Help (Insert mode)
-        map("i", "<C-k>", vim.lsp.buf.signature_help, o({ desc = "Signature Help" }))
+        M.map("i", "<C-k>", vim.lsp.buf.signature_help, o({ desc = "Signature Help" }))
     end,
 })
