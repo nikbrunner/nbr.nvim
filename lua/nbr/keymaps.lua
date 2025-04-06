@@ -145,7 +145,9 @@ end, { desc = "Dupe line (Comment out old one)" })
 map("n", "vA", "ggVG", { desc = "Select All" })
 
 -- Change inside word (convenience)
-map("n", "<C-c>", "ciw", { desc = "Change Inside Word" })
+-- map("n", "<C-c>", "ciw", { desc = "Change Inside Word" })
+map("n", "<space>", "ciw", { desc = "Change Inside Word" })
+map("x", "<space>", "c", { desc = "Change Selection" })
 
 -- Yank entire buffer content
 map("n", "<leader>dya", function()
