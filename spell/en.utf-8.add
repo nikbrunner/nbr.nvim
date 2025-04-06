@@ -106,3 +106,7 @@ ReactTransitionGroup
 BrowserLocationState
 insufficientFilterValues
 setDefaultActiveFiltersForBrand
+useSetSettings
+useDeleteSettings
+useAudioVolume
+useSetAudioVolume
