@@ -13,7 +13,7 @@ M.spec = {
         win = {
             -- type = "float",
             -- position = { 0.85, 0.5 },
-            size = { height = 0.35 },
+            size = { height = 0.25 },
             padding = { top = 1, left = 4 },
             border = "solid",
             title = "",
