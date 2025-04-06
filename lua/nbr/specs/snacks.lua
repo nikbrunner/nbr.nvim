@@ -520,7 +520,7 @@ return {
                 Snacks.toggle.diagnostics():map("<leader>aoD")
                 Snacks.toggle.treesitter():map("<leader>aoT")
                 Snacks.toggle.option("relativenumber", { name = "Relative Number" }):map("<leader>aoL")
-                Snacks.toggle.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }):map("<leader>aoc")
+                Snacks.toggle.option("conceallevel", { off = 1, on = vim.o.conceallevel > 1 and vim.o.conceallevel or 3 }):map("<leader>aoc")
                 Snacks.toggle.option("background", { off = "light", on = "dark", name = "Dark Background" }):map("<leader>aob")
                 Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>aos")
                 Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>aow")
