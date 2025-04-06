@@ -186,19 +186,23 @@ M.specs = {
         config = function(_, opts)
             local icons = require("nbr.icons")
 
-            vim.fn.sign_define("DiagnosticSignError", { text = icons.diagnostics.Error, texthl = "DiagnosticSignError" })
-            vim.fn.sign_define("DiagnosticSignWarn", { text = icons.diagnostics.Warn, texthl = "DiagnosticSignWarn" })
-            vim.fn.sign_define("DiagnosticSignInfo", { text = icons.diagnostics.Info, texthl = "DiagnosticSignInfo" })
-            vim.fn.sign_define("DiagnosticSignHint", { text = icons.diagnostics.Hint, texthl = "DiagnosticSignHint" })
+            local Severity = vim.diagnostic.severity
 
             vim.diagnostic.config({
                 underline = false,
                 virtual_text = false,
                 virtual_lines = false,
-                signs = true,
                 update_in_insert = false,
                 float = {
                     border = "single",
+                },
+                signs = {
+                    text = {
+                        [Severity.ERROR] = icons.diagnostics.Error,
+                        [Severity.WARN] = icons.diagnostics.Warn,
+                        [Severity.INFO] = icons.diagnostics.Info,
+                        [Severity.HINT] = icons.diagnostics.Hint,
+                    },
                 },
             })
 
