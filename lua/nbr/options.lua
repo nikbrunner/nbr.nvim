@@ -25,7 +25,7 @@ vim.o.winborder = "solid"
 
 vim.o.foldenable = true
 vim.o.foldlevel = 99
-vim.o.foldmethod = "expr"
+vim.o.foldmethod = "indent"
 vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.o.foldtext = ""
 vim.opt.foldcolumn = "0"
