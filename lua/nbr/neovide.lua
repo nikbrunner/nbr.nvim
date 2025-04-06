@@ -6,3 +6,4 @@ vim.g.neovide_floating_corner_radius = 0.5
 vim.g.neovide_opacity = 0.9
 vim.g.neovide_normal_opacity = 0.9
 vim.g.neovide_window_blurred = true
+vim.opt.linespace = 5
