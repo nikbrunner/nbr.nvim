@@ -19,17 +19,6 @@ return {
 
         delay = 0,
 
-        ---@type (string|wk.Sorter)[]
-        --- Mappings are sorted using configured sorters and natural sort of the keys
-        --- Available sorters:
-        --- * local: buffer-local mappings first
-        --- * order: order of the items (Used by plugins like marks / registers)
-        --- * group: groups last
-        --- * alphanum: alpha-numerical first
-        --- * mod: special modifier keys last
-        --- * manual: the order the mappings were added
-        --- * case: lower-case first
-        sort = { "local", "order", "group", "case", "alphanum", "mod" },
         layout = {
             spacing = 5, -- spacing between columns
         },
@@ -80,10 +69,10 @@ return {
                 { "<leader>c", group = "[C]hange", icon = " " },
 
                 -- [S]ymbol
-                { "s", group = "[S]ymbol", icon = " " },
-                { "sg", icon = " " },
-                { "sc", group = "[C]alls", icon = "󰏻 " },
-                { "sl", group = "[L]og", icon = " " },
+                { "<leader>s", group = "[S]ymbol", icon = " " },
+                { "<leader>sg", icon = " " },
+                { "<leader>sc", group = "[C]alls", icon = "󰏻 " },
+                { "<leader>sl", group = "[L]og", icon = " " },
 
                 -- Others
                 { "<leader>r", group = "[R]est Client", icon = "󰿘 " },

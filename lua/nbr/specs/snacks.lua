@@ -589,10 +589,10 @@ return {
             -- Document
 
             -- Symbol
-            { "sd",                  function() Snacks.picker.lsp_definitions() end, desc = "[D]efintions" },
-            { "sr",                  function() Snacks.picker.lsp_references() end, desc = "[R]eferences" },
-            { "st",                  function() Snacks.picker.lsp_type_definitions() end, desc = "[T]ype Definitions" },
-            { "sg",                  function() Snacks.git.blame_line() end, desc = "[G]it" },
+            { "<leader>sd",                  function() Snacks.picker.lsp_definitions() end, desc = "[D]efintions" },
+            { "<leader>sr",                  function() Snacks.picker.lsp_references() end, desc = "[R]eferences" },
+            { "<leader>st",                  function() Snacks.picker.lsp_type_definitions() end, desc = "[T]ype Definitions" },
+            { "<leader>sg",                  function() Snacks.git.blame_line() end, desc = "[G]it" },
         }
         -- stylua: ignore end
     end,
