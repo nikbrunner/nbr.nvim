@@ -6,7 +6,7 @@ return {
     opts = {},
     keys = {
         {
-            "sP",
+            "sG",
             function()
                 require("pr").view()
             end,

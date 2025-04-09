@@ -195,9 +195,9 @@ M.specs = {
                 },
                 virtual_lines = false,
                 update_in_insert = false,
-                float = {
-                    border = "single",
-                },
+                -- float = {
+                --     border = "single",
+                -- },
                 signs = {
                     text = {
                         [Severity.ERROR] = icons.diagnostics.Error,

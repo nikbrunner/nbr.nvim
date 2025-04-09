@@ -284,8 +284,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
         M.map("n", "si", vim.lsp.buf.hover, o({ desc = "[I]nfo" }))
 
         -- LSP Diagnostics
-        -- M.map("n", "sp", vim.diagnostic.open_float, o({ desc = "[P]roblem (Diagnostics)" }))
-        vim.keymap.set("n", "sp", function()
+        M.map("n", "sp", vim.diagnostic.open_float, o({ desc = "[P]roblem (Diagnostics)" }))
+        M.map("n", "sP", function()
             M.set_diagnostic_virtual_lines()
 
             vim.api.nvim_create_autocmd("CursorMoved", {
