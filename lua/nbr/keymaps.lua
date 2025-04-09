@@ -18,34 +18,6 @@ function M.map(mode, lhs, rhs, opts)
     vim.keymap.set(mode, lhs, rhs, opts)
 end
 
---- Helper function for smarter scrolling with <C-u>
-function M.custom_up()
-    local cursorline = vim.fn.line(".")
-    local first_visible = vim.fn.line("w0")
-    local travel = math.floor(vim.api.nvim_win_get_height(0) / 2)
-
-    if (cursorline - travel) < first_visible then
-        vim.cmd('execute "normal! ' .. travel .. '\\<C-y>"')
-    else
-        vim.cmd('execute "normal! ' .. travel .. '\\k"')
-        vim.cmd("normal! zz")
-    end
-end
-
---- Helper function for smarter scrolling with <C-d>
-function M.custom_down()
-    local cursorline = vim.fn.line(".")
-    local last_visible = vim.fn.line("w$")
-    local travel = math.floor(vim.api.nvim_win_get_height(0) / 2)
-
-    if (cursorline + travel) > last_visible and last_visible < vim.fn.line("$") then
-        vim.cmd('execute "normal! ' .. travel .. '\\<C-e>"')
-    elseif cursorline < last_visible then
-        vim.cmd('execute "normal! ' .. travel .. '\\j"')
-        vim.cmd("normal! zz")
-    end
-end
-
 --- Helper function to open definition in a split (vertical if space allows)
 function M.goto_split_definition()
     if vim.o.lines > 100 then
@@ -126,10 +98,6 @@ M.map("n", "<C-i>", "<C-i>zz", { desc = "Move forward in jump list" })
 -- Center screen when searching
 M.map("n", "N", "Nzzzv", { desc = "Previous Search Results" })
 M.map("n", "n", "nzzzv", { desc = "Next Search Results" })
-
--- Smarter scrolling keeping cursor centered, while other looking up and down conditionally
-M.map({ "n", "x" }, "<C-u>", M.custom_up, { desc = "Scroll Up (Centered)" })
-M.map({ "n", "x" }, "<C-d>", M.custom_down, { desc = "Scroll Down (Centered)" })
 
 -- Better up/down movement that respects wrapped lines
 M.map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
