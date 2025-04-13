@@ -7,7 +7,7 @@ M.config = {
     colorscheme_default = "black-atom-jpn-murasaki-yoru",
 
     colorscheme_light = "black-atom-jpn-koyo-hiru",
-    colorscheme_dark = "black-atom-jpn-murasaki-yoru",
+    colorscheme_dark = "black-atom-jpn-koyo-yoru",
 
     ---see for wezterm themes: https://wezfurlong.org/wezterm/colorschemes/index.html
     colorscheme_config_map = {

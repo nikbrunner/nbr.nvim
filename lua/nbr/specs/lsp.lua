@@ -64,6 +64,26 @@ M.specs = {
                                     importModuleSpecifierPreference = "relative",
                                 },
                             },
+                            on_attach = function()
+                                local lint = require("lint")
+                                local cmd = "eslint"
+
+                                vim.env.ESLINT_D_PPID = vim.fn.getpid()
+
+                                lint.linters_by_ft = {
+                                    typescriptreact = { cmd },
+                                    typescript = { cmd },
+                                    javascript = { cmd },
+                                    javascriptreact = { cmd },
+                                }
+
+                                vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+                                    group = vim.api.nvim_create_augroup("nbr.nvim_lint_on_save", {}),
+                                    callback = function()
+                                        lint.try_lint()
+                                    end,
+                                })
+                            end,
                             settings = {
                                 typescript = {
                                     inlayHints = {
@@ -130,6 +150,23 @@ M.specs = {
                             single_file_support = false,
                             on_attach = function()
                                 State:set("is_deno_project", true)
+
+                                local lint = require("lint")
+                                local cmd = "deno"
+
+                                lint.linters_by_ft = {
+                                    typescriptreact = { cmd },
+                                    typescript = { cmd },
+                                    javascript = { cmd },
+                                    javascriptreact = { cmd },
+                                }
+
+                                vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+                                    group = vim.api.nvim_create_augroup("nbr.nvim_lint_on_save", {}),
+                                    callback = function()
+                                        lint.try_lint()
+                                    end,
+                                })
                             end,
                         })
                     end,
