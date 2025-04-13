@@ -368,8 +368,11 @@ return {
                 dim = false,
                 git_signs = false,
                 mini_diff_signs = false,
-                -- diagnostics = false,
-                -- inlay_hints = false,
+                diagnostics = true,
+            },
+            ---@type snacks.zen.Config
+            zoom = {
+                show = { statusline = false, tabline = false },
             },
         },
 
@@ -481,17 +484,31 @@ return {
                 wo = { winhighlight = "Normal:NormalFloat" },
             },
             notification = {
-                border = "single",
+                border = "solid",
             },
             zen = {
                 width = 0.65,
+                backdrop = {
+                    transparent = true,
+                    blend = 20,
+                },
+                wo = {
+                    number = false,
+                    scrolloff = 999,
+                },
                 keys = {
                     q = function(self)
                         self:close()
                     end,
-                    -- d = function(self)
-                    --     require("snacks").toggle.dim()
-                    -- end,
+                    ["<leader>td"] = function(self)
+                        if vim.g.snacks_animate_dim then
+                            Snacks.dim.disable()
+                            vim.g.snacks_animate_dim = false
+                        else
+                            Snacks.dim.enable()
+                            vim.g.snacks_animate_dim = true
+                        end
+                    end,
                 },
             },
         },
