@@ -252,7 +252,7 @@ end, { desc = "[.] Set Root" })
 -- =============================================================================
 
 -- Show cursor position and related info
-M.map("n", "<leader>sI", vim.show_pos, { desc = "[I]nspect Position" })
+M.map("n", "sI", vim.show_pos, { desc = "[I]nspect Position" })
 
 -- LSP Management
 M.map("n", "<leader>aL", function()
@@ -281,11 +281,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
         end
 
         -- LSP Hover Info
-        M.map("n", "<leader>si", vim.lsp.buf.hover, o({ desc = "[I]nfo" }))
+        M.map("n", "si", vim.lsp.buf.hover, o({ desc = "[I]nfo" }))
 
         -- LSP Diagnostics
-        M.map("n", "<leader>sp", vim.diagnostic.open_float, o({ desc = "[P]roblems (Float)" }))
-        M.map("n", "<leader>sP", function()
+        M.map("n", "sp", vim.diagnostic.open_float, o({ desc = "[P]roblems (Float)" }))
+        M.map("n", "sP", function()
             M.set_diagnostic_virtual_lines()
 
             vim.api.nvim_create_autocmd("CursorMoved", {
@@ -322,10 +322,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
         -- LSP Actions & Refactoring
         -- M.map("n", "sa", vim.lsp.buf.code_action, o({ desc = "[A]ction" })) -- Original was commented out
-        M.map("n", "<leader>sn", vim.lsp.buf.rename, o({ desc = "Re[n]ame" }))
+        M.map("n", "sn", vim.lsp.buf.rename, o({ desc = "Re[n]ame" }))
 
         -- LSP Go To Definition (in split)
-        M.map("n", "<leader>sD", M.goto_split_definition, o({ desc = "[D]efinition in Split" })) -- Uses helper defined above
+        M.map("n", "sD", M.goto_split_definition, o({ desc = "[D]efinition in Split" })) -- Uses helper defined above
 
         -- LSP Signature Help (Insert mode)
         M.map("i", "<C-k>", vim.lsp.buf.signature_help, o({ desc = "Signature Help" }))

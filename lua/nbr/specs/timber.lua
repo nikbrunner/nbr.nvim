@@ -130,9 +130,9 @@ return {
             end,
         },
         keymaps = {
-            insert_log_above = "<leader>slk",
-            insert_log_below = "<leader>slj",
-            insert_batch_log = "<leader>slb",
+            insert_log_above = "slk",
+            insert_log_below = "slj",
+            insert_batch_log = "slb",
             add_log_targets_to_batch = nil,
             insert_log_below_operator = nil,
             insert_log_above_operator = nil,

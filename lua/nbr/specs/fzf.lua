@@ -171,7 +171,7 @@ M.keys = function()
 
         -- [S]ymbols
         {
-            "<leader>sa",
+            "sa",
             function()
                 fzfLua.lsp_code_actions({
                     winopts = {
@@ -186,7 +186,7 @@ M.keys = function()
             desc = "[A]ctions",
         },
         {
-            "<leader>sd",
+            "sd",
             function()
                 fzfLua.lsp_definitions({
                     jump_to_single_result = true,
@@ -195,7 +195,7 @@ M.keys = function()
             desc = "[D]efinition",
         },
         {
-            "<leader>st",
+            "st",
             function()
                 fzfLua.lsp_typedefs({
                     jump_to_single_result = true,

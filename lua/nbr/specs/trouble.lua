@@ -54,9 +54,9 @@ M.spec = {
     keys = {
         { "<leader>dP", "<cmd>Trouble diagnostics toggle  filter.buf=0<cr>", desc = "[P]roblems" },
         { "<leader>wP", "<cmd>Trouble diagnostics toggle<cr>", desc = "[P]roblems" },
-        { "<leader>sR", "<cmd>Trouble lsp_references<cr>", desc = "[R]eferences" },
-        { "<leader>sci", "<cmd>Trouble lsp_incoming_calls<cr>", desc = "[I]ncoming" },
-        { "<leader>sco", "<cmd>Trouble lsp_outgoing_calls<cr>", desc = "[O]utgoing" },
+        { "sR", "<cmd>Trouble lsp_references<cr>", desc = "[R]eferences" },
+        { "sci", "<cmd>Trouble lsp_incoming_calls<cr>", desc = "[I]ncoming" },
+        { "sco", "<cmd>Trouble lsp_outgoing_calls<cr>", desc = "[O]utgoing" },
         {
             "[q",
             function()

@@ -17,7 +17,7 @@ return {
             },
         },
 
-        delay = 0,
+        delay = 150,
 
         layout = {
             spacing = 5, -- spacing between columns
@@ -69,10 +69,10 @@ return {
                 { "<leader>c", group = "[C]hange", icon = " " },
 
                 -- [S]ymbol
-                { "<leader>s", group = "[S]ymbol", icon = " " },
-                { "<leader>sg", icon = " " },
-                { "<leader>sc", group = "[C]alls", icon = "󰏻 " },
-                { "<leader>sl", group = "[L]og", icon = " " },
+                { "s", group = "[S]ymbol", icon = " " },
+                { "sg", icon = " " },
+                { "sc", group = "[C]alls", icon = "󰏻 " },
+                { "sl", group = "[L]og", icon = " " },
 
                 -- Others
                 { "<leader>r", group = "[R]est Client", icon = "󰿘 " },

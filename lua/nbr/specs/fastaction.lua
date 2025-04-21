@@ -36,14 +36,14 @@ return {
     },
     keys = {
         {
-            "<leader>sa",
+            "sa",
             function()
                 require("fastaction").code_action()
             end,
             desc = "[A]ction",
         },
         {
-            "<leader>sa",
+            "sa",
             mode = "v",
             function()
                 require("fastaction").range_code_action()
