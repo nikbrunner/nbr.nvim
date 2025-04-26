@@ -1,0 +1,57 @@
+---@see https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#denols
+
+local deno_configs = {
+    "deno.json",
+    "deno.jsonc",
+}
+
+local filetypes = {
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+}
+
+---@type vim.lsp.Config
+return {
+    cmd = { "deno", "lsp" },
+    cmd_env = { NO_COLOR = true },
+    filetypes = filetypes,
+
+    root_dir = function(bufnr, cb)
+        local fname = vim.uri_to_fname(vim.uri_from_bufnr(bufnr))
+
+        local deno_config = vim.fs.find(deno_configs, { upward = true, path = fname })[1]
+
+        if not deno_config then
+            return
+        end
+
+        cb(vim.fn.fnamemodify(deno_config, ":h"))
+    end,
+
+    ---@diagnostic disable-next-line: unused-local
+    before_init = function(params)
+        vim.g.markdown_fenced_languages = {
+            "ts=typescript",
+        }
+    end,
+
+    on_attach = function()
+        vim.notify("Attached to Deno LSP", vim.log.levels.INFO, { title = "Deno LSP" })
+    end,
+
+    -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#denols
+    settings = {
+        deno = {
+            enable = true,
+            suggest = {
+                imports = {
+                    hosts = {
+                        ["https://deno.land"] = true,
+                    },
+                },
+            },
+        },
+    },
+}

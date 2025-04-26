@@ -260,7 +260,7 @@ M.map("n", "<leader>aL", function()
     vim.cmd("LspRestart")
 end, { desc = "[R]estart Language Servers" })
 
-M.map("n", "<leader>aIl", "<cmd>LspInfo<CR>", { desc = "[I]nfo Language Server" })
+M.map("n", "<leader>ahl", "<cmd>checkhealth vim.lsp<CR>", { desc = "[I]nfo Language Server" })
 
 -- LSP mappings are defined below within the LspAttach autocmd for buffer-local setup
 

@@ -3,7 +3,7 @@ local M = {}
 ---@class VinConfig
 M.config = {
     ---@type "dark" | "light"
-    background = "light",
+    background = "dark",
     colorscheme_default = "black-atom-jpn-murasaki-yoru",
 
     colorscheme_light = "black-atom-jpn-koyo-hiru",

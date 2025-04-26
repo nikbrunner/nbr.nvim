@@ -27,7 +27,7 @@ return {
     ---@type blink.cmp.Config
     opts = {
         keymap = {
-            preset = "enter",
+            preset = "default",
         },
         sources = {
             default = { "lazydev", "lsp", "path", "snippets", "buffer" },
@@ -90,6 +90,9 @@ return {
             },
         },
         cmdline = {
+            keymap = {
+                preset = "default",
+            },
             completion = {
                 menu = {
                     auto_show = true,
@@ -97,4 +100,9 @@ return {
             },
         },
     },
+    config = function(_, opts)
+        require("blink.cmp").setup(opts)
+
+        vim.lsp.config("*", { capabilities = require("blink.cmp").get_lsp_capabilities(nil, true) })
+    end,
 }

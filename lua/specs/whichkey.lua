@@ -51,7 +51,7 @@ return {
                 { "<leader>ao", group = "[O]ptions", icon = "󰨚 " },
                 { "<leader>as", group = "[S]ettings", icon = " " },
                 { "<leader>ai", group = "[I]ntelligence", icon = "󰧑 " },
-                { "<leader>aI", group = "[I]nfo", icon = "󰋽" },
+                { "<leader>ah", group = "[H]elp", icon = " " },
 
                 -- [W]orkspace
                 { "<leader>w", group = "[W]orkspace", icon = "󰲃 " },
