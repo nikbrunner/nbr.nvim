@@ -80,7 +80,7 @@ M.specs = {
                                 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
                                     group = vim.api.nvim_create_augroup("nbr.nvim_lint_on_save", {}),
                                     callback = function()
-                                        lint.try_lint()
+                                        pcall(lint.try_lint)
                                     end,
                                 })
                             end,
