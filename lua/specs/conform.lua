@@ -1,3 +1,9 @@
+local prettier_cmd = "prettier"
+local prettier_configs = { ".prettierrc", ".prettierrc.json" }
+
+local deno_cmd = "deno_fmt"
+local deno_configs = { "deno.json", "deno.jsonc" }
+
 ---@type LazyPluginSpec
 return {
     "stevearc/conform.nvim",
@@ -6,6 +12,7 @@ return {
     cmd = { "ConformInfo" },
     init = function()
         vim.g.vin_autoformat_enabled = true
+        vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 
         -- Assign `http` files as `http` files (currently they are interpreted as `conf`)
         vim.filetype.add({
@@ -19,8 +26,6 @@ return {
         local bufnr = vim.api.nvim_get_current_buf()
         local fname = vim.uri_to_fname(vim.uri_from_bufnr(bufnr))
 
-        local prettier_cmd = "prettier"
-        local prettier_configs = { ".prettierrc", ".prettierrc.json" }
         local is_prettier_available = conform.get_formatter_info(prettier_cmd, bufnr).available
         local has_prettier_config = vim.fs.find(prettier_configs, { upward = true, path = fname })[1]
 
@@ -35,8 +40,6 @@ return {
             vim.notify(string.format("Using %s for formatting", prettier_cmd), vim.log.levels.INFO, { title = "Conform" })
         end
 
-        local deno_cmd = "deno_fmt"
-        local deno_configs = { "deno.json", "deno.jsonc" }
         local is_deno_available = conform.get_formatter_info(deno_cmd, bufnr).available
         local has_deno_config = vim.fs.find(deno_configs, { upward = true, path = fname })[1]
 
