@@ -7,14 +7,14 @@ return {
     event = "VeryLazy",
     keys = {
         {
-            "<leader>e",
+            "<leader>we",
             function()
                 require("yazi").yazi()
             end,
             desc = "[E]xplorer",
         },
         {
-            "<leader>E",
+            "<leader>wE",
             function()
                 require("yazi").yazi(nil, vim.fn.getcwd())
             end,
@@ -25,7 +25,7 @@ return {
     ---@type YaziConfig
     opts = {
         yazi_floating_window_winblend = 10,
-        floating_window_scaling_factor = 0.6,
+        floating_window_scaling_factor = 0.85,
         yazi_floating_window_border = "solid",
     },
 }

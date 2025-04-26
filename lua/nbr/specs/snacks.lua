@@ -578,7 +578,7 @@ return {
             { "<leader>aN",          M.get_news, desc = "[N]ews",  },
 
             -- Workspace
-            { "<leader>we",          function() Snacks.picker.explorer() end, desc = "[E]xplorer" },
+            -- { "<leader>we",          function() Snacks.picker.explorer() end, desc = "[E]xplorer" },
             -- { "<leader>we",          M.explorer, desc = "[E]xplorer" },
             { "<leader>wg",          function() Snacks.lazygit() end, desc = "[G]it" },
             { "<leader>wl",          function() Snacks.lazygit.log() end, desc = "[G]it Log" },
