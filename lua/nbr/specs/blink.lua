@@ -1,3 +1,4 @@
+---@doc https://cmp.saghen.dev/
 ---@type LazyPluginSpec
 return {
     "saghen/blink.cmp",
@@ -6,9 +7,6 @@ return {
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
-        enabled = function()
-            return not vim.tbl_contains({ "snacks_picker_input" }, vim.bo.filetype)
-        end,
         sources = {
             default = { "lazydev", "lsp", "path", "snippets", "buffer" },
             per_filetype = {
@@ -23,44 +21,55 @@ return {
                 },
             },
         },
-        signature = { enabled = true },
-        cmdline = {
-            keymap = {
-                preset = "default",
-            },
-            completion = {
-
-                menu = {
-                    auto_show = true,
-                },
-            },
+        signature = {
+            enabled = true,
         },
         completion = {
             list = {
-                -- Controls how the completion items are selected
-                -- 'preselect' will automatically select the first item in the completion list
-                -- 'manual' will not select any item by default
-                -- 'auto_insert' will not select any item by default, and insert the completion items automatically when selecting them
-                selection = { preselect = false, auto_insert = true },
+                selection = {
+                    preselect = false,
+                    auto_insert = true,
+                },
             },
-
+            documentation = {
+                auto_show = true,
+                auto_show_delay_ms = 500,
+            },
             menu = {
                 border = "solid",
                 winblend = 10,
-                -- Whether to automatically show the window when new completion items are available
-                auto_show = true,
-                -- Controls how the completion items are rendered on the popup window
                 draw = {
-                    -- Aligns the keyword you've typed to a component in the menu
-                    align_to = "label", -- or 'none' to disable
-                    -- Left and right padding, optionally { left, right } for different padding on each side
-                    padding = 2,
-                    -- Gap between columns
-                    gap = 2,
-                    -- Components to render, grouped by column
-                    columns = { { "kind_icon" }, { "label", "label_description", gap = 1 } },
-                    -- for a setup similar to nvim-cmp: https://github.com/Saghen/blink.cmp/pull/245#issuecomment-2463659508
-                    -- columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind" } },
+                    columns = {
+                        { "kind_icon", gap = 1 },
+                        { "label", "label_description", gap = 1 },
+                        { "kind", gap = 1 },
+                        { "source_name" },
+                    },
+                    components = {
+                        kind_icon = {
+                            text = function(ctx)
+                                local kind_icon, _, _ = require("mini.icons").get("lsp", ctx.kind)
+                                return kind_icon
+                            end,
+                            highlight = function(ctx)
+                                local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
+                                return hl
+                            end,
+                        },
+                        kind = {
+                            highlight = function(ctx)
+                                local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
+                                return hl
+                            end,
+                        },
+                    },
+                },
+            },
+        },
+        cmdline = {
+            completion = {
+                menu = {
+                    auto_show = true,
                 },
             },
         },
