@@ -202,9 +202,11 @@ return {
                     short_name = "commit",
                     auto_submit = true,
                     adapter = {
-                        name = "anthropic",
+                        -- name = "anthropic",
                         -- model = "claude-3-7-sonnet-20250219",
-                        model = "claude-3-5-haiku-20241022",
+                        -- model = "claude-3-5-haiku-20241022",
+                        name = "openai",
+                        model = "gpt-4.1",
                     },
                 },
                 prompts = {
