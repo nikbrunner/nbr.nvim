@@ -76,7 +76,7 @@ M.config = {
     ensure_installed = {
         -- :h mason-lspconfig-server-map
         servers = {
-            "ts_ls",
+            "vtsls",
             "astro",
             "bashls",
             "cssls",
