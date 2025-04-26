@@ -3,7 +3,7 @@ local M = {}
 ---@class VinConfig
 M.config = {
     ---@type "dark" | "light"
-    background = "dark",
+    background = "light",
     colorscheme_default = "black-atom-jpn-murasaki-yoru",
 
     colorscheme_light = "black-atom-jpn-koyo-hiru",
@@ -32,8 +32,8 @@ M.config = {
         ["black-atom-jpn-tsuki-yoru"] = { wezterm = "Black Atom — JPN ∷ Tsuki Yoru" },
         ["black-atom-jpn-murasaki-yoru"] = { wezterm = "Black Atom — JPN ∷ Murasaki Yoru" },
 
-        ["black-atom-crbn-supr"] = { wezterm = "Black Atom — CRB ∷ NULL" },
-        ["black-atom-crbn-null"] = { wezterm = "Black Atom — CRB ∷ SUPR" },
+        ["black-atom-crbn-supr"] = { wezterm = "Black Atom — CRB ∷ SUPR" },
+        ["black-atom-crbn-null"] = { wezterm = "Black Atom — CRB ∷ NULL" },
 
         ["github_dark_default"] = { wezterm = "github_dark_default" },
         ["github_dark_dimmed"] = { wezterm = "github_dark_dimmed" },
