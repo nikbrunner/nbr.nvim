@@ -1,5 +1,5 @@
-local darken = require("nbr.lib.colors").darken
-local lighten = require("nbr.lib.colors").lighten
+local darken = require("lib.colors").darken
+local lighten = require("lib.colors").lighten
 local bit = require("bit")
 
 ---@param dec number

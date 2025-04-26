@@ -1,5 +1,5 @@
-local Config = require("nbr.config")
-local Files = require("nbr.lib.files")
+local Config = require("config")
+local Files = require("lib.files")
 
 ---@type LazyPluginSpec[]
 return {
@@ -10,11 +10,11 @@ return {
         opts = {
             set_dark_mode = function()
                 vim.cmd.colorscheme(Config.colorscheme_dark)
-                Files.update_line_in_file(Config.pathes.config.nbr, "background", '"dark"')
+                Files.update_line_in_file(Config.pathes.config.nvim, "background", '"dark"')
             end,
             set_light_mode = function()
                 vim.cmd.colorscheme(Config.colorscheme_light)
-                Files.update_line_in_file(Config.pathes.config.nbr, "background", '"light"')
+                Files.update_line_in_file(Config.pathes.config.nvim, "background", '"light"')
             end,
             update_interval = 25,
             fallback = Config.background,
@@ -24,7 +24,7 @@ return {
     {
         "black-atom-industries/nvim",
         name = "black-atom",
-        dir = require("nbr.config").pathes.repos .. "/black-atom-industries/nvim",
+        dir = require("config").pathes.repos .. "/black-atom-industries/nvim",
         lazy = false,
         pin = true,
         priority = 1000,

@@ -1,10 +1,10 @@
-local Config = require("nbr.config")
-local UI = require("nbr.lib.ui")
+local Config = require("config")
+local UI = require("lib.ui")
 
 local auto = vim.api.nvim_create_autocmd
 
 local function auto_group(name)
-    return vim.api.nvim_create_augroup("nbr.nvim_" .. name, { clear = true })
+    return vim.api.nvim_create_augroup("nvim_" .. name, { clear = true })
 end
 
 auto("VimEnter", {

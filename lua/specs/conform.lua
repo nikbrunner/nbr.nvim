@@ -1,4 +1,4 @@
-local State = require("nbr.state")
+local State = require("state")
 
 local M = {}
 

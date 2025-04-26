@@ -1,4 +1,4 @@
-local Lib = require("nbr.lib")
+local Lib = require("lib")
 
 local M = {}
 

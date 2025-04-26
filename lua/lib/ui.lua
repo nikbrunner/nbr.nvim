@@ -1,4 +1,4 @@
-local Files = require("nbr.lib.files")
+local Files = require("lib.files")
 
 local M = {}
 

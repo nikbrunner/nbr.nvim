@@ -1,7 +1,7 @@
 ---@type LazyPluginSpec
 return {
     "nikbrunner/file-surfer.nvim",
-    dir = require("nbr.config").pathes.repos .. "/nikbrunner/file-surfer.nvim",
+    dir = require("config").pathes.repos .. "/nikbrunner/file-surfer.nvim",
     enabled = false,
     pin = true,
     dependencies = { "ibhagwan/fzf-lua" },

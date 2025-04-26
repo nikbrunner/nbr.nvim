@@ -4,7 +4,7 @@ local M = {}
 M.spec = {
     "nikbrunner/arrow.nvim",
     event = "VimEnter",
-    dir = require("nbr.config").pathes.repos .. "/nikbrunner/arrow.nvim",
+    dir = require("config").pathes.repos .. "/nikbrunner/arrow.nvim",
     pin = true,
     opts = {
         leader_key = "M",

@@ -1,5 +1,5 @@
-local State = require("nbr.state")
-local Config = require("nbr.config")
+local State = require("state")
+local Config = require("config")
 
 local M = {}
 
@@ -221,7 +221,7 @@ M.specs = {
             }
         end,
         config = function(_, opts)
-            local icons = require("nbr.icons")
+            local icons = require("icons")
 
             local Severity = vim.diagnostic.severity
 

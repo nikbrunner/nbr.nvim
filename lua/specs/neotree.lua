@@ -97,7 +97,7 @@ M.spec = {
     end,
     --- https://github.com/nvim-neo-tree/neo-tree.nvim/blob/v3.x/lua/neo-tree/defaults.lua
     opts = function()
-        local icons = require("nbr.icons")
+        local icons = require("icons")
         local events = require("neo-tree.events")
         local Snacks = require("snacks")
 
@@ -156,17 +156,17 @@ M.spec = {
                 hijack_netrw_behavior = "disabled",
                 use_libuv_file_watcher = true, -- This will use the OS level file watchers to detect changes
                 follow_current_file = {
-                    enabled = true, -- This will find and focus the file in the active buffer every time the current file is changed while the tree is open.
+                    enabled = true,            -- This will find and focus the file in the active buffer every time the current file is changed while the tree is open.
                 },
                 -- the current file is changed while the tree is open.
                 filtered_items = {
-                    visible = false, -- when true, they will just be displayed differently than normal items
+                    visible = false,                       -- when true, they will just be displayed differently than normal items
                     force_visible_in_empty_folder = false, -- when true, hidden files will be shown if the root folder is otherwise empty
-                    show_hidden_count = true, -- when true, the number of hidden items in each folder will be shown as the last entry
+                    show_hidden_count = true,              -- when true, the number of hidden items in each folder will be shown as the last entry
                     hide_dotfiles = false,
                     hide_gitignored = true,
                     hide_hidden = false, -- only works on Windows for hidden files/directories
-                    always_show = { -- remains visible even if other settings would normally hide it
+                    always_show = {      -- remains visible even if other settings would normally hide it
                         ".gitignore",
                     },
                     never_show = { -- remains hidden even if visible is toggled to true, this overrides always_show
@@ -198,7 +198,7 @@ M.spec = {
             },
 
             event_handlers = {
-                { event = events.FILE_MOVED, handler = on_move },
+                { event = events.FILE_MOVED,   handler = on_move },
                 { event = events.FILE_RENAMED, handler = on_move },
                 {
                     event = "neo_tree_window_after_open",
@@ -252,7 +252,7 @@ M.spec = {
                     ["M"] = "close_all_nodes",
                     ["R"] = "refresh",
                     ["a"] = { "add", config = { show_path = "relative" } }, -- "none", "relative", "absolute"
-                    ["A"] = "add_directory", -- also accepts the config.show_path option.
+                    ["A"] = "add_directory",                                -- also accepts the config.show_path option.
                     ["d"] = "delete",
                     ["r"] = "rename",
                     ["y"] = "copy_to_clipboard",
