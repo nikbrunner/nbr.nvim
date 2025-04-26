@@ -2,11 +2,33 @@
 ---@type LazyPluginSpec
 return {
     "saghen/blink.cmp",
-    lazy = false, -- lazy loading handled internally
+    event = "InsertEnter",
     version = "v0.*",
+    dependencies = {
+        "L3MON4D3/LuaSnip",
+        dependencies = { "rafamadriz/friendly-snippets" },
+        opts = {},
+        config = function(_, opts)
+            local luasnip = require("luasnip")
+
+            luasnip.setup(opts)
+
+            require("luasnip.loaders.from_vscode").lazy_load()
+
+            -- Use <C-c> to select a choice in a snippet.
+            vim.keymap.set({ "i", "s" }, "<C-c>", function()
+                if luasnip.choice_active() then
+                    require("luasnip.extras.select_choice")()
+                end
+            end, { desc = "Select choice" })
+        end,
+    },
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
+        keymap = {
+            preset = "enter",
+        },
         sources = {
             default = { "lazydev", "lsp", "path", "snippets", "buffer" },
             per_filetype = {
@@ -21,6 +43,7 @@ return {
                 },
             },
         },
+        snippets = { preset = "luasnip" },
         signature = {
             enabled = true,
         },
