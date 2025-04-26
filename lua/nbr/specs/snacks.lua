@@ -98,7 +98,11 @@ return {
         bigfile = { enabled = true },
         statuscolumn = { enabled = true },
         debug = { enabled = true },
-        notifier = { enabled = true },
+        notifier = {
+            enabled = true,
+            margin = { top = 0, right = 0, bottom = 1, left = 1 },
+            top_down = false,
+        },
         toggle = { enabled = true },
         gitbrowse = { enabled = true },
         input = { enabled = true },
