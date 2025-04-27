@@ -13,7 +13,9 @@ function M.update_line_in_file(filepath, pattern, value)
         return line
     end, lines)
 
-    vim.fn.writefile(lines, filepath)
+    vim.defer_fn(function()
+        vim.fn.writefile(lines, filepath)
+    end, 200)
 end
 
 ---Syncs the wezterm colorscheme with the current nvim colorscheme (if configured)
