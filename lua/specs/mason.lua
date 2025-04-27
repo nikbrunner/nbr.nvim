@@ -4,13 +4,14 @@ local Config = require("config")
 return {
     {
         "williamboman/mason.nvim",
+        event = "VimEnter",
         opts = {},
     },
 
     {
         "WhoIsSethDaniel/mason-tool-installer.nvim",
         dependencies = "williamboman/mason.nvim",
-        event = "VeryLazy",
+        event = "VimEnter",
         opts = {
             ensure_installed = Config.ensure_installed.tools,
         },
@@ -26,6 +27,7 @@ return {
                         for _, name in pairs(opts.ensure_installed) do
                             local package = registry.get_package(name)
                             if not registry.is_installed(name) then
+                                vim.notify(string.format("Installing %s", name), vim.log.levels.INFO, { title = "Mason" })
                                 package:install()
                             else
                                 package:check_new_version(function(success, result_or_err)
