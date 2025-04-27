@@ -102,6 +102,7 @@ return {
             enabled = true,
             margin = { top = 0, right = 0, bottom = 1, left = 1 },
             top_down = false,
+            style = "minimal"
         },
         toggle = { enabled = true },
         gitbrowse = { enabled = true },
@@ -485,10 +486,13 @@ return {
         styles = {
             notification_history = {
                 border = "solid",
-                wo = { winhighlight = "Normal:NormalFloat" },
             },
             notification = {
-                border = "solid",
+                border = "single",
+                wo = { 
+                    winblend = 0,
+                        winhighlight = "Normal:SnacksNotifierHistory" 
+                },
             },
             zen = {
                 width = 0.65,
