@@ -5,7 +5,20 @@ local M = {}
 ---@param pattern string
 ---@param value string
 function M.update_line_in_file(filepath, pattern, value)
-    local lines = vim.fn.readfile(filepath)
+    -- First check if file exists and is readable
+    if not vim.loop.fs_stat(filepath) then
+        vim.notify("File does not exist: " .. filepath, vim.log.levels.ERROR)
+        return
+    end
+
+    -- Read file safely with pcall
+    local ok, lines = pcall(vim.fn.readfile, filepath)
+    if not ok or not lines then
+        vim.notify("Failed to read file: " .. filepath, vim.log.levels.ERROR)
+        return
+    end
+
+    -- Process lines
     lines = vim.tbl_map(function(line)
         if vim.fn.match(line, pattern) ~= -1 then
             line = vim.fn.substitute(line, '".*"', value, "")
@@ -13,9 +26,13 @@ function M.update_line_in_file(filepath, pattern, value)
         return line
     end, lines)
 
+    -- Use a delay and write file safely with pcall
     vim.defer_fn(function()
-        vim.fn.writefile(lines, filepath)
-    end, 200)
+        local write_ok, err = pcall(vim.fn.writefile, lines, filepath)
+        if not write_ok then
+            vim.notify("Failed to write file: " .. filepath .. " - " .. (err or "unknown error"), vim.log.levels.ERROR)
+        end
+    end, 500)
 end
 
 ---Syncs the wezterm colorscheme with the current nvim colorscheme (if configured)

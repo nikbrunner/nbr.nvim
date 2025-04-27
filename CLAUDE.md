@@ -22,9 +22,9 @@
 
 ## Project Structure
 
-- Plugin specs: `lua/nbr/specs/*.lua`
-- Core config: `lua/nbr/{config,options,keymaps,lazy}.lua`
-- Utilities: `lua/nbr/lib/*.lua`
+- Plugin specs: `lua/specs/*.lua`
+- Core config: `lua/{config,options,keymaps,autocmd}.lua`
+- Utilities: `lua/lib/*.lua`
 
 ## Pending Tasks
 
