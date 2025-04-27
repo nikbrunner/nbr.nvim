@@ -1,4 +1,5 @@
 local prettier_cmd = "prettier"
+local prettierd_cmd = "prettierd"
 local prettier_configs = { ".prettierrc", ".prettierrc.json" }
 
 local deno_cmd = "deno_fmt"
@@ -26,36 +27,55 @@ return {
         local bufnr = vim.api.nvim_get_current_buf()
         local fname = vim.uri_to_fname(vim.uri_from_bufnr(bufnr))
 
+        local is_prettierd_available = conform.get_formatter_info(prettierd_cmd, bufnr).available
         local is_prettier_available = conform.get_formatter_info(prettier_cmd, bufnr).available
-        local has_prettier_config = vim.fs.find(prettier_configs, { upward = true, path = fname })[1]
+        local prettier_config = vim.fs.find(prettier_configs, { upward = true, path = fname })[1]
 
-        if has_prettier_config and not is_prettier_available then
+        if prettier_config ~= nil and not (is_prettierd_available or is_prettier_available) then
             vim.notify(
-                "There is a prettier config, but prettier is not installed",
+                string.format(
+                    "There is a `prettier` config (%s), but `%s` or `%s` is not installed",
+                    prettier_config,
+                    prettierd_cmd,
+                    prettier_cmd
+                ),
                 vim.log.levels.WARN,
                 { title = "Conform" }
             )
             return
-        elseif has_prettier_config and is_prettier_available then
-            vim.notify(string.format("Using %s for formatting", prettier_cmd), vim.log.levels.INFO, { title = "Conform" })
+        elseif prettier_config ~= nil and (is_prettierd_available or is_prettier_available) then
+            vim.notify(
+                string.format(
+                    "Found `prettier` config (%s), and will use `%s` for formatting",
+                    prettier_config,
+                    is_prettierd_available and prettierd_cmd or prettier_cmd
+                ),
+                vim.log.levels.WARN,
+                { title = "Conform" }
+            )
         end
 
         local is_deno_available = conform.get_formatter_info(deno_cmd, bufnr).available
-        local has_deno_config = vim.fs.find(deno_configs, { upward = true, path = fname })[1]
+        local deno_config = vim.fs.find(deno_configs, { upward = true, path = fname })[1]
 
-        if has_deno_config and not is_deno_available then
+        if deno_config and not is_deno_available then
             vim.notify("There is a deno config, but deno is not installed", vim.log.levels.WARN, { title = "Conform" })
             return
-        elseif has_deno_config and is_deno_available then
+        elseif deno_config and is_deno_available then
             vim.notify(string.format("Using %s for formatting", deno_cmd), vim.log.levels.INFO, { title = "Conform" })
         end
 
         local function handle_prettier_or_deno()
-            return has_deno_config and { "deno_fmt" } or has_prettier_config and { "prettier" } or {}
+            if deno_config ~= nil and is_deno_available then
+                return { "deno_fmt", stop_after_first = true }
+            elseif prettier_config ~= nil and is_prettierd_available or is_prettier_available then
+                return { "prettierd", "prettier", stop_after_first = true }
+            end
         end
 
         ---@type conform.setupOpts
         return {
+            log_level = vim.log.levels.DEBUG,
             format_on_save = function()
                 if vim.g.vin_autoformat_enabled then
                     return { timeout_ms = 500, lsp_fallback = "fallback" }
