@@ -1,5 +1,4 @@
-local prettier_cmd = "prettier"
-local prettierd_cmd = "prettierd"
+local prettier_cmd = "prettierd"
 local prettier_configs = { ".prettierrc", ".prettierrc.json" }
 
 local deno_cmd = "deno_fmt"
@@ -27,50 +26,58 @@ return {
         local bufnr = vim.api.nvim_get_current_buf()
         local fname = vim.uri_to_fname(vim.uri_from_bufnr(bufnr))
 
-        local is_prettierd_available = conform.get_formatter_info(prettierd_cmd, bufnr).available
         local is_prettier_available = conform.get_formatter_info(prettier_cmd, bufnr).available
         local prettier_config = vim.fs.find(prettier_configs, { upward = true, path = fname })[1]
 
-        if prettier_config ~= nil and not (is_prettierd_available or is_prettier_available) then
-            vim.notify(
-                string.format(
-                    "There is a `prettier` config (%s), but `%s` or `%s` is not installed",
-                    prettier_config,
-                    prettierd_cmd,
-                    prettier_cmd
-                ),
-                vim.log.levels.WARN,
-                { title = "Conform" }
-            )
-            return
-        elseif prettier_config ~= nil and (is_prettierd_available or is_prettier_available) then
-            vim.notify(
-                string.format(
-                    "Found `prettier` config (%s), and will use `%s` for formatting",
-                    prettier_config,
-                    is_prettierd_available and prettierd_cmd or prettier_cmd
-                ),
-                vim.log.levels.WARN,
-                { title = "Conform" }
-            )
+        if prettier_config ~= nil then
+            if not is_prettier_available then
+                vim.notify(
+                    string.format(
+                        "There is a `prettier` config (%s), but `%s` or `%s` is not installed",
+                        prettier_config,
+                        prettier_cmd
+                    ),
+                    vim.log.levels.WARN,
+                    { title = "Conform" }
+                )
+            else
+                vim.notify(
+                    string.format(
+                        "Found `prettier` config (%s), and will use `%s` for formatting",
+                        prettier_config,
+                        prettier_cmd
+                    ),
+                    vim.log.levels.WARN,
+                    { title = "Conform" }
+                )
+            end
+        else
+            vim.notify("No prettier config found", vim.log.levels.WARN, { title = "Conform" })
         end
 
         local is_deno_available = conform.get_formatter_info(deno_cmd, bufnr).available
         local deno_config = vim.fs.find(deno_configs, { upward = true, path = fname })[1]
 
-        if deno_config and not is_deno_available then
-            vim.notify("There is a deno config, but deno is not installed", vim.log.levels.WARN, { title = "Conform" })
-            return
-        elseif deno_config and is_deno_available then
-            vim.notify(string.format("Using %s for formatting", deno_cmd), vim.log.levels.INFO, { title = "Conform" })
+        if deno_config ~= nil then
+            if not is_deno_available then
+                vim.notify("There is a deno config, but deno is not installed", vim.log.levels.WARN, { title = "Conform" })
+            else
+                vim.notify(string.format("Using %s for formatting", deno_cmd), vim.log.levels.INFO, { title = "Conform" })
+            end
+        else
+            vim.notify("No deno config found", vim.log.levels.WARN, { title = "Conform" })
         end
 
         local function handle_prettier_or_deno()
             if deno_config ~= nil and is_deno_available then
                 return { "deno_fmt", stop_after_first = true }
-            elseif prettier_config ~= nil and is_prettierd_available or is_prettier_available then
-                return { "prettierd", "prettier", stop_after_first = true }
             end
+
+            if prettier_config ~= nil and is_prettier_available then
+                return { prettier_cmd, stop_after_first = true }
+            end
+
+            return {}
         end
 
         ---@type conform.setupOpts
@@ -88,13 +95,13 @@ return {
                 json = handle_prettier_or_deno,
                 typescript = handle_prettier_or_deno,
                 typescriptreact = handle_prettier_or_deno,
-                css = { "prettier" },
-                scss = { "prettier" },
-                graphql = { "prettier" },
-                html = { "prettier" },
+                css = { prettier_cmd },
+                scss = { prettier_cmd },
+                graphql = { prettier_cmd },
+                html = { prettier_cmd },
                 lua = { "stylua" },
-                svelte = { "prettier" },
-                yaml = { "prettier" },
+                svelte = { prettier_cmd },
+                yaml = { prettier_cmd },
                 toml = { "taplo" },
                 go = { "gofmt" },
                 sh = { "shfmt" },
