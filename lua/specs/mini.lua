@@ -82,7 +82,7 @@ M.specs = {
                         local colorscheme_name = black_atom_label or vim.g.colors_name or "default"
                         local colorscheme = m.is_truncated(200) and "" or " " .. colorscheme_name
 
-                        local dev_mode = m.is_truncated(200) and ""
+                        local dev_mode = m.is_truncated(125) and ""
                             or "DEV_MODE: " .. (require("shada").read().dev_mode and "ON" or "OFF")
 
                         return m.combine_groups({

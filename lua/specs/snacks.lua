@@ -102,7 +102,7 @@ return {
             enabled = true,
             margin = { top = 0, right = 0, bottom = 1, left = 1 },
             top_down = false,
-            style = "minimal"
+            -- style = "minimal"
         },
         toggle = { enabled = true },
         gitbrowse = { enabled = true },
@@ -489,9 +489,9 @@ return {
             },
             notification = {
                 border = "single",
-                wo = { 
+                wo = {
                     winblend = 0,
-                        winhighlight = "Normal:SnacksNotifierHistory" 
+                    winhighlight = "Normal:SnacksNotifierHistory",
                 },
             },
             zen = {
@@ -539,10 +539,10 @@ return {
             pattern = "VeryLazy",
             callback = function()
                 -- stylua: ignore start
-                Snacks.toggle.dim():map("<leader>aod")
+                -- Snacks.toggle.dim():map("<leader>aod")
                 Snacks.toggle.line_number():map("<leader>aol")
                 Snacks.toggle.inlay_hints():map("<leader>aoh")
-                Snacks.toggle.diagnostics():map("<leader>aoD")
+                -- Snacks.toggle.diagnostics():map("<leader>aoD")
                 Snacks.toggle.treesitter():map("<leader>aoT")
                 Snacks.toggle.option("relativenumber", { name = "Relative Number" }):map("<leader>aoL")
                 Snacks.toggle.option("conceallevel", { off = 1, on = vim.o.conceallevel > 1 and vim.o.conceallevel or 3 }):map("<leader>aoc")

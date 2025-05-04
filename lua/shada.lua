@@ -144,4 +144,35 @@ function M.toggle_dev_mode()
     return is_enabled
 end
 
+function M.show()
+    local state = M.read()
+
+    -- Open floating window and put the state in it
+    local buf = vim.api.nvim_create_buf(false, true)
+    vim.api.nvim_buf_set_lines(
+        buf,
+        0,
+        -1,
+        false,
+        vim.tbl_map(function(k)
+            return k .. ": " .. tostring(state[k])
+        end, vim.tbl_keys(state))
+    )
+
+    -- Open floating window
+    vim.api.nvim_open_win(buf, true, {
+        relative = "editor",
+        width = math.floor(vim.o.columns * 0.25),
+        height = math.floor(vim.o.lines * 0.25),
+        row = math.floor(vim.o.lines * 0.25),
+        col = math.floor(vim.o.columns * 0.5),
+        style = "minimal",
+        border = "solid",
+        title = "Vin Shada",
+    })
+
+    -- Map <Esc> to close the window
+    vim.api.nvim_buf_set_keymap(buf, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
+end
+
 return M
