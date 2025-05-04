@@ -93,7 +93,10 @@ auto({ "BufEnter", "FocusGained", "TermClose", "TermLeave" }, {
     group = auto_group("checktime"),
     callback = function()
         vim.cmd("checktime")
-        require("gitsigns").refresh()
+        local ok, gitsigns = pcall(require, "gitsigns")
+        if ok then
+            gitsigns.refresh()
+        end
     end,
 })
 
