@@ -9,6 +9,18 @@ return {
     },
 
     {
+        -- This is only used for the `ensure_installed` option, which is not avaialable in the base mason.nvim plugin
+        -- [Support ensure_installed directly in mason · Issue #1713 · williamboman/mason.nvim](https://github.com/williamboman/mason.nvim/issues/1713)
+        -- https://github.com/williamboman/mason-lspconfig.nvim/blob/1a31f824b9cd5bc6f342fc29e9a53b60d74af245/lua/mason-lspconfig/install.lua
+        "williamboman/mason-lspconfig.nvim",
+        event = "VimEnter",
+        dependencies = "williamboman/mason.nvim",
+        opts = {
+            ensure_installed = Config.ensure_installed.servers,
+        },
+    },
+
+    {
         "WhoIsSethDaniel/mason-tool-installer.nvim",
         dependencies = "williamboman/mason.nvim",
         event = "VimEnter",
