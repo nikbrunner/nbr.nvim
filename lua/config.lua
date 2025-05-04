@@ -1,7 +1,7 @@
-local M = {}
-
 ---@class VinConfig
-M.config = {
+return {
+    dev_mode = false,
+
     ---@type "dark" | "light"
     background = "dark",
     colorscheme_default = "black-atom-jpn-murasaki-yoru",
@@ -99,5 +99,3 @@ M.config = {
         },
     },
 }
-
-return M.config

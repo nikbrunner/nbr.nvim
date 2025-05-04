@@ -5,6 +5,7 @@ local M = {
     files = require("lib.files"),
     git = require("lib.git"),
     ui = require("lib.ui"),
+    config = require("lib.config"),
 }
 
 return M
