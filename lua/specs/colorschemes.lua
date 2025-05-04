@@ -1,5 +1,4 @@
-local Config = require("config")
-local Lib = require("lib")
+local ShaDa = require("shada")
 
 ---@type LazyPluginSpec[]
 return {
@@ -9,15 +8,15 @@ return {
         priority = 10000,
         opts = {
             set_dark_mode = function()
-                vim.cmd.colorscheme(Config.colorscheme_dark)
-                Lib.files.update_line_in_file(Config.pathes.config.nvim, "background", '"dark"')
+                vim.cmd.colorscheme(ShaDa.read("colorscheme_dark"))
+                ShaDa.update("background", "dark")
             end,
             set_light_mode = function()
-                vim.cmd.colorscheme(Config.colorscheme_light)
-                Lib.files.update_line_in_file(Config.pathes.config.nvim, "background", '"light"')
+                vim.cmd.colorscheme(ShaDa.read("colorscheme_light"))
+                ShaDa.update("background", "light")
             end,
+            fallback = ShaDa.read("background"),
             update_interval = 25,
-            fallback = Config.background,
         },
     },
 

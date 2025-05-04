@@ -82,6 +82,9 @@ M.specs = {
                         local colorscheme_name = black_atom_label or vim.g.colors_name or "default"
                         local colorscheme = m.is_truncated(200) and "" or " " .. colorscheme_name
 
+                        local dev_mode = m.is_truncated(200) and ""
+                            or "DEV_MODE: " .. (require("shada").read().dev_mode and "ON" or "OFF")
+
                         return m.combine_groups({
                             { hl = mode_hl, strings = { mode } },
                             {
@@ -101,7 +104,7 @@ M.specs = {
 
                             {
                                 hl = "@function",
-                                strings = { position, viewport, filetype },
+                                strings = { dev_mode, position, viewport, filetype },
                             },
                             {
                                 hl = "Comment",

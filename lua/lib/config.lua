@@ -18,8 +18,9 @@ local M = {}
 --- ```
 function M.get_repo_path(project_path)
     local Config = require("config")
+    local ShaDa = require("shada")
 
-    if Config.dev_mode then
+    if ShaDa.read().dev_mode then
         return Config.pathes.repos .. "/" .. project_path
     else
         return nil

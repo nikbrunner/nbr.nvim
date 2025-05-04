@@ -1,12 +1,14 @@
----@class VinConfig
-return {
-    dev_mode = false,
+local M = {}
 
+---@class VinConfig
+M.config = {
+    ---@type boolean
+    dev_mode = false,
     ---@type "dark" | "light"
     background = "dark",
-    colorscheme_default = "black-atom-jpn-murasaki-yoru",
-
+    ---@type string
     colorscheme_light = "black-atom-jpn-koyo-hiru",
+    ---@type string
     colorscheme_dark = "black-atom-jpn-koyo-yoru",
 
     ---see for wezterm themes: https://wezfurlong.org/wezterm/colorschemes/index.html
@@ -99,3 +101,5 @@ return {
         },
     },
 }
+
+return M.config

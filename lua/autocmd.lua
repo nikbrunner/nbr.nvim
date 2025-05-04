@@ -1,5 +1,6 @@
 local Config = require("config")
 local UI = require("lib.ui")
+local ShaDa = require("shada")
 
 local auto = vim.api.nvim_create_autocmd
 
@@ -10,20 +11,31 @@ end
 auto("VimEnter", {
     group = auto_group("vim_enter"),
     callback = function()
-        local colorscheme = Config["colorscheme_" .. Config.background]
-        -- local colorscheme = config.colorscheme_default
+        ---@diagnostic disable-next-line: undefined-field
+        local background = vim.opt.background:get()
+        local colorscheme = ShaDa.read()["colorscheme_" .. background]
 
-        vim.cmd.colorscheme(Config.colorscheme_default)
         UI.handle_colors(Config, colorscheme, Config.background)
+
+        local is_dev_mode = require("shada").read("dev_mode")
+        if is_dev_mode then
+            vim.notify(
+                "Dev Mode is enabled. Some plugins will use their project path if defined.",
+                vim.log.levels.INFO,
+                { title = "Vin" }
+            )
+        end
     end,
 })
 --
 auto("ColorScheme", {
     group = auto_group("colorscheme_sync"),
     callback = function(args)
-        local colorscheme = args.match
         ---@diagnostic disable-next-line: undefined-field
         local background = vim.opt.background:get()
+        local colorscheme = args.match
+
+        ShaDa.update("colorscheme_" .. background, colorscheme)
         UI.handle_colors(Config, colorscheme, background)
     end,
 })

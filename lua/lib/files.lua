@@ -60,12 +60,4 @@ function M.sync_wezterm_colorscheme(config, colorscheme)
     end
 end
 
----@param config VinConfig
----@param colorscheme string
----@param background "light" | "dark"
-function M.sync_vin_colorscheme(config, colorscheme, background)
-    M.update_line_in_file(config.pathes.config.nvim, "colorscheme_" .. background, '"' .. colorscheme .. '"')
-    M.update_line_in_file(config.pathes.config.nvim, "background", '"' .. background .. '"')
-end
-
 return M
