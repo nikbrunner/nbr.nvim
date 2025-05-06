@@ -4,7 +4,6 @@ local map = vim.keymap.set
 local user_command = vim.api.nvim_create_user_command
 
 vim.opt_local.wrap = true
-vim.opt_local.conceallevel = 0
 
 local function toggle_checkbox(opts)
     -- Patterns to match
@@ -143,9 +142,11 @@ map({ "n", "o", "x" }, "j", "gj", {})
 map({ "n", "o", "x" }, "k", "gk", {})
 map({ "n", "o", "x" }, "0", "g0", {})
 map({ "n", "o", "x" }, "$", "g$", {})
-map({ "n", "v" }, "<C-t>", ":ToggleCheckbox<CR>", { noremap = true, silent = true, buffer = true })
-map("i", "<C-t>", function()
-    toggle_checkbox({ range = 0, line1 = vim.fn.line("."), line2 = vim.fn.line(".") })
-end, { noremap = true, silent = true, buffer = true })
-map({ "n", "i" }, "<C-b>", create_code_block, { noremap = true, silent = true, buffer = true })
-map({ "i" }, "<CR>", continue_list, { buffer = true, expr = false })
+
+-- Currenly handled by markdown-tools.nvim
+-- map({ "n", "v" }, "<C-t>", ":ToggleCheckbox<CR>", { noremap = true, silent = true, buffer = true })
+-- map("i", "<C-t>", function()
+--     toggle_checkbox({ range = 0, line1 = vim.fn.line("."), line2 = vim.fn.line(".") })
+-- end, { noremap = true, silent = true, buffer = true })
+-- map({ "n", "i" }, "<C-b>", create_code_block, { noremap = true, silent = true, buffer = true })
+-- map({ "i" }, "<CR>", continue_list, { buffer = true, expr = false })
