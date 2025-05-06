@@ -237,7 +237,6 @@ return {
                             local template = "You are an expert at following the Conventional Commit specification."
                                 .. "Given the git diff listed below, please generate a detailed commit message for me and return it to me directly without explanation:"
                                 .. "Use the summary line to describe the overall change, followed by an empty line, and then a more detailed, concise description of the change in the body in bullet points."
-                                .. "Keep in mind that the summary line should not exceed 72 characters."
                                 .. "If you encounter variable names or other code elements, please wrap them in backticks."
                                 .. "Consider the path of files changed for scope determination."
 
@@ -248,6 +247,7 @@ return {
                                     .. commit_messages
                                     .. "\n```"
                                     .. "\nPlease ensure the new commit message is consistent with and builds upon these previous commits."
+                                    .. "Keep in mind that the lines should not exceed 72 characters."
                             end
 
                             -- Append changes to commit
