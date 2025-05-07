@@ -57,6 +57,9 @@ M.config = {
         ["rose-pine-moon"] = { wezterm = "rose-pine-moon" },
         ["rose-pine-dawn"] = { wezterm = "rose-pine-dawn" },
 
+        ["kanso-zen"] = { wezterm = "kanso-zen" },
+        ["kanso-ink"] = { wezterm = "kanso-ink" },
+
         ["nord"] = { wezterm = "nord" },
     },
     open_previous_files_on_startup = false,
