@@ -3,7 +3,7 @@ local Config = require("config")
 ---@type LazyPluginSpec[]
 return {
     {
-        "williamboman/mason.nvim",
+        "mason-org/mason.nvim",
         event = "VimEnter",
         opts = {},
     },
@@ -12,7 +12,7 @@ return {
         -- This is only used for the `ensure_installed` option, which is not avaialable in the base mason.nvim plugin
         -- [Support ensure_installed directly in mason · Issue #1713 · williamboman/mason.nvim](https://github.com/williamboman/mason.nvim/issues/1713)
         -- https://github.com/williamboman/mason-lspconfig.nvim/blob/1a31f824b9cd5bc6f342fc29e9a53b60d74af245/lua/mason-lspconfig/install.lua
-        "williamboman/mason-lspconfig.nvim",
+        "mason-org/mason-lspconfig.nvim",
         event = "VimEnter",
         dependencies = "williamboman/mason.nvim",
         opts = {
@@ -42,11 +42,8 @@ return {
                                 vim.notify(string.format("Installing %s", name), vim.log.levels.INFO, { title = "Mason" })
                                 package:install()
                             else
-                                package:check_new_version(function(success, result_or_err)
-                                    if success then
-                                        package:install({ version = result_or_err.latest_version })
-                                    end
-                                end)
+                                local version = package:get_latest_version()
+                                package:install({ version = version })
                             end
                         end
                     end)
