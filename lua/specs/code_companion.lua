@@ -42,7 +42,7 @@ return {
         strategies = {
             -- Change the default chat adapter
             chat = {
-                adapter = "anthropic",
+                adapter = "openai",
                 slash_commands = {
                     ["file"] = {
                         callback = "strategies.chat.slash_commands.file",
@@ -121,12 +121,14 @@ return {
                                 commit_messages = vim.fn.system("git log -10 --format='%s%n%b' 2>/dev/null")
                             end
 
-                            -- Construct initial prompt template
                             local template = "You are an expert at following the Conventional Commit specification."
-                                .. "Given the git diff listed below, please generate a detailed commit message for me and return it to me directly without explanation:"
-                                .. "Use the summary line to describe the overall change, followed by an empty line, and then a more detailed, concise description of the change in the body in bullet points."
-                                .. "If you encounter variable names or other code elements, please wrap them in backticks."
-                                .. "Consider the path of files changed for scope determination."
+                                .. " Given the git diff listed below, generate a succinct commit message."
+                                .. "\n- The summary line MUST NOT exceed 72 characters."
+                                .. "\n- In most cases, the summary alone is sufficient; ONLY add a body if the change is complex or non-obvious."
+                                .. "\n- If you do add a body, it should be concise and use bullet points."
+                                .. "\n- Wrap variable names or code elements in backticks."
+                                .. "\n- Consider changed file paths for scope."
+                                .. "\n- Omit explanations and return only the commit message text."
 
                             if commit_messages ~= "" and not commit_messages:match("fatal") then
                                 template = template
@@ -134,8 +136,7 @@ return {
                                     .. "\n```\n"
                                     .. commit_messages
                                     .. "\n```"
-                                    .. "\nPlease ensure the new commit message is consistent with and builds upon these previous commits."
-                                    .. "Keep in mind that the lines should not exceed 72 characters."
+                                    .. "\nEnsure consistency with these commits. Adhere to the 72-character summary rule."
                             end
 
                             -- Append changes to commit
