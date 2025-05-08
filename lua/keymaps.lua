@@ -329,7 +329,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         create_diagnostic_mappings("h", "[H]int", vim.diagnostic.severity.HINT)
 
         -- LSP Actions & Refactoring
-        -- M.map("n", "sa", vim.lsp.buf.code_action, o({ desc = "[A]ction" })) -- Original was commented out
+        M.map("n", "sa", vim.lsp.buf.code_action, o({ desc = "[A]ction" })) -- Original was commented out
         M.map("n", "sn", vim.lsp.buf.rename, o({ desc = "Re[n]ame" }))
 
         -- LSP Go To Definition (in split)
