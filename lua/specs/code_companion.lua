@@ -40,19 +40,9 @@ return {
             end,
         },
         strategies = {
-            -- Change the default chat adapter
             chat = {
-                adapter = "openai",
-                slash_commands = {
-                    ["file"] = {
-                        callback = "strategies.chat.slash_commands.file",
-                        description = "Select a file using Telescope",
-                        opts = {
-                            provider = "snacks",
-                            contains_code = true,
-                        },
-                    },
-                },
+                -- adapter = "openai",
+                adapter = "anthropic",
             },
             inline = {
                 adapter = "anthropic_no_reason",
@@ -61,7 +51,11 @@ return {
         extensions = {
             history = {
                 enabled = true,
+                ---@module "codecompanion._extensions.history"
+                ---@type HistoryOpts
                 opts = {
+                    auto_save = true,
+                    save_chat_keymap = "sc",
                     -- Keymap to open history from chat buffer (default: gh)
                     keymap = "gh",
                     -- Automatically generate titles for new chats
