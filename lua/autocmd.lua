@@ -12,10 +12,14 @@ auto("VimEnter", {
     group = auto_group("vim_enter"),
     callback = function()
         ---@diagnostic disable-next-line: undefined-field
-        local background = vim.opt.background:get()
-        local colorscheme = ShaDa.read()["colorscheme_" .. background]
+        -- local background = vim.opt.background:get()
+        local background = ShaDa.read("background")
+        local colorscheme = ShaDa.read("colorscheme_" .. background)
 
-        UI.handle_colors(Config, colorscheme, Config.background)
+        -- Check if colorscheme is a string
+        if type(colorscheme) == "string" then
+            UI.handle_colors(Config, colorscheme, background)
+        end
 
         local is_dev_mode = require("shada").read("dev_mode")
         if is_dev_mode then
