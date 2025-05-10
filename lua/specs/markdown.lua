@@ -72,7 +72,7 @@ return {
                     opts = { noremap = false, expr = true, buffer = true },
                 },
                 -- Disable this mapping
-                ["<localleader>x"] = {
+                ["<C-t>"] = {
                     action = function()
                         return require("obsidian").util.toggle_checkbox()
                     end,
@@ -90,6 +90,7 @@ return {
             completion = {
                 nvim_cmp = false,
                 blink = true,
+                min_chars = 0,
             },
             ui = {
                 enable = true, -- markview.nvim does that
