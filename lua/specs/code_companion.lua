@@ -25,9 +25,9 @@ return {
             },
         },
         adapters = {
-            anthropic_no_reason = function()
+            anthropic_sonnet_3_7_no_reason = function()
                 return require("codecompanion.adapters").extend("anthropic", {
-                    name = "anthropic_no_reason", -- Give this adapter a different name to differentiate it from the default adapter
+                    name = "anthropic_sonnet_3_7_no_reason", -- Give this adapter a different name to differentiate it from the default adapter
                     schema = {
                         model = {
                             -- NOTE: reasoning does not seem to work with inline assistant
@@ -38,14 +38,36 @@ return {
                     },
                 })
             end,
+            copilot_anthropic_sonnet_3_7 = function()
+                return require("codecompanion.adapters").extend("copilot", {
+                    schema = {
+                        model = {
+                            default = "claude-3.7-sonnet",
+                        },
+                    },
+                })
+            end,
+            copilot_google_gemini_2_5 = function()
+                return require("codecompanion.adapters").extend("copilot", {
+                    schema = {
+                        model = {
+                            default = "gemini-2.5-pro",
+                        },
+                    },
+                })
+            end,
         },
         strategies = {
             chat = {
                 -- adapter = "openai",
-                adapter = "anthropic",
+                -- adapter = "anthropic",
+                -- adapter = "copilot",
+                adapter = "copilot_anthropic_sonnet_3_7",
             },
             inline = {
-                adapter = "anthropic_no_reason",
+                -- adapter = "anthropic_no_reason",
+                -- adapter = "copilot",
+                adapter = "copilot_anthropic_sonnet_3_7",
             },
         },
         extensions = {
