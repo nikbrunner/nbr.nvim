@@ -76,7 +76,7 @@ return {
                 ---@module "codecompanion._extensions.history"
                 ---@type HistoryOpts
                 opts = {
-                    auto_save = true,
+                    auto_save = false,
                     save_chat_keymap = "sc",
                     -- Keymap to open history from chat buffer (default: gh)
                     keymap = "gh",
