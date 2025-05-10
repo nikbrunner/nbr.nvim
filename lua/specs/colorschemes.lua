@@ -40,19 +40,6 @@ return {
     },
 
     {
-        "folke/tokyonight.nvim",
-        lazy = false,
-        priority = 1000,
-        ---@module "tokyonight"
-        ---@type tokyonight.Config
-        opts = {
-            on_highlights = function(highlights)
-                highlights.YaziFloat = { link = "NormalFloat" }
-            end,
-        },
-    },
-
-    {
         "projekt0n/github-nvim-theme",
         lazy = false,
         priority = 1000,
@@ -95,11 +82,5 @@ return {
                 EndOfBuffer = { fg = "surface" },
             },
         },
-    },
-
-    {
-        "webhooked/kanso.nvim",
-        lazy = false,
-        priority = 1000,
     },
 }
