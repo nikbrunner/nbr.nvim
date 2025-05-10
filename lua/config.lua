@@ -89,6 +89,7 @@ M.config = {
             "jsonls",
             "lua_ls",
             "tailwindcss",
+            "marksman",
             "vtsls",
             "yamlls",
         },
