@@ -1,7 +1,7 @@
 WhichKeyIgnoreLabel = "which_key_ignore"
 
 vim.g.mapleader = ","
-vim.g.maplocalleader = ","
+vim.g.maplocalleader = "."
 
 vim.opt.mouse = "a"
 
@@ -22,6 +22,8 @@ vim.opt.shiftwidth = 4
 vim.opt.smartindent = true
 
 vim.o.winborder = "solid"
+
+vim.o.conceallevel = 2
 
 vim.o.foldenable = true
 vim.o.foldlevel = 99

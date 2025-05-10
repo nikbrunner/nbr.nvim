@@ -65,6 +65,9 @@ return {
                 { "<leader>dv", group = "[V]ersion Control", icon = "󰋚 " },
                 { "<leader>dy", group = "[Y]ank", icon = "󰆏 " },
 
+                { "<localleader>d", group = "[D]aily Notes", icon = "󰃵 " },
+                { "<localleader>i", group = "[I]nsert", icon = "⎀ " },
+
                 -- [H]unk
                 { "<leader>c", group = "[C]hange", icon = " " },
 
