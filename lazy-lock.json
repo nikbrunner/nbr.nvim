@@ -1,5 +1,5 @@
 {
-  "LuaSnip": { "branch": "master", "commit": "458560534a73f7f8d7a11a146c801db00b081df0" },
+  "LuaSnip": { "branch": "master", "commit": "c1851d5c519611dfc451b6582961b2602e0af89b" },
   "Navigator.nvim": { "branch": "master", "commit": "91d86506ac2a039504d5205d32a1d4bc7aa57072" },
   "SchemaStore.nvim": { "branch": "main", "commit": "df87d16fc4ea7c2c67cfc00b513861738693fe07" },
   "auto-dark-mode.nvim": { "branch": "master", "commit": "c31de126963ffe9403901b4b0990dde0e6999cc6" },
@@ -9,7 +9,7 @@
   "bufferline.nvim": { "branch": "main", "commit": "655133c3b4c3e5e05ec549b9f8cc2894ac6f51b3" },
   "ccc.nvim": { "branch": "main", "commit": "9d1a256e006decc574789dfc7d628ca11644d4c2" },
   "codecompanion-history.nvim": { "branch": "main", "commit": "c34d490f2b869cb2efd09c9930216258d7a0df61" },
-  "codecompanion.nvim": { "branch": "main", "commit": "efefb72448afe9ad1207399740689593fe7c866d" },
+  "codecompanion.nvim": { "branch": "main", "commit": "d19670a44c35e9ba0674cc7a25ff3b8f22bbf062" },
   "conform.nvim": { "branch": "master", "commit": "374aaf384e2e841607b8e2fe63fa3ad01d111c91" },
   "contextindent.nvim": { "branch": "main", "commit": "985b3ea05fecb9a220ea126ba9c7d40b002d6b63" },
   "flash.nvim": { "branch": "main", "commit": "3c942666f115e2811e959eabbdd361a025db8b63" },
@@ -28,7 +28,7 @@
   "markdown-tools.nvim": { "branch": "main", "commit": "495ae12fb440e8292ab8a023b778b570adbd1902" },
   "markview.nvim": { "branch": "main", "commit": "01a2011b77bacf031d3d98c137a70ba41282b8be" },
   "mason-lspconfig.nvim": { "branch": "main", "commit": "d39a75bbce4b8aad5d627191ea915179c77c100f" },
-  "mason-tool-installer.nvim": { "branch": "main", "commit": "aafae207d5a2a28c59c9d478d8581c2739135d09" },
+  "mason-tool-installer.nvim": { "branch": "main", "commit": "62f821a14e20f3f2ee358cd44d0b3d299a508e72" },
   "mason.nvim": { "branch": "main", "commit": "7c7318e8bae7e3536ef6b9e86b9e38e74f2e125e" },
   "mini.ai": { "branch": "main", "commit": "ebb04799794a7f94628153991e6334c3304961b8" },
   "mini.icons": { "branch": "main", "commit": "397ed3807e96b59709ef3292f0a3e253d5c1dc0a" },
@@ -59,5 +59,5 @@
   "wezterm-types": { "branch": "main", "commit": "3d59d9ed537ec4b935be3d48e06689ed02adace7" },
   "whatthejump.nvim": { "branch": "main", "commit": "d05b93eca173d374d603e2b8709f18ae6dd4b7af" },
   "which-key.nvim": { "branch": "main", "commit": "370ec46f710e058c9c1646273e6b225acf47cbed" },
-  "yazi.nvim": { "branch": "main", "commit": "bab15dad9952b6a67e9d63615561ba08797b84bf" }
+  "yazi.nvim": { "branch": "main", "commit": "75766fab481fd8b7877c460dd3ed02e78adc2c24" }
 }
