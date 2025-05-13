@@ -23,7 +23,7 @@ vim.opt.smartindent = true
 
 vim.o.winborder = "solid"
 
-vim.o.conceallevel = 2
+vim.o.conceallevel = 0
 
 vim.o.foldenable = true
 vim.o.foldlevel = 99
