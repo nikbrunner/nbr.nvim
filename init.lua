@@ -38,7 +38,10 @@ require("lazy").setup("specs", {
             },
         },
     },
-    checker = { enabled = true },
+    checker = {
+        enabled = true,
+        notify = false,
+    },
     rocks = {
         enabled = false,
     },
