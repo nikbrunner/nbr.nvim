@@ -102,7 +102,7 @@ return {
             enabled = true,
             margin = { top = 0, right = 0, bottom = 1, left = 1 },
             top_down = false,
-            -- style = "minimal"
+            style = "minimal",
         },
         toggle = { enabled = true },
         gitbrowse = { enabled = true },
