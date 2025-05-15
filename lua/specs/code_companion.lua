@@ -56,18 +56,24 @@ return {
                     },
                 })
             end,
+            copilot_openai_gpt_4_1 = function()
+                return require("codecompanion.adapters").extend("copilot", {
+                    schema = {
+                        model = {
+                            default = "gpt-4.1",
+                        },
+                    },
+                })
+            end,
         },
         strategies = {
             chat = {
-                -- adapter = "openai",
-                -- adapter = "anthropic",
-                -- adapter = "copilot",
-                adapter = "copilot_anthropic_sonnet_3_7",
+                -- adapter = "anthropic_sonnet_3_7_no_reason",
+                adapter = "copilot_openai_gpt_4_1",
             },
             inline = {
                 -- adapter = "anthropic_no_reason",
-                -- adapter = "copilot",
-                adapter = "copilot_anthropic_sonnet_3_7",
+                adapter = "copilot_openai_gpt_4_1",
             },
         },
         extensions = {
@@ -105,13 +111,8 @@ return {
                     is_slash_cmd = true,
                     short_name = "commit",
                     auto_submit = true,
-                    adapter = {
-                        -- name = "anthropic",
-                        -- model = "claude-3-7-sonnet-20250219",
-                        -- model = "claude-3-5-haiku-20241022",
-                        name = "openai",
-                        model = "gpt-4.1",
-                    },
+                    adapter = "copilot_openai_gpt_4_1",
+                    -- adapter = "copilot_anthropic_sonnet_3_7",
                 },
                 prompts = {
                     {
