@@ -20,15 +20,6 @@ auto("VimEnter", {
         if type(colorscheme) == "string" then
             UI.handle_colors(Config, colorscheme, background)
         end
-
-        local is_dev_mode = require("shada").read("dev_mode")
-        if is_dev_mode then
-            vim.notify(
-                "Dev Mode is enabled. Some plugins will use their project path if defined.",
-                vim.log.levels.INFO,
-                { title = "Vin" }
-            )
-        end
     end,
 })
 --
