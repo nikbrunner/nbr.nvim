@@ -48,20 +48,20 @@ M.spec = {
     },
     keys = {
         {
-            "<leader>df",
+            "<leader>dr",
             mode = { "n", "x" },
             function()
                 require("grug-far").open({ prefills = { paths = vim.fn.expand("%") } })
             end,
-            desc = "[F]ind and replace",
+            desc = "[R]eplace",
         },
         {
-            "<leader>wf",
+            "<leader>wr",
             mode = { "n", "x" },
             function()
                 require("grug-far").open()
             end,
-            desc = "[F]ind and replace",
+            desc = "[R]eplace",
         },
     },
 }

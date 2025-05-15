@@ -1,4 +1,4 @@
----@diagnostic disable: assign-type-mismatch
+---@diagnostic disable: assign-type-mismatch, missing-fields
 local M = {}
 
 function EditLineFromLazygit(file_path, line)
@@ -312,6 +312,7 @@ return {
                 },
                 smart = {
                     layout = { preset = "flow" },
+                    multi = { "recent", "files" },
                 },
                 ---TODO: filter out empty file
                 ---@type snacks.picker.recent.Config
@@ -443,18 +444,18 @@ return {
                 { section = "keys", gap = 1, padding = 1 },
                 { pane = 2, icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
                 { pane = 2, icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
-                {
-                    pane = 2,
-                    icon = " ",
-                    title = "Git Status",
-                    section = "terminal",
-                    enabled = vim.fn.isdirectory(".git") == 1,
-                    cmd = "hub status --short --branch --renames",
-                    height = 5,
-                    padding = 1,
-                    ttl = 5 * 60,
-                    indent = 3,
-                },
+                -- {
+                --     pane = 2,
+                --     icon = " ",
+                --     title = "Git Status",
+                --     section = "terminal",
+                --     enabled = vim.fn.isdirectory(".git") == 1,
+                --     cmd = "hub status --short --branch --renames",
+                --     height = 5,
+                --     padding = 1,
+                --     ttl = 5 * 60,
+                --     indent = 3,
+                -- },
                 { section = "startup" },
             },
         },
@@ -508,7 +509,7 @@ return {
                     q = function(self)
                         self:close()
                     end,
-                    ["<leader>td"] = function(self)
+                    ["<leader>td"] = function()
                         if vim.g.snacks_animate_dim then
                             Snacks.dim.disable()
                             vim.g.snacks_animate_dim = false
@@ -563,6 +564,7 @@ return {
             { "<C-/>",               function() Snacks.terminal() end, desc = "Toggle Terminal" },
             { "]]",                  function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference" },
             { "[[",                  function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference" },
+            { "<F6>",                function() Snacks.dashboard.open() end, desc = "Dashboard" },
 
             -- App
             { "<leader>aw",          function() Snacks.picker.projects() end, desc = "[W]orkspace" },
@@ -586,15 +588,11 @@ return {
             { "<leader>aN",          M.get_news, desc = "[N]ews",  },
 
             -- Workspace
-            -- { "<leader>we",          function() Snacks.picker.explorer() end, desc = "[E]xplorer" },
-            -- { "<leader>we",          M.explorer, desc = "[E]xplorer" },
+            { "<leader>we",          M.explorer, desc = "[E]xplorer" },
             { "<leader>wg",          function() Snacks.lazygit() end, desc = "[G]it" },
             { "<leader>wl",          function() Snacks.lazygit.log() end, desc = "[G]it Log" },
-            -- { "<leader>wd",          function() Snacks.picker.files() end, desc = "[D]ocument" },
             { "<leader>wd",          function() Snacks.picker.smart() end, desc = "[D]ocument" },
-            { "<leader>wr",          function() Snacks.picker.recent({ filter = { cwd = true }}) end, desc = "[R]ecent Documents" },
-            { "<C-e>",               function() Snacks.picker.recent({ filter = { cwd = true }}) end, desc = "[R]ecent Documents" },
-            -- { "<leader>wr",          function() Snacks.picker.smart({ filter = { cwd = true }}) end, desc = "[R]ecent Documents" },
+            { "<C-e>",               function() Snacks.picker.smart({ filter = { cwd = true }}) end, desc = "[R]ecent Documents" },
             { "<leader>wt",          function() Snacks.picker.grep() end, desc = "[T]ext" },
             { "<leader>ww",          function() Snacks.picker.grep_word() end, desc = "[W]ord" },
             { "<leader>wm",          function() Snacks.picker.git_status() end, desc = "[M]odified Documents" },
