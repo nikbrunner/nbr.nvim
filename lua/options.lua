@@ -46,13 +46,14 @@ vim.opt.fillchars = {
 }
 
 vim.opt.number = true
-vim.opt.relativenumber = false
+vim.opt.relativenumber = true
 
 vim.opt.autoread = true
 vim.opt.backup = false
 vim.opt.swapfile = false
 vim.opt.writebackup = false
 vim.opt.undofile = true
+vim.opt.updatetime = 500
 
 vim.opt.cmdheight = 1
 vim.opt.pumheight = 30
