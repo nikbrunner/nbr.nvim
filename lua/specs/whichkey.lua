@@ -80,6 +80,7 @@ return {
                 -- Others
                 { "<leader>r", group = "[R]est Client", icon = "󰿘 " },
                 { "<leader>n", group = "[N]otes", icon = " " },
+                { "<leader>nd", group = "[D]ailies", icon = "  " },
             },
         },
     },

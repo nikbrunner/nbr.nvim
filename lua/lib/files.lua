@@ -60,4 +60,53 @@ function M.sync_wezterm_colorscheme(config, colorscheme)
     end
 end
 
+---Opens a daily note from the specified workspace in a vertical split
+---@param workspace_name string The name of the Obsidian workspace
+---@param split_cmd? string The split command to use (defaults to "vsplit")
+---@return boolean success Whether the note was opened successfully
+function M.open_daily_note(workspace_name, split_cmd)
+    local obsidian = require("obsidian")
+    split_cmd = split_cmd or "vsplit"
+
+    -- Get the client instance
+    local client = obsidian.get_client()
+    if not client then
+        vim.notify("Obsidian client not available", vim.log.levels.ERROR, { title = "Daily Notes" })
+        return false
+    end
+
+    -- Set the workspace as needed
+    local current_ws = client.current_workspace
+    if current_ws.name ~= workspace_name then
+        -- Try to switch to the requested workspace
+        local found = false
+        for _, ws in ipairs(client.opts.workspaces or {}) do
+            if ws.name == workspace_name then
+                client:switch_workspace(workspace_name)
+                found = true
+                break
+            end
+        end
+        
+        if not found then
+            vim.notify("Workspace '" .. workspace_name .. "' not found", vim.log.levels.ERROR, { title = "Daily Notes" })
+            return false
+        end
+    end
+
+    -- Get the daily note and open it in a vertical split
+    -- This will create the note if it doesn't exist
+    local note = client:daily(0) -- 0 for today, offset_days must be provided
+
+    if note and note.path then
+        local daily_note_path = note.path.filename
+        vim.cmd(split_cmd .. " " .. vim.fn.fnameescape(daily_note_path))
+        vim.notify("Opened today's " .. workspace_name .. " note", vim.log.levels.INFO, { title = "Daily Notes" })
+        return true
+    else
+        vim.notify("Failed to open today's " .. workspace_name .. " note", vim.log.levels.ERROR, { title = "Daily Notes" })
+        return false
+    end
+end
+
 return M
