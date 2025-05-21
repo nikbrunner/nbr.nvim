@@ -6,6 +6,7 @@ local tailwind_configs = {
     "tailwind.config.cjs",
     "tailwind.config.mjs",
     "tailwind.config.ts",
+    "tailwind.css",
     "postcss.config.js",
     "postcss.config.cjs",
     "postcss.config.mjs",
@@ -41,6 +42,7 @@ return {
     settings = {
         tailwindCSS = {
             classAttributes = { "class", "className", "class:list", "classList", "ngClass" },
+            -- classFunctions = { "clxs", "cn" },
             lint = {
                 cssConflict = "warning",
                 invalidApply = "error",

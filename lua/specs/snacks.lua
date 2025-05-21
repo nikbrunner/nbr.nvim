@@ -312,7 +312,7 @@ return {
                 },
                 smart = {
                     layout = { preset = "flow" },
-                    multi = { "recent", "files" },
+                    -- multi = { "recent", "files" },
                 },
                 ---TODO: filter out empty file
                 ---@type snacks.picker.recent.Config
@@ -592,7 +592,8 @@ return {
             { "<leader>wg",          function() Snacks.lazygit() end, desc = "[G]it" },
             { "<leader>wl",          function() Snacks.lazygit.log() end, desc = "[G]it Log" },
             { "<leader>wd",          function() Snacks.picker.smart() end, desc = "[D]ocument" },
-            { "<C-e>",               function() Snacks.picker.smart({ filter = { cwd = true }}) end, desc = "[R]ecent Documents" },
+            { "<C-e>",               function() Snacks.picker.smart({ filter = { cwd = true }}) end, desc = "[D]ocument" },
+            { "<C-r>",               function() Snacks.picker.recent({ filter = { cwd = true }}) end, desc = "[R]ecent Documents" },
             { "<leader>wt",          function() Snacks.picker.grep() end, desc = "[T]ext" },
             { "<leader>ww",          function() Snacks.picker.grep_word() end, desc = "[W]ord" },
             { "<leader>wm",          function() Snacks.picker.git_status() end, desc = "[M]odified Documents" },

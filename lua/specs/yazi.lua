@@ -4,18 +4,17 @@
 return {
     "mikavilpas/yazi.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
-    enabled = false,
     event = "VeryLazy",
     keys = {
         {
-            "<leader>we",
+            "<leader>f",
             function()
                 require("yazi").yazi()
             end,
             desc = "[E]xplorer",
         },
         {
-            "<leader>wE",
+            "<leader>F",
             function()
                 require("yazi").yazi(nil, vim.fn.getcwd())
             end,
