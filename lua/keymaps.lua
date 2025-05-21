@@ -256,6 +256,42 @@ M.map("n", "<leader>w.", function()
     end
 end, { desc = "[.] Set Root" })
 
+M.map("n", "<leader>dd", function()
+    local obsidian = require("obsidian")
+
+    -- Get the client instance
+    local client = obsidian.get_client()
+    if not client then
+        vim.notify("Obsidian client not available", vim.log.levels.ERROR, { title = "Work Notes" })
+        return
+    end
+
+    -- Set the workspace to 'dcd' if needed
+    local current_ws = client.current_workspace
+    if current_ws.name ~= "dcd" then
+        -- Look through configured workspaces for the dcd one
+        for _, ws in ipairs(client.opts.workspaces or {}) do
+            if ws.name == "dcd" then
+                client:switch_workspace("dcd")
+                break
+            end
+        end
+    end
+
+    -- Get the daily note and open it in a vertical split
+    -- This will create the note if it doesn't exist
+    local note = client:daily(0) -- 0 for today, offset_days must be provided
+
+    local daily_note_path = note.path.filename
+
+    if note then
+        vim.notify("Opened today's work note", vim.log.levels.INFO, { title = "Work Notes" })
+        vim.cmd.vsplit(daily_note_path)
+    else
+        vim.notify("Failed to open today's work note", vim.log.levels.ERROR, { title = "Work Notes" })
+    end
+end, { desc = "[D]ocument [D]ay" })
+
 -- =============================================================================
 -- LSP (Language Server Protocol) Related Mappings
 -- =============================================================================
