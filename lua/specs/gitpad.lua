@@ -8,12 +8,12 @@ M.spec = {
     opts = function()
         local cwd = vim.fn.getcwd()
         local does_include = string.find(cwd, "dealercenter-digital", 1, true)
-        local dir = does_include and require("config").pathes.notes.work.dcd
-            or require("config").pathes.notes.personal
+        local dir = does_include and require("config").pathes.notes.work.dcd or require("config").pathes.notes.personal
 
         return {
             title = "Vinpad",
             border = "rounded",
+            window_type = "split", -- Options are 'floating' or 'split'
             dir = dir .. "/GitPad",
             on_attach = function(bufnr)
                 vim.api.nvim_buf_set_keymap(bufnr, "n", "q", "<Cmd>wq<CR>", { noremap = true, silent = true })
