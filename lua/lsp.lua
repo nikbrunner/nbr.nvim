@@ -4,11 +4,7 @@ local Severity = vim.diagnostic.severity
 
 vim.diagnostic.config({
     underline = false,
-    virtual_text = {
-        prefix = "●",
-        spacing = 2,
-        current_line = true,
-    },
+    virtual_text = false,
     virtual_lines = false,
     update_in_insert = false,
     float = {
