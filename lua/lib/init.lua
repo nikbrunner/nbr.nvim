@@ -6,6 +6,7 @@ local M = {
     git = require("lib.git"),
     ui = require("lib.ui"),
     config = require("lib.config"),
+    lsp = require("lib.lsp"),
 }
 
 return M

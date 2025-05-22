@@ -277,10 +277,7 @@ end, { desc = "[D]aily [P]ersonal Note" })
 M.map("n", "sI", vim.show_pos, { desc = "[I]nspect Position" })
 
 -- LSP Management
-M.map("n", "<leader>aL", function()
-    vim.notify("Restarting LSP Servers", vim.log.levels.INFO, { title = "LSP" })
-    vim.cmd("LspRestart")
-end, { desc = "[R]estart Language Servers" })
+M.map("n", "<leader>aL", "<cmd>LspRestart<CR>", { desc = "[R]estart Language Servers" })
 
 M.map("n", "<leader>ahl", "<cmd>checkhealth vim.lsp<CR>", { desc = "[I]nfo Language Server" })
 
