@@ -278,8 +278,7 @@ M.map("n", "sI", vim.show_pos, { desc = "[I]nspect Position" })
 
 -- LSP Management
 M.map("n", "<leader>aL", "<cmd>LspRestart<CR>", { desc = "[R]estart Language Servers" })
-
-M.map("n", "<leader>ahl", "<cmd>checkhealth vim.lsp<CR>", { desc = "[I]nfo Language Server" })
+M.map("n", "<leader>ahl", "<cmd>LspInfo<CR>", { desc = "[L]anguage Server Info" })
 
 -- LSP mappings are defined below within the LspAttach autocmd for buffer-local setup
 

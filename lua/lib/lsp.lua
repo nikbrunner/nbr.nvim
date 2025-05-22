@@ -40,12 +40,128 @@ function M.restart()
     end, 500) -- 500ms delay to allow clients to shut down
 end
 
--- Create the LspRestart command
+--- Display detailed information about active LSP clients
+function M.info()
+    -- Create a new buffer in a floating window
+    local buf = vim.api.nvim_create_buf(false, true)
+    local width = math.min(vim.o.columns - 4, 100)
+    local height = math.min(vim.o.lines - 4, 30)
+    local row = math.floor((vim.o.lines - height) / 2)
+    local col = math.floor((vim.o.columns - width) / 2)
+
+    local opts = {
+        relative = "editor",
+        width = width,
+        height = height,
+        row = row,
+        col = col,
+        style = "minimal",
+        border = "rounded",
+        title = " LSP Information ",
+        title_pos = "center",
+    }
+
+    local win = vim.api.nvim_open_win(buf, true, opts)
+    vim.wo[win].wrap = true
+    vim.bo[buf].bufhidden = "wipe"
+    vim.bo[buf].filetype = "markdown"
+
+    -- Gather info about active clients
+    local clients = vim.lsp.get_clients()
+    local lines = { "# Active LSP Clients", "" }
+
+    if vim.tbl_isempty(clients) then
+        table.insert(lines, "No active clients")
+    else
+        for _, client in ipairs(clients) do
+            table.insert(lines, "## " .. client.name .. " (id: " .. client.id .. ")")
+            table.insert(lines, "")
+
+            -- Basic client info
+            table.insert(lines, "- **Root directory**: " .. (client.config.root_dir or "Not set"))
+
+            -- Handle cmd which might be a function or table
+            local cmd_str = "Unknown"
+            if type(client.config.cmd) == "table" then
+                -- Create a temporary array to store string representations
+                local cmd_parts = {}
+                for _, part in ipairs(client.config.cmd) do
+                    table.insert(cmd_parts, tostring(part))
+                end
+                cmd_str = table.concat(cmd_parts, " ")
+            elseif type(client.config.cmd) == "function" then
+                cmd_str = "Function (dynamic)"
+            end
+            table.insert(lines, "- **Command**: `" .. cmd_str .. "`")
+
+            -- Capabilities
+            local caps = {}
+            for cap, value in pairs(client.server_capabilities or {}) do
+                if value == true then
+                    table.insert(caps, cap)
+                end
+            end
+
+            if #caps > 0 then
+                table.insert(lines, "- **Capabilities**:")
+                for _, cap in ipairs(caps) do
+                    table.insert(lines, "  - " .. cap)
+                end
+            end
+
+            -- Attached buffers
+            local buffers = vim.lsp.get_buffers_by_client_id(client.id)
+            if #buffers > 0 then
+                table.insert(lines, "- **Attached buffers**:")
+                for _, bufnr in ipairs(buffers) do
+                    local name = vim.api.nvim_buf_get_name(bufnr)
+                    if name ~= "" then
+                        name = vim.fn.fnamemodify(name, ":~:.")
+                    else
+                        name = "[No Name]"
+                    end
+                    table.insert(lines, "  - " .. name .. " (buffer " .. bufnr .. ")")
+                end
+            end
+
+            table.insert(lines, "")
+        end
+    end
+
+    -- Add server configs info
+    table.insert(lines, "# Available Server Configurations")
+    table.insert(lines, "")
+
+    local configs = {}
+    for _, path in ipairs(vim.api.nvim_get_runtime_file("lsp/*.lua", true)) do
+        table.insert(configs, vim.fn.fnamemodify(path, ":t:r"))
+    end
+
+    if #configs > 0 then
+        table.insert(lines, "- Available configs: " .. table.concat(configs, ", "))
+    else
+        table.insert(lines, "No server configurations found")
+    end
+
+    -- Set content
+    vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
+
+    -- Set keymaps for the window
+    vim.api.nvim_buf_set_keymap(buf, "n", "q", ":close<CR>", { noremap = true, silent = true })
+    vim.api.nvim_buf_set_keymap(buf, "n", "<Esc>", ":close<CR>", { noremap = true, silent = true })
+end
+
+-- Create commands
 vim.api.nvim_create_user_command("LspRestart", function()
     M.restart()
 end, {
     desc = "Restart LSP servers",
 })
 
-return M
+vim.api.nvim_create_user_command("LspInfo", function()
+    M.info()
+end, {
+    desc = "Show LSP information",
+})
 
+return M
