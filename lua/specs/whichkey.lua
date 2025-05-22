@@ -52,6 +52,7 @@ return {
                 { "<leader>as", group = "[S]ettings", icon = " " },
                 { "<leader>ai", group = "[I]ntelligence", icon = "󰧑 " },
                 { "<leader>ah", group = "[H]elp", icon = " " },
+                { "<leader>al", group = "[L]anguages", icon = "󰛦 " },
 
                 -- [W]orkspace
                 { "<leader>w", group = "[W]orkspace", icon = "󰲃 " },

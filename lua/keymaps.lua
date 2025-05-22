@@ -242,9 +242,6 @@ end, { desc = "Open File in [Z]ed" })
 -- Plugin management (Lazy)
 M.map("n", "<leader>ap", "<cmd>Lazy<CR>", { desc = "[P]lugins" })
 
--- Language server / tool management (Mason)
-M.map("n", "<leader>al", "<cmd>Mason<CR>", { desc = "[L]anguages" })
-
 -- Change directory to Git root
 M.map("n", "<leader>w.", function()
     local git_root = require("snacks").git.get_root() -- Assumes 'snacks' plugin/module
@@ -270,15 +267,16 @@ M.map("n", "<leader>ndp", function()
 end, { desc = "[D]aily [P]ersonal Note" })
 
 -- =============================================================================
--- LSP (Language Server Protocol) Related Mappings
+-- LSP (Language Server Protocol) Related Mappings & Language Management
 -- =============================================================================
+M.map("n", "<leader>als", "<cmd>Mason<CR>", { desc = "[S]ervers" })
+M.map("n", "<leader>alr", "<cmd>LspRestart<CR>", { desc = "[R]estart" })
+M.map("n", "<leader>ali", "<cmd>LspInfo<CR>", { desc = "[I]nfo" })
+M.map("n", "<leader>all", "<cmd>LspLog<CR>", { desc = "[L]og" })
 
 -- Show cursor position and related info
-M.map("n", "sI", vim.show_pos, { desc = "[I]nspect Position" })
 
--- LSP Management
-M.map("n", "<leader>aL", "<cmd>LspRestart<CR>", { desc = "[R]estart Language Servers" })
-M.map("n", "<leader>ahl", "<cmd>LspInfo<CR>", { desc = "[L]anguage Server Info" })
+M.map("n", "sI", vim.show_pos, { desc = "[I]nspect Position" })
 
 -- LSP mappings are defined below within the LspAttach autocmd for buffer-local setup
 

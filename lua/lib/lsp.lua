@@ -151,6 +151,18 @@ function M.info()
     vim.api.nvim_buf_set_keymap(buf, "n", "<Esc>", ":close<CR>", { noremap = true, silent = true })
 end
 
+--- Open LSP log file in a new tab
+function M.open_log()
+    local log_file = vim.lsp.get_log_path()
+    
+    if vim.fn.filereadable(log_file) == 1 then
+        vim.notify("Opening LSP log file: " .. log_file, vim.log.levels.INFO, { title = "LSP" })
+        vim.cmd("tabnew " .. vim.fn.fnameescape(log_file))
+    else
+        vim.notify("LSP log file not found at: " .. log_file, vim.log.levels.ERROR, { title = "LSP" })
+    end
+end
+
 -- Create commands
 vim.api.nvim_create_user_command("LspRestart", function()
     M.restart()
@@ -162,6 +174,12 @@ vim.api.nvim_create_user_command("LspInfo", function()
     M.info()
 end, {
     desc = "Show LSP information",
+})
+
+vim.api.nvim_create_user_command("LspLog", function()
+    M.open_log()
+end, {
+    desc = "Open LSP log file",
 })
 
 return M
