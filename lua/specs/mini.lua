@@ -55,6 +55,14 @@ M.specs = {
                             return require("lazy.status").updates()
                         end
 
+                        local word_count = function()
+                            if vim.bo.filetype == "markdown" then
+                                local words = vim.fn.wordcount().words
+                                return " " .. words .. "w"
+                            end
+                            return ""
+                        end
+
                         local mode, mode_hl = m.section_mode({ trunc_width = 120 })
 
                         local git = m.section_git({ trunc_width = 75 })
@@ -104,7 +112,7 @@ M.specs = {
 
                             {
                                 hl = "@function",
-                                strings = { dev_mode, position, viewport, filetype },
+                                strings = { dev_mode, word_count(), position, viewport, filetype },
                             },
                             {
                                 hl = "Comment",
