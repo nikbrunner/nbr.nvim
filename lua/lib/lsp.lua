@@ -154,7 +154,7 @@ end
 --- Open LSP log file in a new tab
 function M.open_log()
     local log_file = vim.lsp.get_log_path()
-    
+
     if vim.fn.filereadable(log_file) == 1 then
         vim.notify("Opening LSP log file: " .. log_file, vim.log.levels.INFO, { title = "LSP" })
         vim.cmd("tabnew " .. vim.fn.fnameescape(log_file))
