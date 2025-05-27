@@ -47,6 +47,15 @@ return {
                     },
                 })
             end,
+            copilot_anthropic_sonnet_4 = function()
+                return require("codecompanion.adapters").extend("copilot", {
+                    schema = {
+                        model = {
+                            default = "claude-sonnet-4",
+                        },
+                    },
+                })
+            end,
             copilot_google_gemini_2_5 = function()
                 return require("codecompanion.adapters").extend("copilot", {
                     schema = {
@@ -68,12 +77,14 @@ return {
         },
         strategies = {
             chat = {
-                adapter = "anthropic_sonnet_3_7_no_reason",
+                -- adapter = "anthropic_sonnet_3_7_no_reason",
                 -- adapter = "copilot_openai_gpt_4_1",
+                adapter = "copilot_anthropic_sonnet_4",
             },
             inline = {
-                adapter = "anthropic_sonnet_3_7_no_reason",
+                -- adapter = "anthropic_sonnet_3_7_no_reason",
                 -- adapter = "copilot_openai_gpt_4_1",
+                adapter = "copilot_anthropic_sonnet_4",
             },
         },
         extensions = {
