@@ -5,6 +5,7 @@ M.specs = {
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
+        branch = "master",
         event = { "VeryLazy" },
         opts = {
             highlight = {
