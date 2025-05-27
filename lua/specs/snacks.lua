@@ -588,12 +588,13 @@ return {
             { "<leader>aN",          M.get_news, desc = "[N]ews",  },
 
             -- Workspace
-            { "<leader>we",          M.explorer, desc = "[E]xplorer" },
+            -- { "<leader>we",          M.explorer, desc = "[E]xplorer" },
             { "<leader>wg",          function() Snacks.lazygit() end, desc = "[G]it" },
             { "<leader>wl",          function() Snacks.lazygit.log() end, desc = "[G]it Log" },
             { "<leader>wd",          function() Snacks.picker.smart() end, desc = "[D]ocument" },
             { "<C-e>",               function() Snacks.picker.smart({ filter = { cwd = true }}) end, desc = "[D]ocument" },
             { "<C-r>",               function() Snacks.picker.recent({ filter = { cwd = true }}) end, desc = "[R]ecent Documents" },
+            { "<leader>wr",          function() Snacks.picker.recent({ filter = { cwd = true }}) end, desc = "[R]ecent Documents" },
             { "<leader>wt",          function() Snacks.picker.grep() end, desc = "[T]ext" },
             { "<leader>ww",          function() Snacks.picker.grep_word() end, desc = "[W]ord" },
             { "<leader>wm",          function() Snacks.picker.git_status() end, desc = "[M]odified Documents" },

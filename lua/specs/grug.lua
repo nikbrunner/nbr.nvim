@@ -53,15 +53,15 @@ M.spec = {
             function()
                 require("grug-far").open({ prefills = { paths = vim.fn.expand("%") } })
             end,
-            desc = "[R]eplace",
+            desc = "[F]ind",
         },
         {
-            "<leader>wr",
+            "<leader>wf",
             mode = { "n", "x" },
             function()
                 require("grug-far").open()
             end,
-            desc = "[R]eplace",
+            desc = "[F]ind",
         },
     },
 }
