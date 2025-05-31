@@ -5,39 +5,33 @@ local M = {}
 
 --- Restart LSP servers
 function M.restart()
-    vim.notify("Restarting LSP Servers", vim.log.levels.INFO, { title = "LSP" })
+    local bufnr = vim.api.nvim_get_current_buf()
+    local clients = vim.lsp.get_clients({ bufnr = bufnr })
 
-    -- Get existing clients
-    local clients = vim.lsp.get_clients()
-
-    -- Stop all clients
-    for _, client in ipairs(clients) do
-        vim.lsp.stop_client(client.id)
+    if #clients == 0 then
+        -- I'm using my own implementation of `vim.lsp.enable()`
+        -- To work with default one change group name from `MyLsp` to `nvim.lsp.enable`
+        -- It is not tested with default one, so not sure if it would 100% work.
+        vim.api.nvim_exec_autocmds("FileType", { group = "MyLsp", buffer = bufnr })
+        return
     end
 
-    -- Wait briefly for clients to stop, then restart them
-    vim.defer_fn(function()
-        -- Load all server configs
-        local server_configs = {}
-        for _, config_path in ipairs(vim.api.nvim_get_runtime_file("lsp/*.lua", true)) do
-            local name = vim.fn.fnamemodify(config_path, ":t:r")
-            local ok, config = pcall(dofile, config_path)
-            if ok and config then
-                server_configs[name] = config
+    for _, c in ipairs(clients) do
+        local attached_buffers = vim.tbl_keys(c.attached_buffers) ---@type integer[]
+        local config = c.config
+        vim.lsp.stop_client(c.id, true)
+        vim.defer_fn(function()
+            local id = vim.lsp.start(config)
+            if id then
+                for _, b in ipairs(attached_buffers) do
+                    vim.lsp.buf_attach_client(b, id)
+                end
+                vim.notify(string.format("Lsp `%s` has been restarted.", config.name))
+            else
+                vim.notify(string.format("Error restarting `%s`.", config.name), vim.log.levels.ERROR)
             end
-        end
-
-        -- Restart for current buffer
-        vim.lsp.start({
-            name = vim.bo.filetype .. "_ls",
-            cmd = server_configs[vim.bo.filetype .. "_ls"] and server_configs[vim.bo.filetype .. "_ls"].cmd
-                or server_configs[vim.bo.filetype] and server_configs[vim.bo.filetype].cmd
-                or server_configs["lua_ls"].cmd, -- fallback
-            root_dir = vim.fn.getcwd(),
-        })
-
-        vim.cmd("edit") -- Reload buffer to ensure attachment
-    end, 500) -- 500ms delay to allow clients to shut down
+        end, 600)
+    end
 end
 
 --- Display detailed information about active LSP clients
