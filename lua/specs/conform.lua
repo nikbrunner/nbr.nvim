@@ -4,6 +4,9 @@ local prettier_configs = { ".prettierrc", ".prettierrc.json" }
 local deno_cmd = "deno_fmt"
 local deno_configs = { "deno.json", "deno.jsonc" }
 
+local biome_cmd = "biome format"
+local biome_configs = { "biome.json" }
+
 ---@type LazyPluginSpec
 return {
     "stevearc/conform.nvim",
@@ -33,7 +36,7 @@ return {
             if not is_prettier_available then
                 vim.notify(
                     string.format(
-                        "There is a `prettier` config (%s), but `%s` or `%s` is not installed",
+                        "There is a `prettier` config (%s), but `%s` is not installed",
                         prettier_config,
                         prettier_cmd
                     ),
@@ -47,7 +50,7 @@ return {
                         prettier_config,
                         prettier_cmd
                     ),
-                    vim.log.levels.WARN,
+                    vim.log.levels.INFO,
                     { title = "Conform" }
                 )
             end
@@ -68,7 +71,25 @@ return {
             vim.notify("No deno config found", vim.log.levels.WARN, { title = "Conform" })
         end
 
-        local function handle_prettier_or_deno()
+        local is_biome_available = conform.get_formatter_info(biome_cmd, bufnr).available
+        local biome_config = vim.fs.find(biome_configs, { upward = true, path = fname })[1]
+
+        if biome_config ~= nil then
+            if not is_biome_available then
+                vim.notify("There is a biome config, but biome is not installed", vim.log.levels.WARN, { title = "Conform" })
+            else
+                vim.notify(string.format("Using %s for formatting", biome_cmd), vim.log.levels.INFO, { title = "Conform" })
+            end
+        else
+            vim.notify("No biome config found", vim.log.levels.WARN, { title = "Conform" })
+        end
+
+        local function handle_prettier_or_deno_or_biome()
+            -- Priority: Biome > Deno > Prettier
+            if biome_config ~= nil and is_biome_available then
+                return { "biome", stop_after_first = true }
+            end
+
             if deno_config ~= nil and is_deno_available then
                 return { "deno_fmt", stop_after_first = true }
             end
@@ -89,12 +110,12 @@ return {
                 end
             end,
             formatters_by_ft = {
-                javascript = handle_prettier_or_deno,
-                javascriptreact = handle_prettier_or_deno,
-                markdown = handle_prettier_or_deno,
-                json = handle_prettier_or_deno,
-                typescript = handle_prettier_or_deno,
-                typescriptreact = handle_prettier_or_deno,
+                javascript = handle_prettier_or_deno_or_biome,
+                javascriptreact = handle_prettier_or_deno_or_biome,
+                markdown = handle_prettier_or_deno_or_biome,
+                json = handle_prettier_or_deno_or_biome,
+                typescript = handle_prettier_or_deno_or_biome,
+                typescriptreact = handle_prettier_or_deno_or_biome,
                 css = { prettier_cmd },
                 scss = { prettier_cmd },
                 graphql = { prettier_cmd },
