@@ -7,14 +7,21 @@ return {
     event = "VeryLazy",
     keys = {
         {
-            "<leader>e",
+            "<C-e>",
             function()
                 require("yazi").yazi()
             end,
             desc = "[E]xplorer",
         },
         {
-            "<leader>E",
+            "<leader>we",
+            function()
+                require("yazi").yazi()
+            end,
+            desc = "[E]xplorer",
+        },
+        {
+            "<leader>wE",
             function()
                 require("yazi").yazi(nil, vim.fn.getcwd())
             end,
