@@ -8,8 +8,8 @@
   "bmessages.nvim": { "branch": "main", "commit": "985c6973bc27888598a03f4766a2481248a599b2" },
   "bufferline.nvim": { "branch": "main", "commit": "655133c3b4c3e5e05ec549b9f8cc2894ac6f51b3" },
   "ccc.nvim": { "branch": "main", "commit": "9d1a256e006decc574789dfc7d628ca11644d4c2" },
-  "codecompanion-history.nvim": { "branch": "main", "commit": "36f1a611a2bed70b57a50c877ffc50bdb74c9d23" },
-  "codecompanion.nvim": { "branch": "main", "commit": "24407c240ee8f5a4fb7eae584e13547028c52745" },
+  "codecompanion-history.nvim": { "branch": "main", "commit": "66943e78bcacaa27f4ac4a398df4016eb5413ecd" },
+  "codecompanion.nvim": { "branch": "main", "commit": "8cae4716385317cd561c1cc870d181ea62469935" },
   "conform.nvim": { "branch": "master", "commit": "6feb2f28f9a9385e401857b21eeac3c1b66dd628" },
   "contextindent.nvim": { "branch": "main", "commit": "985b3ea05fecb9a220ea126ba9c7d40b002d6b63" },
   "flash.nvim": { "branch": "main", "commit": "3c942666f115e2811e959eabbdd361a025db8b63" },
@@ -60,5 +60,5 @@
   "wezterm-types": { "branch": "main", "commit": "c20d00472a6a8d6ddd9039345eb03f9ea96503aa" },
   "whatthejump.nvim": { "branch": "main", "commit": "d05b93eca173d374d603e2b8709f18ae6dd4b7af" },
   "which-key.nvim": { "branch": "main", "commit": "370ec46f710e058c9c1646273e6b225acf47cbed" },
-  "yazi.nvim": { "branch": "main", "commit": "59c22d1a8bcb3d00a7115ef7f2d59b90cf989ab3" }
+  "yazi.nvim": { "branch": "main", "commit": "e2ddbaa88ec61d0b96e3d53ba851b0e7a0b36f14" }
 }
