@@ -44,9 +44,9 @@ function M.set_diagnostic_virtual_lines()
 end
 
 function M.custom_jump(jumpCount, severity)
-    -- local auto_group_name = "custom_jump"
+    local auto_group_name = "custom_jump"
 
-    -- pcall(vim.api.nvim_del_augroup_by_name, auto_group_name) -- prevent autocmd for repeated jumps
+    pcall(vim.api.nvim_del_augroup_by_name, auto_group_name) -- prevent autocmd for repeated jumps
 
     vim.diagnostic.jump({
         count = jumpCount,
@@ -54,20 +54,20 @@ function M.custom_jump(jumpCount, severity)
         float = false,
     })
 
-    -- M.set_diagnostic_virtual_lines()
+    M.set_diagnostic_virtual_lines()
     vim.cmd("norm zz")
-    vim.diagnostic.open_float(nil, { focusable = true, source = "if_many" })
-    --
-    -- vim.defer_fn(function() -- deferred to not trigger by jump itself
-    --     vim.api.nvim_create_autocmd("CursorMoved", {
-    --         desc = "User(once): Reset diagnostics virtual lines",
-    --         once = true,
-    --         group = vim.api.nvim_create_augroup(auto_group_name, {}),
-    --         callback = function()
-    --             M.set_diagnostic_virtual_text()
-    --         end,
-    --     })
-    -- end, 1)
+    -- vim.diagnostic.open_float(nil, { focusable = true, source = "if_many" })
+
+    vim.defer_fn(function() -- deferred to not trigger by jump itself
+        vim.api.nvim_create_autocmd("CursorMoved", {
+            desc = "User(once): Reset diagnostics virtual lines",
+            once = true,
+            group = vim.api.nvim_create_augroup(auto_group_name, {}),
+            callback = function()
+                M.set_diagnostic_virtual_text()
+            end,
+        })
+    end, 1)
 end
 
 -- =============================================================================
@@ -319,8 +319,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
             group = vim.api.nvim_create_augroup("cursor-hold-diagnostics", {}),
             desc = "User: On cursor hold, reset diagnostics virtual lines",
             callback = function()
-                vim.diagnostic.open_float(nil, { focusable = true, source = "if_many" })
-                -- M.set_diagnostic_virtual_lines()
+                -- vim.diagnostic.open_float(nil, { focusable = true, source = "if_many" })
+                M.set_diagnostic_virtual_lines()
             end,
         })
 
