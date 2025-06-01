@@ -11,6 +11,8 @@ return {
         ft = "markdown",
         lazy = false,
         event = {
+            "DirChanged " .. Config.pathes.notes.personal,
+            "DirChanged " .. Config.pathes.notes.work.dcd,
             "BufReadPre " .. Config.pathes.notes.personal .. "/*.md",
             "BufReadPre " .. Config.pathes.notes.work.dcd .. "/*.md",
         },
@@ -101,7 +103,6 @@ return {
                 return {
                     "<localleader>" .. map,
                     "<cmd>Obsidian " .. subcmd .. "<cr>",
-                    ft = "markdown",
                     desc = desc,
                 }
             end
