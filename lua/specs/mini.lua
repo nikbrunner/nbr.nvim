@@ -97,7 +97,7 @@ M.specs = {
                             { hl = mode_hl, strings = { mode } },
                             {
                                 hl = "@function",
-                                strings = (m.is_truncated(200) and {} or { project_name() }),
+                                strings = (m.is_truncated(100) and {} or { project_name() }),
                             },
                             {
                                 hl = "@variable.member",
