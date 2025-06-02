@@ -75,12 +75,12 @@ return {
                     opts = { noremap = false, expr = true, buffer = true },
                 },
                 -- Disable this mapping
-                -- ["<C-t>"] = {
-                --     action = function()
-                --         return require("obsidian").util.toggle_checkbox()
-                --     end,
-                --     opts = { buffer = true },
-                -- },
+                ["<C-t>"] = {
+                    action = function()
+                        return require("obsidian").util.toggle_checkbox()
+                    end,
+                    opts = { buffer = true },
+                },
                 -- Smart action depending on context: follow link, show notes with tag, toggle checkbox, or toggle heading fold
                 ["<cr>"] = {
                     action = function()
@@ -231,7 +231,7 @@ return {
                 -- All these are hanlded by Obsidian
                 create_from_template = false,
                 insert_checkbox = false,
-                toggle_checkbox = true,
+                toggle_checkbox = false,
             },
 
             -- Keymappings for shortcuts. Set to `false` or `""` to disable.
@@ -244,7 +244,7 @@ return {
                 insert_italic = "<leader>nii", -- Italic
                 insert_link = "<leader>nil", -- Link
                 insert_table = "<leader>niT", -- Table
-                insert_checkbox = "<leader>nik", -- Checkbox (checKbox)
+                insert_checkbox = "<leader>nit", -- Checkbox (checKbox)
                 toggle_checkbox = "<C-t>", -- Toggle Checkbox (keep this as is)
                 preview = "<leader>np", -- Preview
             },
