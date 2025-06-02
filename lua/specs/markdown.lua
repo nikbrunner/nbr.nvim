@@ -8,18 +8,7 @@ return {
     {
         "obsidian-nvim/obsidian.nvim",
         version = "*", -- recommended, use latest release instead of latest commit
-        ft = "markdown",
-        cmd = "Obsidian",
-        -- Define keys here so Lazy knows to load the plugin when these are pressed
-        keys = {
-            "<leader>nf",
-            "<leader>ns", 
-            "<leader>nt",
-            "<leader>nj",
-            "<leader>nh",
-            "<leader>nl",
-            "<leader>nd",
-        },
+        event = "VeryLazy",
         dependencies = {
             -- Required.
             "nvim-lua/plenary.nvim",
@@ -153,31 +142,37 @@ return {
             local cwd = vim.fn.getcwd()
             local personal_vault = vim.fn.expand(Config.pathes.notes.personal)
             local work_vault = vim.fn.expand(Config.pathes.notes.work.dcd)
-            
-            if cwd == personal_vault or cwd:match("^" .. vim.pesc(personal_vault) .. "/") or
-               cwd == work_vault or cwd:match("^" .. vim.pesc(work_vault) .. "/") then
+
+            if
+                cwd == personal_vault
+                or cwd:match("^" .. vim.pesc(personal_vault) .. "/")
+                or cwd == work_vault
+                or cwd:match("^" .. vim.pesc(work_vault) .. "/")
+            then
                 vim.api.nvim_exec_autocmds("User", { pattern = "ObsidianReady" })
             end
 
             -- Always create keymaps that will switch workspace based on context
             local map = vim.keymap.set
-            
+
             -- Helper to get the appropriate workspace
             local function get_workspace()
                 local cwd = vim.fn.getcwd()
                 return cwd:match("dealercenter%-digital") and "dcd" or "personal"
             end
-            
+
             -- Helper to check if we're in a vault
             local function in_vault()
                 local cwd = vim.fn.getcwd()
                 local personal_vault = vim.fn.expand(Config.pathes.notes.personal)
                 local work_vault = vim.fn.expand(Config.pathes.notes.work.dcd)
-                
-                return cwd == personal_vault or cwd:match("^" .. vim.pesc(personal_vault) .. "/") or
-                       cwd == work_vault or cwd:match("^" .. vim.pesc(work_vault) .. "/")
+
+                return cwd == personal_vault
+                    or cwd:match("^" .. vim.pesc(personal_vault) .. "/")
+                    or cwd == work_vault
+                    or cwd:match("^" .. vim.pesc(work_vault) .. "/")
             end
-            
+
             -- Helper to ensure we're in the right workspace before running command
             local function with_workspace(cmd)
                 return function()
@@ -186,7 +181,7 @@ return {
                     if client and client.current_workspace.name ~= workspace then
                         client:switch_workspace(workspace)
                     end
-                    
+
                     -- If we're not in a vault, open in a vertical split
                     if not in_vault() then
                         -- Save current window
@@ -211,7 +206,7 @@ return {
                     end
                 end
             end
-            
+
             map("n", "<leader>nf", with_workspace("Obsidian quick_switch"), { desc = "[F]ind Note (Obsidian)" })
             map("n", "<leader>ns", with_workspace("Obsidian search"), { desc = "[S]earch Notes (Obsidian)" })
             map("n", "<leader>nt", with_workspace("Obsidian template"), { desc = "Insert [T]emplate (Obsidian)" })
