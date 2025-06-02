@@ -9,29 +9,17 @@ return {
         "obsidian-nvim/obsidian.nvim",
         version = "*", -- recommended, use latest release instead of latest commit
         ft = "markdown",
-        event = function()
-            local events = {
-                "BufReadPre " .. Config.pathes.notes.personal .. "/*.md",
-                "BufReadPre " .. Config.pathes.notes.work.dcd .. "/*.md",
-            }
-
-            -- Check if we're starting in a vault
-            local cwd = vim.fn.getcwd()
-            local personal_vault = vim.fn.expand(Config.pathes.notes.personal)
-            local work_vault = vim.fn.expand(Config.pathes.notes.work.dcd)
-
-            if
-                cwd == personal_vault
-                or cwd:match("^" .. vim.pesc(personal_vault) .. "/")
-                or cwd == work_vault
-                or cwd:match("^" .. vim.pesc(work_vault) .. "/")
-            then
-                -- Add VimEnter to load immediately
-                table.insert(events, "VimEnter")
-            end
-
-            return events
-        end,
+        cmd = "Obsidian",
+        -- Define keys here so Lazy knows to load the plugin when these are pressed
+        keys = {
+            "<leader>nf",
+            "<leader>ns", 
+            "<leader>nt",
+            "<leader>nj",
+            "<leader>nh",
+            "<leader>nl",
+            "<leader>nd",
+        },
         dependencies = {
             -- Required.
             "nvim-lua/plenary.nvim",
@@ -161,30 +149,44 @@ return {
                 end,
             })
 
-            -- Fire the ready event
-            vim.api.nvim_exec_autocmds("User", { pattern = "ObsidianReady" })
-
-            -- Create keymaps only when in vault
+            -- Fire the ready event if we're in a vault
             local cwd = vim.fn.getcwd()
             local personal_vault = vim.fn.expand(Config.pathes.notes.personal)
             local work_vault = vim.fn.expand(Config.pathes.notes.work.dcd)
-
-            if
-                cwd == personal_vault
-                or cwd:match("^" .. vim.pesc(personal_vault) .. "/")
-                or cwd == work_vault
-                or cwd:match("^" .. vim.pesc(work_vault) .. "/")
-            then
-                -- Set up keymaps only when in a vault
-                local map = vim.keymap.set
-                map("n", "<leader>nf", "<cmd>Obsidian quick_switch<cr>", { desc = "[F]ind Note (Obsidian)" })
-                map("n", "<leader>ns", "<cmd>Obsidian search<cr>", { desc = "[S]earch Notes (Obsidian)" })
-                map("n", "<leader>nt", "<cmd>Obsidian template<cr>", { desc = "Insert [T]emplate (Obsidian)" })
-                map("n", "<leader>nj", "<cmd>Obsidian today<cr>", { desc = "Today's Note" })
-                map("n", "<leader>nh", "<cmd>Obsidian today -1<cr>", { desc = "Yesterday's Note" })
-                map("n", "<leader>nl", "<cmd>Obsidian today +1<cr>", { desc = "Tomorrow's Note" })
-                map("n", "<leader>nd", "<cmd>Obsidian dailies<cr>", { desc = "[D]aily Notes List" })
+            
+            if cwd == personal_vault or cwd:match("^" .. vim.pesc(personal_vault) .. "/") or
+               cwd == work_vault or cwd:match("^" .. vim.pesc(work_vault) .. "/") then
+                vim.api.nvim_exec_autocmds("User", { pattern = "ObsidianReady" })
             end
+
+            -- Always create keymaps that will switch workspace based on context
+            local map = vim.keymap.set
+            
+            -- Helper to get the appropriate workspace
+            local function get_workspace()
+                local cwd = vim.fn.getcwd()
+                return cwd:match("dealercenter%-digital") and "dcd" or "personal"
+            end
+            
+            -- Helper to ensure we're in the right workspace before running command
+            local function with_workspace(cmd)
+                return function()
+                    local workspace = get_workspace()
+                    local client = require("obsidian").get_client()
+                    if client and client.current_workspace.name ~= workspace then
+                        client:switch_workspace(workspace)
+                    end
+                    vim.cmd(cmd)
+                end
+            end
+            
+            map("n", "<leader>nf", with_workspace("Obsidian quick_switch"), { desc = "[F]ind Note (Obsidian)" })
+            map("n", "<leader>ns", with_workspace("Obsidian search"), { desc = "[S]earch Notes (Obsidian)" })
+            map("n", "<leader>nt", with_workspace("Obsidian template"), { desc = "Insert [T]emplate (Obsidian)" })
+            map("n", "<leader>nj", with_workspace("Obsidian today"), { desc = "Today's Note" })
+            map("n", "<leader>nh", with_workspace("Obsidian today -1"), { desc = "Yesterday's Note" })
+            map("n", "<leader>nl", with_workspace("Obsidian today +1"), { desc = "Tomorrow's Note" })
+            map("n", "<leader>nd", with_workspace("Obsidian dailies"), { desc = "[D]aily Notes List" })
         end,
     },
 

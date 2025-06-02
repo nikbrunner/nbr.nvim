@@ -253,19 +253,6 @@ M.map("n", "<leader>w.", function()
     end
 end, { desc = "[.] Set Root" })
 
--- Daily notes keybindings
-local files = require("lib.files")
-
--- Open work daily note (dcd workspace)
-M.map("n", "<leader>ndw", function()
-    files.open_daily_note("dcd")
-end, { desc = "[D]aily [W]ork Note" })
-
--- Open personal daily note
-M.map("n", "<leader>ndp", function()
-    files.open_daily_note("personal")
-end, { desc = "[D]aily [P]ersonal Note" })
-
 -- =============================================================================
 -- LSP (Language Server Protocol) Related Mappings & Language Management
 -- =============================================================================
