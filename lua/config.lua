@@ -78,32 +78,6 @@ M.config = {
             },
         },
     },
-    ensure_installed = {
-        -- :h mason-lspconfig-server-map
-        servers = {
-            "astro",
-            "bashls",
-            "cssls",
-            "gopls",
-            "html",
-            "jsonls",
-            "lua_ls",
-            "tailwindcss",
-            "marksman",
-            "vtsls",
-            "yamlls",
-        },
-        -- :h mason-tool-installer
-        tools = {
-            "stylua",
-            "luacheck",
-            "shellcheck",
-            "prettierd",
-            "black",
-            "yamllint",
-            "shfmt",
-        },
-    },
 }
 
 return M.config
