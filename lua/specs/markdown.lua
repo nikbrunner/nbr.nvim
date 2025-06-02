@@ -168,6 +168,16 @@ return {
                 return cwd:match("dealercenter%-digital") and "dcd" or "personal"
             end
             
+            -- Helper to check if we're in a vault
+            local function in_vault()
+                local cwd = vim.fn.getcwd()
+                local personal_vault = vim.fn.expand(Config.pathes.notes.personal)
+                local work_vault = vim.fn.expand(Config.pathes.notes.work.dcd)
+                
+                return cwd == personal_vault or cwd:match("^" .. vim.pesc(personal_vault) .. "/") or
+                       cwd == work_vault or cwd:match("^" .. vim.pesc(work_vault) .. "/")
+            end
+            
             -- Helper to ensure we're in the right workspace before running command
             local function with_workspace(cmd)
                 return function()
@@ -176,7 +186,29 @@ return {
                     if client and client.current_workspace.name ~= workspace then
                         client:switch_workspace(workspace)
                     end
-                    vim.cmd(cmd)
+                    
+                    -- If we're not in a vault, open in a vertical split
+                    if not in_vault() then
+                        -- Save current window
+                        local current_win = vim.api.nvim_get_current_win()
+                        -- Create vertical split
+                        vim.cmd("vsplit")
+                        -- Run the command
+                        vim.cmd(cmd)
+                        -- Set up autocmd to return focus when leaving the split
+                        vim.api.nvim_create_autocmd("WinLeave", {
+                            buffer = vim.api.nvim_get_current_buf(),
+                            once = true,
+                            callback = function()
+                                -- Return to original window if it still exists
+                                if vim.api.nvim_win_is_valid(current_win) then
+                                    vim.api.nvim_set_current_win(current_win)
+                                end
+                            end,
+                        })
+                    else
+                        vim.cmd(cmd)
+                    end
                 end
             end
             
