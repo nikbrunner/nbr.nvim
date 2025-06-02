@@ -9,12 +9,29 @@ return {
         "obsidian-nvim/obsidian.nvim",
         version = "*", -- recommended, use latest release instead of latest commit
         ft = "markdown",
-        event = {
-            "DirChanged " .. Config.pathes.notes.personal,
-            "DirChanged " .. Config.pathes.notes.work.dcd,
-            "BufReadPre " .. Config.pathes.notes.personal .. "/*.md",
-            "BufReadPre " .. Config.pathes.notes.work.dcd .. "/*.md",
-        },
+        event = function()
+            local events = {
+                "BufReadPre " .. Config.pathes.notes.personal .. "/*.md",
+                "BufReadPre " .. Config.pathes.notes.work.dcd .. "/*.md",
+            }
+
+            -- Check if we're starting in a vault
+            local cwd = vim.fn.getcwd()
+            local personal_vault = vim.fn.expand(Config.pathes.notes.personal)
+            local work_vault = vim.fn.expand(Config.pathes.notes.work.dcd)
+
+            if
+                cwd == personal_vault
+                or cwd:match("^" .. vim.pesc(personal_vault) .. "/")
+                or cwd == work_vault
+                or cwd:match("^" .. vim.pesc(work_vault) .. "/")
+            then
+                -- Add VimEnter to load immediately
+                table.insert(events, "VimEnter")
+            end
+
+            return events
+        end,
         dependencies = {
             -- Required.
             "nvim-lua/plenary.nvim",
@@ -39,7 +56,11 @@ return {
                             folder = "05 - Meta/Templates/",
                             date_format = date_format,
                             -- A map for custom variables, the key should be the variable and the value a function
-                            substitutions = {},
+                            substitutions = {
+                                ["date:YYYY.MM.DD - dddd"] = function()
+                                    return os.date("%Y.%m.%d - %A")
+                                end,
+                            },
                         },
                     },
                 },
@@ -58,7 +79,11 @@ return {
                             folder = "Templates",
                             date_format = date_format,
                             -- A map for custom variables, the key should be the variable and the value a function
-                            substitutions = {},
+                            substitutions = {
+                                ["date:YYYY.MM.DD - dddd"] = function()
+                                    return os.date("%Y.%m.%d - %A")
+                                end,
+                            },
                         },
                     },
                 },
@@ -97,6 +122,48 @@ return {
                 enable = true, -- markview.nvim does that
             },
         },
+        config = function(_, opts)
+            require("obsidian").setup(opts)
+
+            -- Function to check and open today's note
+            local function open_daily_note_if_in_vault()
+                local cwd = vim.fn.getcwd()
+                local personal_vault = vim.fn.expand(Config.pathes.notes.personal)
+                local work_vault = vim.fn.expand(Config.pathes.notes.work.dcd)
+
+                -- Check if we're in either vault (exact match or subdirectory)
+                if
+                    cwd == personal_vault
+                    or cwd:match("^" .. vim.pesc(personal_vault) .. "/")
+                    or cwd == work_vault
+                    or cwd:match("^" .. vim.pesc(work_vault) .. "/")
+                then
+                    vim.cmd("Obsidian today")
+                end
+            end
+
+            -- Create autocmd group
+            local group = vim.api.nvim_create_augroup("ObsidianAutoDaily", { clear = true })
+
+            -- Auto-open today's note when entering vault
+            vim.api.nvim_create_autocmd("DirChanged", {
+                group = group,
+                callback = open_daily_note_if_in_vault,
+            })
+
+            -- Also check on first buffer enter (for when we start in vault)
+            vim.api.nvim_create_autocmd("User", {
+                group = group,
+                pattern = "ObsidianReady",
+                once = true,
+                callback = function()
+                    vim.defer_fn(open_daily_note_if_in_vault, 100)
+                end,
+            })
+
+            -- Fire the ready event
+            vim.api.nvim_exec_autocmds("User", { pattern = "ObsidianReady" })
+        end,
         keys = function()
             local map = function(map, subcmd, desc)
                 return {
