@@ -13,7 +13,7 @@ return {
         -- [Support ensure_installed directly in mason · Issue #1713 · williamboman/mason.nvim](https://github.com/williamboman/mason.nvim/issues/1713)
         -- https://github.com/williamboman/mason-lspconfig.nvim/blob/1a31f824b9cd5bc6f342fc29e9a53b60d74af245/lua/mason-lspconfig/install.lua
         "mason-org/mason-lspconfig.nvim",
-        event = "VimEnter",
+        event = { "BufReadPost", "BufNewFile" },
         dependencies = "williamboman/mason.nvim",
         opts = {
             ensure_installed = Config.ensure_installed.servers,

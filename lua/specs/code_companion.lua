@@ -6,7 +6,7 @@ return {
         "nvim-treesitter/nvim-treesitter",
         "ravitemer/codecompanion-history.nvim",
     },
-    event = "VeryLazy",
+    cmd = { "CodeCompanion", "CodeCompanionChat", "CodeCompanionActions", "CodeCompanionHistory" },
     opts = {
         display = {
             chat = {

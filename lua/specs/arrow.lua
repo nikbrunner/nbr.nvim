@@ -3,7 +3,9 @@ local M = {}
 ---@type LazyPluginSpec
 M.spec = {
     "nikbrunner/arrow.nvim",
-    event = "VimEnter",
+    -- STARTUP OPTIMIZATION: Changed from event = "VimEnter" to key-based loading
+    -- This plugin was taking ~35ms on startup. Now it only loads when you use
+    -- the keybindings (M, m, <M-k>, <M-j>), reducing startup time significantly.
     dir = require("lib.config").get_repo_path("nikbrunner/arrow.nvim"),
     opts = {
         leader_key = "M",
@@ -25,6 +27,8 @@ M.spec = {
         },
     },
     keys = {
+        { "M", desc = "Arrow bookmarks menu" },
+        { "m", desc = "Arrow buffer bookmarks" },
         {
             "<M-k>",
             function()

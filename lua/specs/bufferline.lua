@@ -1,7 +1,9 @@
 ---@type LazyPluginSpec
 return {
     "akinsho/bufferline.nvim",
-    event = "VeryLazy",
+    -- STARTUP OPTIMIZATION: Load only when we have multiple tabs
+    -- Since mode = "tabs", it only shows tabpages, so we load it on TabNew
+    event = { "TabNew" },
     opts = {
         options = {
             mode = "tabs", -- set to "tabs" to only show tabpages instead

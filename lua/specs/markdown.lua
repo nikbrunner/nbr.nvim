@@ -9,7 +9,6 @@ return {
         "obsidian-nvim/obsidian.nvim",
         version = "*", -- recommended, use latest release instead of latest commit
         ft = "markdown",
-        lazy = false,
         event = {
             "DirChanged " .. Config.pathes.notes.personal,
             "DirChanged " .. Config.pathes.notes.work.dcd,
