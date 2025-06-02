@@ -163,26 +163,28 @@ return {
 
             -- Fire the ready event
             vim.api.nvim_exec_autocmds("User", { pattern = "ObsidianReady" })
-        end,
-        keys = function()
-            local map = function(map, subcmd, desc)
-                return {
-                    "<localleader>" .. map,
-                    "<cmd>Obsidian " .. subcmd .. "<cr>",
-                    desc = desc,
-                }
-            end
 
-            return {
-                map("<localleader>", "quick_switch", "Quick Switch"),
-                map("f", "search", "Find"),
-                -- map("ix", "toggle_checkbox", "Checkbox"),
-                map("it", "template", "Template"),
-                map("dj", "today", "Today"),
-                map("dh", "today -1", "Previous Day"),
-                map("dl", "today +1", "Next Day"),
-                map("dd", "dailies", "Dailies"),
-            }
+            -- Create keymaps only when in vault
+            local cwd = vim.fn.getcwd()
+            local personal_vault = vim.fn.expand(Config.pathes.notes.personal)
+            local work_vault = vim.fn.expand(Config.pathes.notes.work.dcd)
+
+            if
+                cwd == personal_vault
+                or cwd:match("^" .. vim.pesc(personal_vault) .. "/")
+                or cwd == work_vault
+                or cwd:match("^" .. vim.pesc(work_vault) .. "/")
+            then
+                -- Set up keymaps only when in a vault
+                local map = vim.keymap.set
+                map("n", "<leader>nf", "<cmd>Obsidian quick_switch<cr>", { desc = "[F]ind Note (Obsidian)" })
+                map("n", "<leader>ns", "<cmd>Obsidian search<cr>", { desc = "[S]earch Notes (Obsidian)" })
+                map("n", "<leader>nt", "<cmd>Obsidian template<cr>", { desc = "Insert [T]emplate (Obsidian)" })
+                map("n", "<leader>nj", "<cmd>Obsidian today<cr>", { desc = "Today's Note" })
+                map("n", "<leader>nh", "<cmd>Obsidian today -1<cr>", { desc = "Yesterday's Note" })
+                map("n", "<leader>nl", "<cmd>Obsidian today +1<cr>", { desc = "Tomorrow's Note" })
+                map("n", "<leader>nd", "<cmd>Obsidian dailies<cr>", { desc = "[D]aily Notes List" })
+            end
         end,
     },
 
@@ -209,16 +211,17 @@ return {
 
             -- Keymappings for shortcuts. Set to `false` or `""` to disable.
             keymaps = {
-                insert_header = "<localleader>iH", -- Header
-                insert_code_block = "<localleader>ic", -- Code block
-                insert_bold = "<localleader>ib", -- Bold
-                insert_highlight = "<localleader>ih", -- Highlight
-                insert_italic = "<localleader>ii", -- Italic
-                insert_link = "<localleader>il", -- Link
-                insert_table = "<localleader>iT", -- Table
-                insert_checkbox = "<localleader>ik", -- Checkbox
-                toggle_checkbox = "<C-t>", -- Toggle Checkbox
-                preview = "<localleader>p", -- Preview
+                -- Use <leader>ni prefix for markdown insert operations
+                insert_header = "<leader>niH", -- Header
+                insert_code_block = "<leader>nic", -- Code block
+                insert_bold = "<leader>nib", -- Bold
+                insert_highlight = "<leader>nih", -- Highlight
+                insert_italic = "<leader>nii", -- Italic
+                insert_link = "<leader>nil", -- Link
+                insert_table = "<leader>niT", -- Table
+                insert_checkbox = "<leader>nik", -- Checkbox (checKbox)
+                toggle_checkbox = "<C-t>", -- Toggle Checkbox (keep this as is)
+                preview = "<leader>np", -- Preview
             },
 
             -- This handles Obisidian

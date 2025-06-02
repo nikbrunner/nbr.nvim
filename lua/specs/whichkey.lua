@@ -82,7 +82,8 @@ return {
                 { "<leader>r", group = "[R]est Client", icon = "󰿘 " },
                 { "<leader>n", group = "[N]otes", icon = " " },
                 { "<leader>nd", group = "[D]ailies", icon = "  " },
-            },
+                { "<leader>ng", group = "[G]it Notes", icon = "󰠮 " },
+                { "<leader>ni", group = "[I]nsert", icon = "⎀ " },            },
         },
     },
 }
