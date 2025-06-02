@@ -102,18 +102,21 @@ return {
         config = function(_, opts)
             require("obsidian").setup(opts)
 
+            -- Define vault paths once
+            local cwd = vim.fn.getcwd()
+            local personal_vault = vim.fn.expand(Config.pathes.notes.personal)
+            local work_vault = vim.fn.expand(Config.pathes.notes.work.dcd)
+
             -- Function to check and open today's note
             local function open_daily_note_if_in_vault()
-                local cwd = vim.fn.getcwd()
-                local personal_vault = vim.fn.expand(Config.pathes.notes.personal)
-                local work_vault = vim.fn.expand(Config.pathes.notes.work.dcd)
+                local current_cwd = vim.fn.getcwd()
 
                 -- Check if we're in either vault (exact match or subdirectory)
                 if
-                    cwd == personal_vault
-                    or cwd:match("^" .. vim.pesc(personal_vault) .. "/")
-                    or cwd == work_vault
-                    or cwd:match("^" .. vim.pesc(work_vault) .. "/")
+                    current_cwd == personal_vault
+                    or current_cwd:match("^" .. vim.pesc(personal_vault) .. "/")
+                    or current_cwd == work_vault
+                    or current_cwd:match("^" .. vim.pesc(work_vault) .. "/")
                 then
                     vim.cmd("Obsidian today")
                 end
@@ -139,10 +142,6 @@ return {
             })
 
             -- Fire the ready event if we're in a vault
-            local cwd = vim.fn.getcwd()
-            local personal_vault = vim.fn.expand(Config.pathes.notes.personal)
-            local work_vault = vim.fn.expand(Config.pathes.notes.work.dcd)
-
             if
                 cwd == personal_vault
                 or cwd:match("^" .. vim.pesc(personal_vault) .. "/")
@@ -157,20 +156,17 @@ return {
 
             -- Helper to get the appropriate workspace
             local function get_workspace()
-                local cwd = vim.fn.getcwd()
-                return cwd:match("dealercenter%-digital") and "dcd" or "personal"
+                local current_cwd = vim.fn.getcwd()
+                return current_cwd:match("dealercenter%-digital") and "dcd" or "personal"
             end
 
             -- Helper to check if we're in a vault
             local function in_vault()
-                local cwd = vim.fn.getcwd()
-                local personal_vault = vim.fn.expand(Config.pathes.notes.personal)
-                local work_vault = vim.fn.expand(Config.pathes.notes.work.dcd)
-
-                return cwd == personal_vault
-                    or cwd:match("^" .. vim.pesc(personal_vault) .. "/")
-                    or cwd == work_vault
-                    or cwd:match("^" .. vim.pesc(work_vault) .. "/")
+                local current_cwd = vim.fn.getcwd()
+                return current_cwd == personal_vault
+                    or current_cwd:match("^" .. vim.pesc(personal_vault) .. "/")
+                    or current_cwd == work_vault
+                    or current_cwd:match("^" .. vim.pesc(work_vault) .. "/")
             end
 
             -- Helper to ensure we're in the right workspace before running command
