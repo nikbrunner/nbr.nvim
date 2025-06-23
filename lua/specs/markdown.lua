@@ -23,7 +23,7 @@ return {
                     path = "~/repos/nikbrunner/notes",
                     overrides = {
                         daily_notes = {
-                            folder = "02 - Areas/Log/2025/05-May",
+                            folder = string.format("02 - Areas/Log/%d/%02d-%s", os.date("%Y"), os.date("%m"), os.date("%B")),
                             date_format = date_format,
                             default_tags = { "log" },
                             template = "05 - Meta/Templates/Daily Note.md",
