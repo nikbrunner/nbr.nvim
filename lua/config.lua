@@ -29,6 +29,10 @@ M.config = {
         ["black-atom-terra-winter-day"] = { wezterm = "Black Atom — TER ∷ Winter Day" },
         ["black-atom-terra-winter-night"] = { wezterm = "Black Atom - Terra Winter Night" },
 
+        ["black-atom-north-night"] = { wezterm = "Black Atom — NORTH ∷ Night" },
+        ["black-atom-north-dark-night"] = { wezterm = "Black Atom — NORTH ∷ Dark Night" },
+        ["black-atom-north-day"] = { wezterm = "Black Atom — NORTH ∷ Day" },
+
         ["black-atom-jpn-koyo-yoru"] = { wezterm = "Black Atom — JPN ∷ Koyo Yoru" },
         ["black-atom-jpn-koyo-hiru"] = { wezterm = "Black Atom — JPN ∷ Koyo Hiru" },
         ["black-atom-jpn-tsuki-yoru"] = { wezterm = "Black Atom — JPN ∷ Tsuki Yoru" },
