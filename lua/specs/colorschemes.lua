@@ -30,7 +30,7 @@ return {
         ---@type BlackAtom.Config
         opts = {
             styles = {
-                transparency = "none",
+                transparency = "partial",
                 cmp_kind_color_mode = "bg",
                 diagnostics = {
                     background = true,
