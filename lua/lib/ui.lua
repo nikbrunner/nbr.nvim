@@ -11,6 +11,7 @@ function M.handle_colors(config, colorscheme, background)
 
     vim.defer_fn(function()
         Files.sync_wezterm_colorscheme(config, colorscheme)
+        Files.sync_ghostty_colorscheme(config, colorscheme)
     end, 25)
 end
 

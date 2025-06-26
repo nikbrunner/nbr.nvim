@@ -101,6 +101,95 @@ return {
     end
 end
 
+---Syncs the ghostty colorscheme with the current nvim colorscheme (if configured)
+---@param config VinConfig
+---@param colorscheme string
+function M.sync_ghostty_colorscheme(config, colorscheme)
+    local colorscheme_config = config.colorscheme_config_map[colorscheme]
+
+    if not colorscheme_config or not colorscheme_config.ghostty then
+        -- Silently skip if colorscheme doesn't have ghostty config
+        return
+    end
+
+    -- Ensure ghostty config is a string (theme filename)
+    if type(colorscheme_config.ghostty) ~= "string" then
+        vim.notify("Ghostty config must be a theme filename string, not a table", vim.log.levels.ERROR)
+        return
+    end
+
+    -- Use absolute path to Ghostty config
+    local ghostty_config_file = vim.fn.expand("~/.config/ghostty/config")
+    local ghostty_config_dir = vim.fn.fnamemodify(ghostty_config_file, ":h")
+
+    -- Ensure the parent directory exists
+    if vim.fn.isdirectory(ghostty_config_dir) == 0 then
+        local mkdir_ok = pcall(vim.fn.mkdir, ghostty_config_dir, "p")
+        if not mkdir_ok then
+            vim.notify("Failed to create ghostty config directory: " .. ghostty_config_dir, vim.log.levels.ERROR)
+            return
+        end
+    end
+
+    -- Determine current background mode and build theme string
+    local current_background = vim.o.background
+    local light_colorscheme = config.colorscheme_light
+    local dark_colorscheme = config.colorscheme_dark
+
+    -- Get ghostty theme names for both modes
+    local light_config = config.colorscheme_config_map[light_colorscheme]
+    local light_theme = (light_config and type(light_config.ghostty) == "string")
+            and light_config.ghostty
+        or "black-atom-jpn-koyo-hiru.conf"
+    
+    local dark_config = config.colorscheme_config_map[dark_colorscheme]
+    local dark_theme = (dark_config and type(dark_config.ghostty) == "string")
+            and dark_config.ghostty
+        or "black-atom-jpn-koyo-yoru.conf"
+
+    -- If we're manually changing to a specific colorscheme, update the appropriate mode
+    if current_background == "light" then
+        light_theme = colorscheme_config.ghostty
+    else
+        dark_theme = colorscheme_config.ghostty
+    end
+
+    -- Build the theme line
+    local theme_line = string.format("theme = dark:%s,light:%s", dark_theme, light_theme)
+
+    -- Read existing config if it exists, or create empty
+    local lines = {}
+    if vim.loop.fs_stat(ghostty_config_file) then
+        local read_ok, file_lines = pcall(vim.fn.readfile, ghostty_config_file)
+        if read_ok and file_lines then
+            lines = file_lines
+        end
+    end
+
+    -- Update or add theme line
+    local theme_updated = false
+    for i, line in ipairs(lines) do
+        if line:match("^theme%s*=") then
+            lines[i] = theme_line
+            theme_updated = true
+            break
+        end
+    end
+
+    -- If no theme line found, add it
+    if not theme_updated then
+        table.insert(lines, theme_line)
+    end
+
+    -- Write the file safely with pcall
+    local write_ok, err = pcall(vim.fn.writefile, lines, ghostty_config_file)
+    if not write_ok then
+        vim.notify("Failed to write ghostty config file: " .. (err or "unknown error"), vim.log.levels.ERROR)
+    else
+        vim.notify("Ghostty theme synced: " .. theme_line, vim.log.levels.INFO)
+    end
+end
+
 ---Detects printwidth from .prettierrc or .editorconfig files
 ---@param start_path? string The directory to start searching from (defaults to current buffer directory)
 ---@return number|nil printwidth The detected printwidth or nil if not found

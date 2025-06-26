@@ -12,41 +12,137 @@ M.config = {
     colorscheme_dark = "black-atom-jpn-koyo-yoru",
 
     ---see for wezterm themes: https://wezfurlong.org/wezterm/colorschemes/index.html
+    ---ghostty colors: https://ghostty.org/docs/reference/config
     colorscheme_config_map = {
-        ["default"] = { wezterm = "nvim_default_dark" },
+        ["default"] = {
+            wezterm = "nvim_default_dark",
+            ghostty = "default.conf",
+        },
 
-        ["black-atom-stations-engineering"] = { wezterm = "Black Atom — STA ∷ Engineering" },
-        ["black-atom-stations-operations"] = { wezterm = "Black Atom — STA ∷ Operations" },
-        ["black-atom-stations-medical"] = { wezterm = "Black Atom — STA ∷ Medical" },
-        ["black-atom-stations-research"] = { wezterm = "Black Atom — STA ∷ Research" },
+        ["black-atom-jpn-koyo-yoru"] = {
+            wezterm = "Black Atom — JPN ∷ Koyo Yoru",
+            ghostty = "black-atom-jpn-koyo-yoru.conf",
+        },
+        ["black-atom-jpn-koyo-hiru"] = {
+            wezterm = "Black Atom — JPN ∷ Koyo Hiru",
+            ghostty = "black-atom-jpn-koyo-hiru.conf",
+        },
 
-        ["black-atom-terra-spring-day"] = { wezterm = "Black Atom — TER ∷ Spring Day" },
-        ["black-atom-terra-spring-night"] = { wezterm = "Black Atom — TER ∷ Spring Night" },
-        ["black-atom-terra-summer-day"] = { wezterm = "Black Atom — TER ∷ Summer Day" },
-        ["black-atom-terra-summer-night"] = { wezterm = "Black Atom — TER ∷ Summer Night" },
-        ["black-atom-terra-fall-day"] = { wezterm = "Black Atom — TER ∷ Fall Day" },
-        ["black-atom-terra-fall-night"] = { wezterm = "Black Atom — TER ∷ Fall Night" },
-        ["black-atom-terra-winter-day"] = { wezterm = "Black Atom — TER ∷ Winter Day" },
-        ["black-atom-terra-winter-night"] = { wezterm = "Black Atom - Terra Winter Night" },
+        ["github_dark_default"] = {
+            wezterm = "github_dark_default",
+            ghostty = "github-dark.conf",
+        },
 
-        ["black-atom-north-night"] = { wezterm = "Black Atom — NORTH ∷ Night" },
-        ["black-atom-north-dark-night"] = { wezterm = "Black Atom — NORTH ∷ Dark Night" },
-        ["black-atom-north-day"] = { wezterm = "Black Atom — NORTH ∷ Day" },
+        ["catppuccin-mocha"] = {
+            wezterm = "catppuccin-mocha",
+            ghostty = "catppuccin-mocha.conf",
+        },
 
-        ["black-atom-jpn-koyo-yoru"] = { wezterm = "Black Atom — JPN ∷ Koyo Yoru" },
-        ["black-atom-jpn-koyo-hiru"] = { wezterm = "Black Atom — JPN ∷ Koyo Hiru" },
-        ["black-atom-jpn-tsuki-yoru"] = { wezterm = "Black Atom — JPN ∷ Tsuki Yoru" },
-        ["black-atom-jpn-murasaki-yoru"] = { wezterm = "Black Atom — JPN ∷ Murasaki Yoru" },
+        ["tokyonight-night"] = {
+            wezterm = "Tokyo Night",
+            ghostty = "tokyonight-night.conf",
+        },
 
-        ["black-atom-crbn-supr"] = { wezterm = "Black Atom — CRB ∷ SUPR" },
-        ["black-atom-crbn-null"] = { wezterm = "Black Atom — CRB ∷ NULL" },
+        ["rose-pine"] = {
+            wezterm = "rose-pine",
+            ghostty = "rose-pine.conf",
+        },
 
-        ["github_dark_default"] = { wezterm = "github_dark_default" },
+        ["nord"] = {
+            wezterm = "nord",
+            ghostty = "nord.conf",
+        },
+
+        -- Black Atom Stations themes
+        ["black-atom-stations-engineering"] = {
+            wezterm = "Black Atom — STA ∷ Engineering",
+            ghostty = "black-atom-stations-engineering.conf",
+        },
+        ["black-atom-stations-operations"] = {
+            wezterm = "Black Atom — STA ∷ Operations",
+            ghostty = "black-atom-stations-operations.conf",
+        },
+        ["black-atom-stations-medical"] = {
+            wezterm = "Black Atom — STA ∷ Medical",
+            ghostty = "black-atom-stations-medical.conf",
+        },
+        ["black-atom-stations-research"] = {
+            wezterm = "Black Atom — STA ∷ Research",
+            ghostty = "black-atom-stations-research.conf",
+        },
+
+        -- Black Atom Terra themes
+        ["black-atom-terra-spring-day"] = {
+            wezterm = "Black Atom — TER ∷ Spring Day",
+            ghostty = "black-atom-terra-spring-day.conf",
+        },
+        ["black-atom-terra-spring-night"] = {
+            wezterm = "Black Atom — TER ∷ Spring Night",
+            ghostty = "black-atom-terra-spring-night.conf",
+        },
+        ["black-atom-terra-summer-day"] = {
+            wezterm = "Black Atom — TER ∷ Summer Day",
+            ghostty = "black-atom-terra-summer-day.conf",
+        },
+        ["black-atom-terra-summer-night"] = {
+            wezterm = "Black Atom — TER ∷ Summer Night",
+            ghostty = "black-atom-terra-summer-night.conf",
+        },
+        ["black-atom-terra-fall-day"] = {
+            wezterm = "Black Atom — TER ∷ Fall Day",
+            ghostty = "black-atom-terra-fall-day.conf",
+        },
+        ["black-atom-terra-fall-night"] = {
+            wezterm = "Black Atom — TER ∷ Fall Night",
+            ghostty = "black-atom-terra-fall-night.conf",
+        },
+        ["black-atom-terra-winter-day"] = {
+            wezterm = "Black Atom — TER ∷ Winter Day",
+            ghostty = "black-atom-terra-winter-day.conf",
+        },
+        ["black-atom-terra-winter-night"] = {
+            wezterm = "Black Atom - Terra Winter Night",
+            ghostty = "black-atom-terra-winter-night.conf",
+        },
+
+        -- Black Atom North themes
+        ["black-atom-north-night"] = {
+            wezterm = "Black Atom — NORTH ∷ Night",
+            ghostty = "black-atom-north-night.conf",
+        },
+        ["black-atom-north-dark-night"] = {
+            wezterm = "Black Atom — NORTH ∷ Dark Night",
+            ghostty = "black-atom-north-dark-night.conf",
+        },
+        ["black-atom-north-day"] = {
+            wezterm = "Black Atom — NORTH ∷ Day",
+            ghostty = "black-atom-north-day.conf",
+        },
+
+        -- Black Atom JPN themes
+        ["black-atom-jpn-tsuki-yoru"] = {
+            wezterm = "Black Atom — JPN ∷ Tsuki Yoru",
+            ghostty = "black-atom-jpn-tsuki-yoru.conf",
+        },
+        ["black-atom-jpn-murasaki-yoru"] = {
+            wezterm = "Black Atom — JPN ∷ Murasaki Yoru",
+            ghostty = "black-atom-jpn-murasaki-yoru.conf",
+        },
+
+        -- Black Atom Carbon themes
+        ["black-atom-crbn-supr"] = {
+            wezterm = "Black Atom — CRB ∷ SUPR",
+            ghostty = "black-atom-crbn-supr.conf",
+        },
+        ["black-atom-crbn-null"] = {
+            wezterm = "Black Atom — CRB ∷ NULL",
+            ghostty = "black-atom-crbn-null.conf",
+        },
+
         ["github_dark_dimmed"] = { wezterm = "github_dark_dimmed" },
         ["github_light_default"] = { wezterm = "Google Light (Gogh)" },
 
         ["catppuccin"] = { wezterm = "catppuccin" },
-        ["catppuccin-mocha"] = { wezterm = "catppuccin-mocha" },
         ["catppuccin-frappe"] = { wezterm = "catppuccin-frappe" },
         ["catppuccin-macchiato"] = { wezterm = "catppuccin-macchiato" },
         ["catppuccin-latte"] = { wezterm = "catppuccin-latte" },
@@ -54,17 +150,13 @@ M.config = {
         ["tokyonight-moon"] = { wezterm = "Tokyo Night Moon" },
         ["tokyonight-day"] = { wezterm = "Tokyo Night Day" },
         ["tokyonight-storm"] = { wezterm = "Tokyo Night Storm" },
-        ["tokyonight-night"] = { wezterm = "Tokyo Night" },
 
-        ["rose-pine"] = { wezterm = "rose-pine" },
         ["rose-pine-main"] = { wezterm = "rose-pine" },
         ["rose-pine-moon"] = { wezterm = "rose-pine-moon" },
         ["rose-pine-dawn"] = { wezterm = "rose-pine-dawn" },
 
         ["kanso-zen"] = { wezterm = "kanso-zen" },
         ["kanso-ink"] = { wezterm = "kanso-ink" },
-
-        ["nord"] = { wezterm = "nord" },
     },
     open_previous_files_on_startup = false,
     open_neotree_on_startup = false,
@@ -73,6 +165,7 @@ M.config = {
         config = {
             nvim = vim.fn.expand("$XDG_CONFIG_HOME") .. "/nvim/lua/config.lua",
             wezterm = vim.fn.expand("$XDG_CONFIG_HOME") .. "/wezterm",
+            ghostty = vim.fn.expand("$XDG_CONFIG_HOME") .. "/ghostty",
         },
         notes = {
             personal = vim.fn.expand("~/repos") .. "/nikbrunner/notes",
