@@ -1,4 +1,5 @@
 local M = {}
+local ShaDa = require("shada")
 
 ---Finds a pattern in a line of a file and replaces it with a value
 ---@param filepath string
@@ -131,12 +132,12 @@ function M.sync_ghostty_colorscheme(config, colorscheme)
         end
     end
 
-    -- Determine current background mode and build theme string
+    -- Get the actual saved colorschemes from state (source of truth)
+    local light_colorscheme = ShaDa.read("colorscheme_light")
+    local dark_colorscheme = ShaDa.read("colorscheme_dark")
     local current_background = vim.o.background
-    local light_colorscheme = config.colorscheme_light
-    local dark_colorscheme = config.colorscheme_dark
 
-    -- Get ghostty theme names for both modes
+    -- Get ghostty theme names for both modes from the saved state colorschemes
     local light_config = config.colorscheme_config_map[light_colorscheme]
     local light_theme = (light_config and type(light_config.ghostty) == "string")
             and light_config.ghostty
@@ -148,10 +149,13 @@ function M.sync_ghostty_colorscheme(config, colorscheme)
         or "black-atom-jpn-koyo-yoru.conf"
 
     -- If we're manually changing to a specific colorscheme, update the appropriate mode
+    -- and also update the state to remember this choice
     if current_background == "light" then
         light_theme = colorscheme_config.ghostty
+        ShaDa.update("colorscheme_light", colorscheme)
     else
         dark_theme = colorscheme_config.ghostty
+        ShaDa.update("colorscheme_dark", colorscheme)
     end
 
     -- Build the theme line
