@@ -287,8 +287,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
         M.map("n", "si", vim.lsp.buf.hover, o({ desc = "[I]nfo" }))
 
         -- LSP Diagnostics
-        M.map("n", "sp", vim.diagnostic.open_float, o({ desc = "[P]roblems (Float)" }))
-        M.map("n", "sP", function()
+        -- M.map("n", "sp", vim.diagnostic.open_float, o({ desc = "[P]roblems (Float)" }))
+        M.map("n", "sp", function()
             M.set_diagnostic_virtual_lines()
 
             vim.api.nvim_create_autocmd("CursorMoved", {
@@ -302,15 +302,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
             })
         end, o({ desc = "[P]roblems (Inline)" }))
 
-        vim.api.nvim_create_autocmd("CursorHold", {
-            group = vim.api.nvim_create_augroup("cursor-hold-diagnostics", {}),
-            desc = "User: On cursor hold, reset diagnostics virtual lines",
-            callback = function()
-                -- vim.diagnostic.open_float(nil, { focusable = true, source = "if_many" })
-                M.set_diagnostic_virtual_lines()
-            end,
-        })
-
+        -- vim.api.nvim_create_autocmd("CursorHold", {
+        --     group = vim.api.nvim_create_augroup("cursor-hold-diagnostics", {}),
+        --     desc = "User: On cursor hold, reset diagnostics virtual lines",
+        --     callback = function()
+        --         -- vim.diagnostic.open_float(nil, { focusable = true, source = "if_many" })
+        --         M.set_diagnostic_virtual_lines()
+        --     end,
+        -- })
+        --
         -- Helper function to create diagnostic navigation mappings
         local function create_diagnostic_mappings(key, severity_type, severity_value)
             local severity_param = severity_value and { severity = severity_value } or nil
