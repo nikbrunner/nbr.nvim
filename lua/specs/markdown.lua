@@ -10,7 +10,6 @@ return {
         version = "*", -- recommended, use latest release instead of latest commit
         event = "VeryLazy",
         dependencies = {
-            -- Required.
             "nvim-lua/plenary.nvim",
             "folke/snacks.nvim",
         },
@@ -96,7 +95,7 @@ return {
                 min_chars = 0,
             },
             ui = {
-                enable = true, -- markview.nvim does that
+                enable = false,
             },
         },
         config = function(_, opts)
