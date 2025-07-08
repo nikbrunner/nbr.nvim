@@ -278,7 +278,7 @@ return {
                     hidden = true,
                     ignored = true,
                     layout = {
-                        preset = "column",
+                        preset = "sidebar",
                         preview = {
                             main = true,
                             enabled = false,
@@ -588,7 +588,7 @@ return {
             { "<leader>aN",          M.get_news, desc = "[N]ews",  },
 
             -- Workspace
-            -- { "<leader>we",          M.explorer, desc = "[E]xplorer" },
+            { "<leader>we",          M.explorer, desc = "[E]xplorer" },
             { "<leader>wg",          function() Snacks.lazygit() end, desc = "[G]it" },
             { "<leader>wl",          function() Snacks.lazygit.log() end, desc = "[G]it Log" },
             { "<leader>wd",          function() Snacks.picker.smart() end, desc = "[D]ocument" },
