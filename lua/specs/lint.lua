@@ -46,11 +46,6 @@ return {
             }
         end
 
-        if not has_eslint_config and not has_deno_config then
-            vim.notify("No eslint or deno config found", vim.log.levels.WARN, { title = "Lint" })
-            return
-        end
-
         vim.api.nvim_create_autocmd({ "BufWritePost" }, {
             group = vim.api.nvim_create_augroup("nbr.nvim_lint_on_save", {}),
             callback = function()

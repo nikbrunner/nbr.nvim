@@ -54,8 +54,6 @@ return {
                     { title = "Conform" }
                 )
             end
-        else
-            vim.notify("No prettier config found", vim.log.levels.WARN, { title = "Conform" })
         end
 
         local is_deno_available = conform.get_formatter_info(deno_cmd, bufnr).available
@@ -67,8 +65,6 @@ return {
             else
                 vim.notify(string.format("Using %s for formatting", deno_cmd), vim.log.levels.INFO, { title = "Conform" })
             end
-        else
-            vim.notify("No deno config found", vim.log.levels.WARN, { title = "Conform" })
         end
 
         local is_biome_available = conform.get_formatter_info(biome_cmd, bufnr).available
@@ -80,8 +76,6 @@ return {
             else
                 vim.notify(string.format("Using %s for formatting", biome_cmd), vim.log.levels.INFO, { title = "Conform" })
             end
-        else
-            vim.notify("No biome config found", vim.log.levels.WARN, { title = "Conform" })
         end
 
         local function handle_prettier_or_deno_or_biome()

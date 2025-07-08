@@ -96,9 +96,7 @@ return {
     -- Write the file safely with pcall
     local write_ok, err = pcall(vim.fn.writefile, vim.split(content, "\n"), wezterm_schemes_file)
     if not write_ok then
-        vim.notify("Failed to write wezterm schemes file: " .. (err or "unknown error"), vim.log.levels.ERROR)
-    else
-        vim.notify("WezTerm colorscheme synced", vim.log.levels.INFO)
+        vim.notify_once("Failed to write wezterm schemes file: " .. (err or "unknown error"), vim.log.levels.ERROR)
     end
 end
 
@@ -139,13 +137,11 @@ function M.sync_ghostty_colorscheme(config, colorscheme)
 
     -- Get ghostty theme names for both modes from the saved state colorschemes
     local light_config = config.colorscheme_config_map[light_colorscheme]
-    local light_theme = (light_config and type(light_config.ghostty) == "string")
-            and light_config.ghostty
+    local light_theme = (light_config and type(light_config.ghostty) == "string") and light_config.ghostty
         or "black-atom-jpn-koyo-hiru.conf"
-    
+
     local dark_config = config.colorscheme_config_map[dark_colorscheme]
-    local dark_theme = (dark_config and type(dark_config.ghostty) == "string")
-            and dark_config.ghostty
+    local dark_theme = (dark_config and type(dark_config.ghostty) == "string") and dark_config.ghostty
         or "black-atom-jpn-koyo-yoru.conf"
 
     -- If we're manually changing to a specific colorscheme, update the appropriate mode
@@ -188,9 +184,7 @@ function M.sync_ghostty_colorscheme(config, colorscheme)
     -- Write the file safely with pcall
     local write_ok, err = pcall(vim.fn.writefile, lines, ghostty_config_file)
     if not write_ok then
-        vim.notify("Failed to write ghostty config file: " .. (err or "unknown error"), vim.log.levels.ERROR)
-    else
-        vim.notify("Ghostty theme synced: " .. theme_line, vim.log.levels.INFO)
+        vim.notify_once("Failed to write ghostty config file: " .. (err or "unknown error"), vim.log.levels.ERROR)
     end
 end
 
