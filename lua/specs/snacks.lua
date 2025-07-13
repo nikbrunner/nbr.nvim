@@ -273,7 +273,7 @@ return {
                     replace_netrw = true,
                     git_status = true,
                     jump = {
-                        close = true,
+                        close = false,
                     },
                     hidden = true,
                     ignored = true,
@@ -371,7 +371,7 @@ return {
 
         zen = {
             toggles = {
-                dim = false,
+                dim = true,
                 git_signs = false,
                 mini_diff_signs = false,
                 diagnostics = true,
@@ -540,7 +540,7 @@ return {
             pattern = "VeryLazy",
             callback = function()
                 -- stylua: ignore start
-                -- Snacks.toggle.dim():map("<leader>aod")
+                Snacks.toggle.dim():map("<leader>aod")
                 Snacks.toggle.line_number():map("<leader>aol")
                 Snacks.toggle.inlay_hints():map("<leader>aoh")
                 -- Snacks.toggle.diagnostics():map("<leader>aoD")
@@ -577,7 +577,7 @@ return {
             -- { "<leader>aS",          function() Snacks.picker.files({ cwd = vim.fn.expand("$XDG_CONFIG_HOME") }) end, desc = "[S]ettings (.config)" },
             { "<leader>at",          function() Snacks.picker.colorschemes() end, desc = "[T]hemes" },
             { "<leader>ar",          function() Snacks.picker.recent() end, desc = "[R]ecent Documents (Anywhere)" },
-            { "<leader>az",          function() Snacks.zen.zoom() end, desc = "[Z]oom Mode" },
+            { "<leader>aoz",          function() Snacks.zen.zoom() end, desc = "[Z]oom Mode" },
             { "<leader>an",          function() Snacks.notifier.show_history() end, desc = "[N]otifications" },
             { "<leader>ak",          function() Snacks.picker.keymaps() end, desc = "[K]eymaps" },
             { "<leader>aj",          function() Snacks.picker.jumps() end, desc = "[J]umps" },
