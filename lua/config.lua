@@ -139,6 +139,16 @@ M.config = {
             ghostty = "black-atom-crbn-null.conf",
         },
 
+        -- Black Atom Term themes
+        ["black-atom-term-dark"] = {
+            wezterm = "Black Atom — TRM ∷ Dark",
+            ghostty = "black-atom-term-dark.conf",
+        },
+        ["black-atom-term-light"] = {
+            wezterm = "Black Atom — TRM ∷ Light",
+            ghostty = "black-atom-term-light.conf",
+        },
+
         ["github_dark_dimmed"] = { wezterm = "github_dark_dimmed" },
         ["github_light_default"] = { wezterm = "Google Light (Gogh)" },
 
