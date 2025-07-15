@@ -4,8 +4,8 @@ local prettier_configs = { ".prettierrc", ".prettierrc.json" }
 local deno_cmd = "deno_fmt"
 local deno_configs = { "deno.json", "deno.jsonc" }
 
-local biome_cmd = "biome format"
-local biome_configs = { "biome.json" }
+local biome_cmd = "biome"
+local biome_configs = { "biome.json", "biome.jsonc" }
 
 ---@type LazyPluginSpec
 return {
@@ -81,7 +81,7 @@ return {
         local function handle_prettier_or_deno_or_biome()
             -- Priority: Biome > Deno > Prettier
             if biome_config ~= nil and is_biome_available then
-                return { "biome", stop_after_first = true }
+                return { "biome", "biome-organize-imports" }
             end
 
             if deno_config ~= nil and is_deno_available then
