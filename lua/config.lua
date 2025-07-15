@@ -129,24 +129,30 @@ M.config = {
             ghostty = "black-atom-jpn-murasaki-yoru.conf",
         },
 
-        -- Black Atom Carbon themes
-        ["black-atom-crbn-supr"] = {
-            wezterm = "Black Atom — CRB ∷ SUPR",
-            ghostty = "black-atom-crbn-supr.conf",
+        -- Black Atom Minimal themes
+        ["black-atom-mnml-mono-dark"] = {
+            wezterm = "Black Atom — MNM ∷ Mono Dark",
+            ghostty = "black-atom-mnml-mono-dark.conf",
         },
-        ["black-atom-crbn-null"] = {
-            wezterm = "Black Atom — CRB ∷ NULL",
-            ghostty = "black-atom-crbn-null.conf",
+        ["black-atom-mnml-mono-light"] = {
+            wezterm = "Black Atom — MNM ∷ Mono Light",
+            ghostty = "black-atom-mnml-mono-light.conf",
         },
-
-        -- Black Atom Term themes
-        ["black-atom-term-dark"] = {
-            wezterm = "Black Atom — TRM ∷ Dark",
-            ghostty = "black-atom-term-dark.conf",
+        ["black-atom-mnml-orange-dark"] = {
+            wezterm = "Black Atom — MNM ∷ Orange Dark",
+            ghostty = "black-atom-mnml-orange-dark.conf",
         },
-        ["black-atom-term-light"] = {
-            wezterm = "Black Atom — TRM ∷ Light",
-            ghostty = "black-atom-term-light.conf",
+        ["black-atom-mnml-orange-light"] = {
+            wezterm = "Black Atom — MNM ∷ Orange Light",
+            ghostty = "black-atom-mnml-orange-light.conf",
+        },
+        ["black-atom-mnml-blue-dark"] = {
+            wezterm = "Black Atom — MNM ∷ Blue Dark",
+            ghostty = "black-atom-mnml-blue-dark.conf",
+        },
+        ["black-atom-mnml-blue-light"] = {
+            wezterm = "Black Atom — MNM ∷ Blue Light",
+            ghostty = "black-atom-mnml-blue-light.conf",
         },
 
         ["github_dark_dimmed"] = { wezterm = "github_dark_dimmed" },
