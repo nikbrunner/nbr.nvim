@@ -13,11 +13,11 @@ return {
             end
 
             -- Check for Biome config first (highest priority)
-            local biome_configs = { "biome.json", "biome.jsonc" }
-            local biome_config = vim.fs.find(biome_configs, { upward = true, path = fname })[1]
-            if biome_config then
-                return "biomejs"
-            end
+            -- local biome_configs = { "biome.json", "biome.jsonc" }
+            -- local biome_config = vim.fs.find(biome_configs, { upward = true, path = fname })[1]
+            -- if biome_config then
+            --     return "biomejs"
+            -- end
 
             -- Check for Deno config
             local deno_configs = { "deno.json", "deno.jsonc" }
