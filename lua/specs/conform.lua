@@ -4,6 +4,7 @@ local prettier_configs = { ".prettierrc", ".prettierrc.json" }
 local deno_cmd = "deno_fmt"
 local deno_configs = { "deno.json", "deno.jsonc" }
 
+-- https://github.com/kiyoon/conform.nvim/blob/f73ca2e94221d0374134b64c085d1847a6ed3593/lua/conform/formatters/biome.lua
 local biome_cmd = "biome"
 local biome_configs = { "biome.json", "biome.jsonc" }
 
@@ -78,10 +79,15 @@ return {
             end
         end
 
-        local function handle_prettier_or_deno_or_biome()
-            -- Priority: Biome > Deno > Prettier
+        local function handle_shared_formatter()
+            -- NOTE: The `biome-check` command combines the `biome` and `biome-organize-imports` commands
+            -- https://github.com/kiyoon/conform.nvim/blob/f73ca2e94221d0374134b64c085d1847a6ed3593/lua/conform/formatters/biome-check.lua
+            -- https://github.com/kiyoon/conform.nvim/blob/f73ca2e94221d0374134b64c085d1847a6ed3593/lua/conform/formatters/biome.lua
+            -- https://github.com/kiyoon/conform.nvim/blob/f73ca2e94221d0374134b64c085d1847a6ed3593/lua/conform/formatters/biome-organize-imports.lua
+
             if biome_config ~= nil and is_biome_available then
-                return { "biome", "biome-organize-imports" }
+                -- return { "biome", "biome-organize-imports" }
+                return { "biome-check" }
             end
 
             if deno_config ~= nil and is_deno_available then
@@ -104,12 +110,12 @@ return {
                 end
             end,
             formatters_by_ft = {
-                javascript = handle_prettier_or_deno_or_biome,
-                javascriptreact = handle_prettier_or_deno_or_biome,
-                markdown = handle_prettier_or_deno_or_biome,
-                json = handle_prettier_or_deno_or_biome,
-                typescript = handle_prettier_or_deno_or_biome,
-                typescriptreact = handle_prettier_or_deno_or_biome,
+                javascript = handle_shared_formatter,
+                javascriptreact = handle_shared_formatter,
+                markdown = handle_shared_formatter,
+                json = handle_shared_formatter,
+                typescript = handle_shared_formatter,
+                typescriptreact = handle_shared_formatter,
                 css = { prettier_cmd },
                 scss = { prettier_cmd },
                 graphql = { prettier_cmd },
