@@ -32,7 +32,7 @@ end
 function M.set_diagnostic_virtual_text()
     vim.diagnostic.config({
         virtual_lines = false,
-        virtual_text = { current_line = true },
+        virtual_text = { current_line = false },
     })
 end
 
@@ -57,12 +57,13 @@ function M.custom_jump(jumpCount, severity)
     M.set_diagnostic_virtual_lines()
     vim.cmd("norm zz")
     -- vim.diagnostic.open_float(nil, { focusable = true, source = "if_many" })
+    local auto_group = vim.api.nvim_create_augroup(auto_group_name, { clear = true })
 
     vim.defer_fn(function() -- deferred to not trigger by jump itself
         vim.api.nvim_create_autocmd("CursorMoved", {
-            desc = "User(once): Reset diagnostics virtual lines",
             once = true,
-            group = vim.api.nvim_create_augroup(auto_group_name, {}),
+            desc = "User(once): Reset diagnostics virtual lines",
+            group = auto_group,
             callback = function()
                 M.set_diagnostic_virtual_text()
             end,
