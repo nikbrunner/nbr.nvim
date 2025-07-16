@@ -42,7 +42,7 @@ return {
     settings = {
         tailwindCSS = {
             classAttributes = { "class", "className", "class:list", "classList", "ngClass" },
-            -- classFunctions = { "clxs", "cn" },
+            classFunctions = { "clxs", "cn" },
             lint = {
                 cssConflict = "warning",
                 invalidApply = "error",
