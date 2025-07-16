@@ -75,7 +75,7 @@ return {
 
         local lint_group = vim.api.nvim_create_augroup("nbr.nvim_lint", { clear = true })
 
-        vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter", "BufEnter", "BufNewFile", "BufReadPost" }, {
+        vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter" }, {
             group = lint_group,
             callback = function()
                 setup_linters()
