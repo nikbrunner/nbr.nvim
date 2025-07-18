@@ -73,8 +73,48 @@ return {
             cb(vim.fn.fnamemodify(ts_config, ":h"))
         end
     end,
-    on_attach = function()
-        vim.notify("Attached to vtsls", vim.log.levels.INFO, { title = "vtsls" })
+    on_attach = function(client, bufnr)
+        -- Cache the code action kind for better performance
+        local add_missing_imports_kind = "source.addMissingImports.ts"
+
+        -- Create autocmd group to ensure cleanup
+        local group = vim.api.nvim_create_augroup("vtsls_auto_import_" .. bufnr, { clear = true })
+
+        -- Set up autocmd to run add missing imports on save
+        vim.api.nvim_create_autocmd("BufWritePre", {
+            group = group,
+            buffer = bufnr,
+            callback = function()
+                -- Early return if client is not active
+                if not client or not client.request_sync then
+                    return
+                end
+
+                -- Use vim.lsp.buf.code_action with a filter for better integration
+                vim.lsp.buf.code_action({
+                    context = {
+                        only = { add_missing_imports_kind },
+                        diagnostics = {},
+                    },
+                    filter = function(action)
+                        return action.kind == add_missing_imports_kind
+                    end,
+                    apply = true,
+                })
+            end,
+            desc = "vtsls: Add missing imports on save",
+        })
+
+        -- Clean up autocmd when buffer is deleted
+        vim.api.nvim_create_autocmd("BufDelete", {
+            group = group,
+            buffer = bufnr,
+            callback = function()
+                vim.api.nvim_del_augroup_by_id(group)
+            end,
+        })
+
+        vim.notify("Attached to vtsls with auto-import on save", vim.log.levels.INFO, { title = "vtsls" })
     end,
     settings = {
         typescript = jsts_settings,
