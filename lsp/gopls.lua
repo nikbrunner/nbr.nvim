@@ -1,4 +1,4 @@
----@see https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#gopls
+-- https://github.com/neovim/nvim-lspconfig/blob/master/lsp/gopls.lua
 
 ---@type vim.lsp.Config
 return {

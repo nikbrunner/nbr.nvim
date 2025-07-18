@@ -1,6 +1,6 @@
--- Install with
+-- Install with:
 -- mac: brew install marksman
--- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#lua_ls
+-- https://github.com/neovim/nvim-lspconfig/blob/master/lsp/marksman.lua
 
 ---@type vim.lsp.Config
 return {

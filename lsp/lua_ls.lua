@@ -1,7 +1,7 @@
--- Install with
+-- Install with:
 -- mac: brew install lua-language-server
 -- Arch: pacman -S lua-language-server
--- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#lua_ls
+-- https://github.com/neovim/nvim-lspconfig/blob/master/lsp/lua_ls.lua
 
 ---@type vim.lsp.Config
 return {

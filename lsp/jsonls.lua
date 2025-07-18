@@ -1,5 +1,5 @@
 -- Install with: npm i -g vscode-langservers-extracted
----@see https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#jsonls
+-- https://github.com/neovim/nvim-lspconfig/blob/master/lsp/jsonls.lua
 
 ---@type vim.lsp.Config
 return {

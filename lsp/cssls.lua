@@ -1,5 +1,5 @@
 -- Install with: npm i -g vscode-langservers-extracted
--- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#cssls
+-- https://github.com/neovim/nvim-lspconfig/blob/master/lsp/cssls.lua
 
 ---@type vim.lsp.Config
 return {

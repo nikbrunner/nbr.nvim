@@ -1,6 +1,5 @@
 -- Install with: npm i -g bash-language-server
--- Also uses shellcheck for diagnostics and shfmt for formatting.
----@see https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#bashls
+--https://github.com/neovim/nvim-lspconfig/blob/master/lsp/bashls.lua
 
 ---@type vim.lsp.Config
 return {

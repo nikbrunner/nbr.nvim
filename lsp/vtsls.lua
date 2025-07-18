@@ -1,7 +1,7 @@
 -- Install with: @vtsls/language-server
--- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#vtsls
+-- https://github.com/MariaSolOs/dotfiles/blob/main/.config/nvim/lsp/vtsls.lua
 
-local jsts_settings = {
+local shared_jsts_settings = {
     suggest = { completeFunctionCalls = true },
     inlayHints = {
         functionLikeReturnTypes = { enabled = true },
@@ -10,24 +10,6 @@ local jsts_settings = {
     },
 }
 
-local deno_configs = {
-    "deno.json",
-    "deno.jsonc",
-}
-
-local ts_configs = {
-    "tsconfig.json",
-    "tsconfig.jsonc",
-}
-
-local filetypes = {
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact",
-}
-
----@see https://github.com/MariaSolOs/dotfiles/blob/main/.config/nvim/lsp/vtsls.lua
 local function get_global_tsdk()
     -- Use VS Code's bundled copy if available.
     local vscode_tsdk_path = "/Applications/%s/Contents/Resources/app/extensions/node_modules/typescript/lib"
@@ -46,7 +28,7 @@ end
 ---@type vim.lsp.Config
 return {
     cmd = { "vtsls", "--stdio" },
-    filetypes = filetypes,
+    filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
     init_options = {
         ---@see https://github.com/typescript-language-server/typescript-language-server#initializationoptions
         preferences = {
@@ -56,8 +38,9 @@ return {
     root_dir = function(bufnr, cb)
         local fname = vim.uri_to_fname(vim.uri_from_bufnr(bufnr))
 
-        -- If there is a Deno config, we don't start the vtsls server.
+        local deno_configs = { "deno.json", "deno.jsonc" }
         local deno_config = vim.fs.find(deno_configs, { upward = true, path = fname })[1]
+        -- If there is a Deno config, we don't start the vtsls server.
         if deno_config then
             return
         end
@@ -68,6 +51,7 @@ return {
             cb(vim.fn.fnamemodify(git_root, ":h"))
         end
 
+        local ts_configs = { "tsconfig.json", "tsconfig.jsonc" }
         local ts_config = vim.fs.find(ts_configs, { upward = true, path = fname })[1]
         if ts_config then
             cb(vim.fn.fnamemodify(ts_config, ":h"))
@@ -117,8 +101,8 @@ return {
         vim.notify("Attached to vtsls with auto-import on save", vim.log.levels.INFO, { title = "vtsls" })
     end,
     settings = {
-        typescript = jsts_settings,
-        javascript = jsts_settings,
+        typescript = shared_jsts_settings,
+        javascript = shared_jsts_settings,
         vtsls = {
             typescript = {
                 globalTsdk = get_global_tsdk(),

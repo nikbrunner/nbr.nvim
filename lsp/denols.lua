@@ -1,33 +1,19 @@
----@see https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#denols
-
-local deno_configs = {
-    "deno.json",
-    "deno.jsonc",
-}
-
-local filetypes = {
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact",
-}
+-- https://github.com/neovim/nvim-lspconfig/blob/master/lsp/denols.lua
 
 ---@type vim.lsp.Config
 return {
     cmd = { "deno", "lsp" },
     cmd_env = { NO_COLOR = true },
-    filetypes = filetypes,
-
+    filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
     root_dir = function(bufnr, cb)
+        local configs = { "deno.json", "deno.jsonc" }
+
         local fname = vim.uri_to_fname(vim.uri_from_bufnr(bufnr))
+        local match = vim.fs.find(configs, { upward = true, path = fname })[1]
 
-        local deno_config = vim.fs.find(deno_configs, { upward = true, path = fname })[1]
-
-        if not deno_config then
-            return
+        if match then
+            cb(vim.fn.fnamemodify(match, ":h"))
         end
-
-        cb(vim.fn.fnamemodify(deno_config, ":h"))
     end,
 
     ---@diagnostic disable-next-line: unused-local
